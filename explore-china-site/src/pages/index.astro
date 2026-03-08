@@ -2,61 +2,55 @@
 import Layout from '../layouts/Layout.astro';
 import { site, currentTrip } from '../data/site';
 ---
-<Layout title={`${site.name} · Youth Minimal V2`}>
-  <section class="section card" style="padding:30px; overflow:hidden;">
-    <span class="pill">2026 Summer · Current Open Program</span>
-    <h1 style="max-width:850px; margin-top:14px;">
-      Travel with people your age.
+<Layout title={`${site.name} · V3`}>
+  <section class="section card" style="padding:30px;">
+    <span class="pill">2026 Summer Program</span>
+    <h1 style="max-width:860px; margin-top:14px;">
+      Youth travel, done right.
       <br />
       Explore China with real local context.
     </h1>
     <p class="muted" style="max-width:760px; font-size:18px; margin-top:14px;">
-      Not a rigid tour group. Not random solo travel either.
-      This is a student-led route designed to be social, immersive, and actually practical.
+      A student-led trip designed for people who want more than sightseeing:
+      city energy, culture, social connection, and practical support.
     </p>
     <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;">
-      <a class="btn btn-primary" href={`/trips/${currentTrip.slug}`}>View Trip Details</a>
-      <a class="btn btn-ghost" href={`/trips/${currentTrip.slug}#register`}>Registration Placeholder</a>
+      <a class="btn btn-primary" href={`/trips/${currentTrip.slug}`}>View Trip</a>
+      <a class="btn btn-secondary" href="/handbook">Open Handbook</a>
     </div>
   </section>
 
-  <section class="section grid" style="grid-template-columns:1.1fr 1fr; align-items:stretch;">
+  <section class="section grid" style="grid-template-columns:1.1fr 1fr;">
     <article class="card" style="padding:0; overflow:hidden;">
-      <img src="https://images.unsplash.com/photo-1535916707207-35f97e715e1c?auto=format&fit=crop&w=1400&q=80" alt="Young travelers" style="height:100%; min-height:320px; width:100%; object-fit:cover;" />
+      <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=1600&q=80" alt="Shanghai skyline" style="height:100%; min-height:330px; width:100%; object-fit:cover;" />
     </article>
-
     <article class="card">
       <h2>{currentTrip.title}</h2>
       <p class="muted">{currentTrip.duration} · {currentTrip.subtitle}</p>
-      <p style="font-weight:700; margin-top:8px;">{currentTrip.priceCad}</p>
+      <p style="font-size:22px; font-weight:700; margin:12px 0 8px;">{currentTrip.priceCad}</p>
       <p class="muted">{currentTrip.accommodation}</p>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px;">
-        <span class="pill">City + Culture</span>
-        <span class="pill">Student Social Day</span>
-        <span class="pill">Food Friendly</span>
-        <span class="pill">Organizer Support</span>
+        <span class="pill">Shanghai</span>
+        <span class="pill">Suzhou</span>
+        <span class="pill">Hangzhou</span>
+        <span class="pill">Beijing</span>
       </div>
-      <p style="margin-top:14px;"><a href={`/trips/${currentTrip.slug}`}>Open full handbook-style page →</a></p>
+      <p style="margin-top:14px;"><a href={`/trips/${currentTrip.slug}`}>Read details →</a></p>
     </article>
   </section>
 
   <section class="section grid" style="grid-template-columns:repeat(3,1fr);">
     <article class="card">
-      <h3>Young vibe</h3>
-      <p class="muted">Social blocks and flexible exploration, not museum-only rushing.</p>
+      <h3>Immersive</h3>
+      <p class="muted">More than landmarks — social blocks and local atmosphere.</p>
     </article>
     <article class="card">
-      <h3>Actually organized</h3>
-      <p class="muted">Clear structure, logistics support, and transparent package scope.</p>
+      <h3>Student-friendly</h3>
+      <p class="muted">Structured enough to be safe, flexible enough to be fun.</p>
     </article>
     <article class="card">
-      <h3>Built to scale</h3>
-      <p class="muted">This site is structured for multiple future trips under one club brand.</p>
+      <h3>Scalable</h3>
+      <p class="muted">Built as a club platform for future multi-route programs.</p>
     </article>
-  </section>
-
-  <section class="section card" id="contact">
-    <h2>Contact (placeholder)</h2>
-    <p class="muted">Email / Instagram / WeChat will be plugged in before launch.</p>
   </section>
 </Layout>
