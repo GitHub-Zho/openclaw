@@ -55,6 +55,7 @@ Turn raw docs/notes into a polished, user-facing site.
 - Run build locally before deploy.
 - Deploy and verify live routes.
 - Collect feedback in 3 buckets: visual polish, clarity, conversion friction.
+- If user says "redesign from scratch", do not only tweak existing sections: replace page IA and layout structure end-to-end, then explicitly report what was rebuilt.
 - Patch quickly and keep commit history clean.
 
 ## References

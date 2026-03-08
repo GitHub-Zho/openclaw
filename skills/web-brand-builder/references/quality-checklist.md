@@ -12,6 +12,7 @@
 - [ ] Navigation labels are clear and literal
 - [ ] FAQ answers top objections
 - [ ] Key actions reachable within 2-3 clicks
+- [ ] If "from scratch" was requested, IA structure was actually rebuilt (not only style tweaks)
 
 ## Content
 - [ ] Value proposition clear in first screen
