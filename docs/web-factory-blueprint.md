@@ -15,6 +15,9 @@ Build a repeatable local pipeline for high-quality website design + implementati
   - Does not judge governance/process decisions; that belongs to `learning`.
 - **brain** (optional planning specialist)
   - Generates design strategy/options before coding when task is ambiguous.
+- **research** (information intelligence)
+  - Collects and synthesizes multi-source evidence for higher-quality decisions.
+  - Provides confidence-graded briefs to main/brain.
 - **learning** (conversation/capability QA)
   - Audits dialogue quality + agent capability gaps.
   - Proposes and implements learning-file updates after main approval.
