@@ -33,6 +33,7 @@ Use this skill for cross-format design work (web + slides), not only coding.
 ## 5) Format-specific rules
 - If web-focused, read `references/web-design.md`.
 - If presentation-focused, read `references/presentation-design.md`.
+- For benchmark examples, read `references/case-library.md`.
 - If both, combine shared tokens and adapt per medium.
 
 ## 6) Quality review
