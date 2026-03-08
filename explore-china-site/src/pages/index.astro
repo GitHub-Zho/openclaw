@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site, currentTrip } from '../data/site';
+---
+<Layout title={`${site.name} · V1`}>
+  <section class="card" style="margin-top:18px">
+    <h1>{site.name}</h1>
+    <p class="muted">{site.tagline}</p>
+    <p>{site.description}</p>
+    <p><a class="btn" href={`/trips/${currentTrip.slug}`}>View Current Trip</a></p>
+  </section>
+
+  <section class="grid" style="grid-template-columns:1fr 1fr; margin-top:18px">
+    <article class="card">
+      <h2>About us</h2>
+      <p>We build student-friendly trips focused on real local experiences, social connection, and practical support.</p>
+    </article>
+    <article class="card">
+      <h2>Current program</h2>
+      <p><strong>{currentTrip.title}</strong></p>
+      <p class="muted">{currentTrip.duration} · {currentTrip.route.join(' → ')}</p>
+      <p>{currentTrip.priceCad}</p>
+    </article>
+    <article class="card">
+      <h2>Coming soon</h2>
+      <p class="muted">More routes will be published as separate trip pages.</p>
+    </article>
+    <article class="card" id="contact">
+      <h2>Contact</h2>
+      <p class="muted">Email / Instagram / WeChat placeholders for now.</p>
+    </article>
+  </section>
+</Layout>

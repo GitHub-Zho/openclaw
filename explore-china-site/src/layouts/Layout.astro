@@ -1,0 +1,39 @@
+---
+const { title = 'Exploration & Travel Club' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <style>
+      :root { --bg:#0b1020; --card:#131a2e; --text:#e9ecf5; --muted:#a7b1c7; --accent:#7dd3fc; }
+      *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--text)}
+      a{color:var(--accent);text-decoration:none}
+      .container{max-width:1040px;margin:0 auto;padding:24px}
+      .card{background:var(--card);border:1px solid #24304f;border-radius:14px;padding:18px}
+      .grid{display:grid;gap:16px}
+      .muted{color:var(--muted)}
+      header{position:sticky;top:0;background:#0b1020d9;backdrop-filter:blur(6px);border-bottom:1px solid #1e2947}
+      nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+      .btn{display:inline-block;background:#1f2b4d;border:1px solid #33436c;color:#fff;padding:10px 14px;border-radius:10px}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <a href="/">Exploration & Travel Club</a>
+          <div style="display:flex;gap:12px">
+            <a href="/trips/explore-china-2026-summer">Current Trip</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+  </body>
+</html>

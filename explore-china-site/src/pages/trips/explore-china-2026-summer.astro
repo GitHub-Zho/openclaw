@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { currentTrip, itinerary, faq } from '../../data/site';
+---
+<Layout title={currentTrip.title}>
+  <section class="card" style="margin-top:18px">
+    <h1>{currentTrip.title}</h1>
+    <p class="muted">{currentTrip.duration} · {currentTrip.route.join(' → ')}</p>
+    <p>{currentTrip.summary}</p>
+    <p><strong>Package:</strong> {currentTrip.priceCad}</p>
+    <p class="muted"><strong>Stay estimate:</strong> {currentTrip.accommodation}</p>
+  </section>
+
+  <section style="margin-top:18px" class="card">
+    <h2>Trip intro</h2>
+    <p>This trip is designed to feel like exploration with friends, not a rigid tour. We combine iconic landmarks, local atmosphere, food culture, and one dedicated local-student exchange day.</p>
+  </section>
+
+  <section style="margin-top:18px" class="card">
+    <h2>10-day itinerary</h2>
+    <div class="grid" style="grid-template-columns:1fr 1fr">
+      {itinerary.map((d) => (
+        <article class="card" style="padding:12px">
+          <h3 style="margin:0 0 6px">{d.day} · {d.city}</h3>
+          <p class="muted" style="margin:0">{d.plan}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section style="margin-top:18px" class="card">
+    <h2>FAQ (placeholder)</h2>
+    {faq.map((f) => (
+      <details style="margin-bottom:10px">
+        <summary>{f.q}</summary>
+        <p class="muted">{f.a}</p>
+      </details>
+    ))}
+  </section>
+
+  <section style="margin:18px 0 40px" class="card">
+    <h2>Registration (placeholder)</h2>
+    <p class="muted">Registration form/button will be connected here (Google Form / Typeform / custom form).</p>
+    <a class="btn" href="#">Join waitlist (placeholder)</a>
+  </section>
+</Layout>
