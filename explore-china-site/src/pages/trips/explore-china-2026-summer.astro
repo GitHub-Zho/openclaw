@@ -1,53 +1,42 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { currentTrip, itinerary, faq, highlights, cityVisuals, included, notIncluded } from '../../data/site';
+import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from '../../data/site';
 ---
 <Layout title={currentTrip.title}>
-  <section class="section card" style="padding:28px;">
-    <span class="pill">Current Flagship Trip</span>
-    <h1 style="font-size:clamp(34px,5vw,60px); margin-top:10px;">Explore China</h1>
-    <p class="muted" style="font-size:18px; margin-top:8px;">{currentTrip.duration} · {currentTrip.subtitle}</p>
-    <p style="max-width:860px; margin-top:12px;">{currentTrip.summary}</p>
+  <section class="section card" style="padding:30px;">
+    <p class="pill">Explore China · Flagship Route</p>
+    <h1 style="font-size:clamp(34px,5vw,62px); margin-top:10px;">{currentTrip.title}</h1>
+    <p class="muted" style="font-size:18px; max-width:820px;">
+      {currentTrip.summary}
+    </p>
 
-    <div class="grid" style="grid-template-columns:1fr 1fr; margin-top:14px;">
-      <div class="card" style="background:#fafafa;">
+    <div class="grid" style="grid-template-columns:1fr 1fr 1fr; margin-top:14px;">
+      <article class="card" style="padding:14px;">
+        <p class="label" style="margin:0">Route</p>
+        <p style="margin:6px 0 0; font-weight:680;">{currentTrip.subtitle}</p>
+      </article>
+      <article class="card" style="padding:14px;">
         <p class="label" style="margin:0">Package</p>
-        <p style="font-size:22px; font-weight:700; margin:6px 0 0;">{currentTrip.priceCad}</p>
-      </div>
-      <div class="card" style="background:#fafafa;">
-        <p class="label" style="margin:0">Stay Assumption</p>
-        <p style="font-size:22px; font-weight:700; margin:6px 0 0;">{currentTrip.accommodation}</p>
-      </div>
+        <p style="margin:6px 0 0; font-weight:680;">{currentTrip.priceCad}</p>
+      </article>
+      <article class="card" style="padding:14px;">
+        <p class="label" style="margin:0">Accommodation</p>
+        <p style="margin:6px 0 0; font-weight:680;">{currentTrip.accommodation}</p>
+      </article>
     </div>
 
     <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-      <a class="btn btn-primary" href="/handbook">Open Full Handbook</a>
-      <a class="btn btn-secondary" href="#register">Apply (Opens Soon)</a>
+      <a class="btn btn-primary" href="#register">Apply</a>
+      <a class="btn btn-secondary" href="/handbook">Open Handbook</a>
     </div>
   </section>
 
   <section class="section grid" style="grid-template-columns:repeat(4,1fr);">
-    {cityVisuals.map((c) => (
-      <figure style="margin:0;">
-        <img class="photo" src={c.image} alt={c.alt} />
-        <figcaption class="label" style="margin-top:8px; text-align:center;">{c.city}</figcaption>
-      </figure>
-    ))}
+    {cityVisuals.map((city) => <img class="photo" src={city.image} alt={city.alt} />)}
   </section>
 
   <section class="section card">
-    <h2>Why this route works</h2>
-    <div class="grid" style="grid-template-columns:1fr 1fr;">
-      {highlights.map((h) => (
-        <div class="card" style="padding:12px; background:#fff;">
-          <p style="margin:0; font-weight:600;">{h}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <section class="section card">
-    <h2>10-Day Plan</h2>
+    <h2>Day-by-day itinerary</h2>
     <div class="grid" style="grid-template-columns:1fr 1fr;">
       {itinerary.map((d) => (
         <article class="card" style="padding:14px;">
@@ -61,14 +50,14 @@ import { currentTrip, itinerary, faq, highlights, cityVisuals, included, notIncl
 
   <section class="section grid" style="grid-template-columns:1fr 1fr;">
     <article class="card">
-      <h3>Included (core package)</h3>
-      <ul class="muted" style="line-height:1.8; margin:0; padding-left:18px;">
+      <h2 style="font-size:30px;">Included</h2>
+      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
         {included.map((item) => <li>{item}</li>)}
       </ul>
     </article>
     <article class="card">
-      <h3>Not included</h3>
-      <ul class="muted" style="line-height:1.8; margin:0; padding-left:18px;">
+      <h2 style="font-size:30px;">Not included</h2>
+      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
         {notIncluded.map((item) => <li>{item}</li>)}
       </ul>
     </article>
@@ -85,11 +74,11 @@ import { currentTrip, itinerary, faq, highlights, cityVisuals, included, notIncl
   </section>
 
   <section id="register" class="section card" style="margin-bottom:36px;">
-    <h2>Registration</h2>
-    <p class="muted">Official registration form and final timeline will be published here before launch.</p>
+    <h2>Apply for this program</h2>
+    <p class="muted">Registration form and timeline will be published here in the next update.</p>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-      <a class="btn btn-primary" href="#">Apply Now</a>
-      <a class="btn btn-secondary" href="#">Join Waitlist</a>
+      <a class="btn btn-primary" href="#">Start Application</a>
+      <a class="btn btn-secondary" href="#">Get Notified</a>
     </div>
   </section>
 </Layout>
