@@ -13,9 +13,29 @@ const { title = 'Exploration & Travel Club' } = Astro.props;
         --bg: #f7f7f4;
         --card: #ffffff;
         --text: #111111;
-        --muted: #5f6368;
+        --muted: #63666b;
         --line: #e7e7e2;
-        --accent: #111111;
+
+        /* 8pt grid */
+        --s-1: 4px;
+        --s-2: 8px;
+        --s-3: 12px;
+        --s-4: 16px;
+        --s-5: 20px;
+        --s-6: 24px;
+        --s-7: 32px;
+        --s-8: 40px;
+
+        /* Type scale */
+        --label: 12px;
+        --body: 16px;
+        --body-sm: 14px;
+        --h3: 22px;
+        --h2: clamp(28px, 3.2vw, 40px);
+        --h1: clamp(40px, 6vw, 76px);
+
+        /* unified radius */
+        --radius: 16px;
       }
 
       * { box-sizing: border-box; }
@@ -25,23 +45,36 @@ const { title = 'Exploration & Travel Club' } = Astro.props;
         color: var(--text);
         background: var(--bg);
         -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
       }
 
       a { color: inherit; text-decoration: none; }
       img { max-width: 100%; display: block; }
 
-      .container { max-width: 1120px; margin: 0 auto; padding: 22px; }
-      .section { margin-top: 18px; }
-      .grid { display: grid; gap: 14px; }
+      .container { max-width: 1120px; margin: 0 auto; padding: var(--s-6); }
+      .section { margin-top: var(--s-6); }
+      .grid { display: grid; gap: var(--s-4); }
 
       .card {
         background: var(--card);
         border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 20px;
+        border-radius: var(--radius);
+        padding: var(--s-5);
       }
 
-      .muted { color: var(--muted); }
+      .muted {
+        color: var(--muted);
+        font-size: var(--body);
+        line-height: 1.6;
+        font-weight: 450;
+      }
+
+      .label {
+        font-size: var(--label);
+        color: #6b6f75;
+        letter-spacing: 0.01em;
+        font-weight: 550;
+      }
 
       header {
         position: sticky;
@@ -56,17 +89,17 @@ const { title = 'Exploration & Travel Club' } = Astro.props;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 10px;
-        padding: 10px 0;
+        gap: var(--s-3);
+        padding: var(--s-3) 0;
       }
 
-      .brand { font-weight: 700; letter-spacing: -0.02em; }
-      .nav-right { display: flex; align-items: center; gap: 8px; }
+      .brand { font-weight: 680; letter-spacing: -0.02em; }
+      .nav-right { display: flex; align-items: center; gap: var(--s-2); }
 
       .link {
-        font-size: 14px;
+        font-size: var(--body-sm);
         color: #2a2a2a;
-        padding: 8px 10px;
+        padding: var(--s-2) var(--s-3);
         border-radius: 10px;
       }
       .link:hover { background: #efefea; }
@@ -76,53 +109,73 @@ const { title = 'Exploration & Travel Club' } = Astro.props;
         align-items: center;
         justify-content: center;
         border-radius: 999px;
-        padding: 11px 16px;
-        font-size: 14px;
+        padding: 10px 16px;
+        font-size: var(--body-sm);
         font-weight: 600;
         border: 1px solid transparent;
+        transition: 120ms ease;
       }
 
       .btn-primary {
         background: #111;
         color: #fff;
       }
+      .btn-primary:hover { background: #000; }
 
       .btn-secondary {
         background: #fff;
         color: #111;
         border-color: #d7d7d0;
       }
+      .btn-secondary:hover { background: #f8f8f5; }
 
       .pill {
         display: inline-flex;
         align-items: center;
         border-radius: 999px;
         padding: 5px 10px;
-        font-size: 12px;
+        font-size: var(--label);
         border: 1px solid #dadad3;
         background: #fff;
         color: #555;
+        font-weight: 550;
       }
 
       h1, h2, h3 {
-        margin: 0 0 10px;
+        margin: 0 0 var(--s-3);
         letter-spacing: -0.03em;
         line-height: 1.04;
+        font-weight: 680;
       }
-      h1 { font-size: clamp(36px, 6vw, 72px); }
-      h2 { font-size: clamp(24px, 3.2vw, 38px); }
-      h3 { font-size: 20px; }
+      h1 { font-size: var(--h1); }
+      h2 { font-size: var(--h2); }
+      h3 { font-size: var(--h3); }
+
+      p {
+        margin: 0 0 var(--s-3);
+        font-size: var(--body);
+        line-height: 1.65;
+      }
+
+      .photo {
+        height: 240px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        filter: saturate(0.88) contrast(0.96) brightness(1.02);
+      }
 
       .footer {
-        margin-top: 40px;
-        padding-top: 20px;
+        margin-top: var(--s-8);
+        padding-top: var(--s-5);
         border-top: 1px solid var(--line);
         color: #777;
         font-size: 13px;
       }
 
       @media (max-width: 920px) {
-        .container { padding: 16px; }
+        .container { padding: var(--s-4); }
         .nav-right .link { display: none; }
       }
     </style>
