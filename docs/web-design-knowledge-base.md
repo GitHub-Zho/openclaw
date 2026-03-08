@@ -53,11 +53,13 @@
 - **brain (planner)**: strategy, IA options, design spec.
 - **web-builder**: implementation + deployment.
 - **web-qa**: independent PASS/FAIL review.
+- **learning (process QA)**: evaluates dialogue quality and capability gaps, then patches learning files after main approval.
 
 ### Why this works
 - Separation of concerns prevents context drift.
 - Independent QA prevents false "improvement" claims.
-- Clear maker-checker loop creates measurable quality gains.
+- Learning agent prevents repeated process mistakes across iterations.
+- Clear maker-checker + learning loop creates measurable quality gains.
 
 ---
 

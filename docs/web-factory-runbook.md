@@ -42,6 +42,11 @@ Send QA rubric + URL + changed files.
 - PASS: ship
 - FAIL: return mandatory fixes to web-builder and loop
 
+### F. learning audit (post-iteration)
+- learning reviews dialogue + agent outputs for process-quality gaps.
+- If improvement gaps found, learning submits rule/gate patch proposal.
+- main approves/rejects and learning applies approved learning-file changes.
+
 ## 4) Release note format
 - What changed
 - Why better

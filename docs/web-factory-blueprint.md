@@ -6,6 +6,7 @@ Build a repeatable local pipeline for high-quality website design + implementati
 ## Agent topology
 - **main (you + orchestrator in DM)**
   - Owns product direction, constraints, approvals.
+  - Co-decides learning-rule changes with learning agent.
   - Delegates execution and review tasks to sub-agents.
 - **web-builder**
   - Owns implementation only: IA-to-code, responsive layout, content mapping, deployment.
@@ -13,6 +14,10 @@ Build a repeatable local pipeline for high-quality website design + implementati
   - Owns quality only: visual/UX/content/accessibility/perf checks and accept/reject verdicts.
 - **brain** (optional planning specialist)
   - Generates design strategy/options before coding when task is ambiguous.
+- **learning** (conversation/capability QA)
+  - Audits dialogue quality + agent capability gaps.
+  - Proposes and implements learning-file updates after main approval.
+  - Focuses on process quality, not business feature coding.
 
 ## Why this structure
 - Separates design judgment from coding execution.
@@ -25,6 +30,18 @@ Build a repeatable local pipeline for high-quality website design + implementati
 3. Content clarity: price/inclusions/CTA/FAQ aligned.
 4. Relevance: all visuals semantically match route/activity.
 5. Technical checks: build passes + quality gate passes + production deploy verified.
+
+## Learning loop (dialogue + capability quality)
+- Trigger conditions:
+  - user says quality did not improve
+  - repeated mistakes across >=2 iterations
+  - mismatch between claimed change and actual diff
+- Flow:
+  1. `learning` produces incident analysis from conversation/session evidence
+  2. `main` + `learning` agree on rule/gate updates
+  3. `learning` patches learning files (skills/checklists/runbooks/gates)
+  4. `main` reviews and approves ship
+- Learning-file scope only (no feature coding by learning agent unless explicitly requested).
 
 ## Step-by-step local implementation
 
