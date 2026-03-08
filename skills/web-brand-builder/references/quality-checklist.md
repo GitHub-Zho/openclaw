@@ -17,6 +17,7 @@
 - [ ] Value proposition clear in first screen
 - [ ] Pricing/inclusions/exclusions are explicit
 - [ ] No internal workspace/tool links shown to end users
+- [ ] No dynamic/random image endpoints in production pages (e.g., source.unsplash keyword URLs)
 - [ ] Copy is concise and plain-language
 
 ## Accessibility

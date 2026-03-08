@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "quality": "node scripts/quality-gate.mjs",
+    "build": "npm run quality && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
