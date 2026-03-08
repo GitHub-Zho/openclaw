@@ -12,7 +12,7 @@ import { handbookSections, cityVisuals, itinerary } from '../data/site';
     </p>
   </section>
 
-  <section class="section grid" style="grid-template-columns:1fr 1fr;">
+  <section class="section grid cols-2">
     <article class="card">
       <h2>Program intent</h2>
       <p class="muted" style="margin:0;">{handbookSections.intro}</p>
@@ -24,7 +24,7 @@ import { handbookSections, cityVisuals, itinerary } from '../data/site';
 
   <section class="section card">
     <h2>City reference</h2>
-    <div class="grid" style="grid-template-columns:repeat(4,1fr);">
+    <div class="grid cols-4">
       {cityVisuals.map((city) => (
         <article class="card" style="padding:12px;">
           <img class="photo" src={city.image} alt={city.alt} style="height:150px;" />
@@ -40,7 +40,7 @@ import { handbookSections, cityVisuals, itinerary } from '../data/site';
     </div>
   </section>
 
-  <section class="section grid" style="grid-template-columns:1fr 1fr;">
+  <section class="section grid cols-2">
     <article class="card">
       <h3>Accommodation</h3>
       <p class="muted" style="margin:0;">{handbookSections.accommodation}</p>
@@ -61,7 +61,7 @@ import { handbookSections, cityVisuals, itinerary } from '../data/site';
 
   <section class="section card" style="margin-bottom:36px;">
     <h2>10-day schedule snapshot</h2>
-    <div class="grid" style="grid-template-columns:1fr 1fr;">
+    <div class="grid cols-2">
       {itinerary.map((d) => (
         <article class="card" style="padding:12px;">
           <p class="pill" style="margin-bottom:8px;">{d.day}</p>

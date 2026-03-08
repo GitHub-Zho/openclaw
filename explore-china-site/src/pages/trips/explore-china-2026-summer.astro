@@ -10,7 +10,7 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
       {currentTrip.summary}
     </p>
 
-    <div class="grid" style="grid-template-columns:1fr 1fr 1fr; margin-top:14px;">
+    <div class="grid cols-3" style="margin-top:14px;">
       <article class="card" style="padding:14px;">
         <p class="label" style="margin:0">Route</p>
         <p style="margin:6px 0 0; font-weight:680;">{currentTrip.subtitle}</p>
@@ -31,13 +31,32 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
     </div>
   </section>
 
-  <section class="section grid" style="grid-template-columns:repeat(4,1fr);">
+  <section class="section grid cols-4">
     {cityVisuals.map((city) => <img class="photo" src={city.image} alt={city.alt} />)}
+  </section>
+
+  <section class="section grid cols-2">
+    <article class="card">
+      <h2 style="font-size:30px;">Who this is for</h2>
+      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
+        <li>Students who want a structured but social China experience</li>
+        <li>First-time China visitors who need practical support</li>
+        <li>People who enjoy both landmarks and local city life</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h2 style="font-size:30px;">Who this may not fit</h2>
+      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
+        <li>Travelers expecting a fully luxury/private itinerary</li>
+        <li>Participants preferring fully unstructured solo travel</li>
+        <li>People unwilling to join group timing for core activities</li>
+      </ul>
+    </article>
   </section>
 
   <section class="section card">
     <h2>Day-by-day itinerary</h2>
-    <div class="grid" style="grid-template-columns:1fr 1fr;">
+    <div class="grid cols-2">
       {itinerary.map((d) => (
         <article class="card" style="padding:14px;">
           <p class="pill" style="margin-bottom:8px;">{d.day}</p>
@@ -48,7 +67,7 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
     </div>
   </section>
 
-  <section class="section grid" style="grid-template-columns:1fr 1fr;">
+  <section class="section grid cols-2">
     <article class="card">
       <h2 style="font-size:30px;">Included</h2>
       <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">

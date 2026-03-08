@@ -54,6 +54,9 @@ const { title = 'Exploration & Travel Club' } = Astro.props;
       .container { max-width: 1120px; margin: 0 auto; padding: var(--s-6); }
       .section { margin-top: var(--s-6); }
       .grid { display: grid; gap: var(--s-4); }
+      .cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
       .card {
         background: var(--card);
@@ -177,6 +180,11 @@ const { title = 'Exploration & Travel Club' } = Astro.props;
       @media (max-width: 920px) {
         .container { padding: var(--s-4); }
         .nav-right .link { display: none; }
+        .cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 640px) {
+        .cols-4, .cols-3, .cols-2 { grid-template-columns: 1fr; }
       }
     </style>
   </head>

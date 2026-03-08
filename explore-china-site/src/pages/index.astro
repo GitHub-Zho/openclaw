@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { currentTrip, cityVisuals } from '../data/site';
 ---
 <Layout title="Exploration & Travel Club">
-  <section class="section" style="display:grid; grid-template-columns:1.1fr 1fr; gap:16px;">
+  <section class="section grid cols-2">
     <article class="card" style="padding:32px;">
       <p class="pill">Student Program · Summer 2026</p>
       <h1 style="margin-top:12px; max-width:680px;">
@@ -28,7 +28,7 @@ import { currentTrip, cityVisuals } from '../data/site';
 
   <section class="section card">
     <h2>Program at a glance</h2>
-    <div class="grid" style="grid-template-columns:repeat(4,1fr);">
+    <div class="grid cols-4">
       <article class="card" style="padding:14px;">
         <p class="label" style="margin:0">Duration</p>
         <p style="margin:6px 0 0; font-weight:680;">10 Days</p>
@@ -50,7 +50,7 @@ import { currentTrip, cityVisuals } from '../data/site';
 
   <section class="section card">
     <h2>Four-city structure</h2>
-    <div class="grid" style="grid-template-columns:repeat(4,1fr);">
+    <div class="grid cols-4">
       {cityVisuals.map((city) => (
         <article class="card" style="padding:12px;">
           <img class="photo" src={city.image} alt={city.alt} style="height:170px;" />
