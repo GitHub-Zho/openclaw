@@ -2,7 +2,8 @@
   "pending": [],
   "lastNotifiedTs": null,
   "policy": {
-    "requireUserApproval": true,
+    "requireUserApprovalFor": ["main", "learning"],
+    "autoApplyAllowedFor": ["brain", "web-builder", "web-qa"],
     "notifySeverity": ["critical", "high"],
     "logOnlySeverity": ["medium", "low"]
   }

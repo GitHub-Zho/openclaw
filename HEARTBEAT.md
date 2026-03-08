@@ -26,10 +26,12 @@ Otherwise reply `HEARTBEAT_OK`.
 - If critical/high found: send concise alert summary (do NOT auto-apply changes).
 - If only medium/low: do not alert; log only, then `HEARTBEAT_OK`.
 
-## Approval policy (strict)
-- Do not modify active learning files in heartbeat mode without explicit user approval.
+## Approval policy (strict + tiered)
+- In heartbeat mode:
+  - Important-agent learning files (`main`, `learning`) require explicit user approval before apply.
+  - Sub-agent learning files (`brain`, `web-builder`, `web-qa`) may be applied by `main + learning` decision.
 - Learning-file changes include: skills, learning runbooks/governance docs, quality gates, postmortem templates.
-- Keep proposals pending until user confirms.
+- Keep unapproved important-agent proposals pending until user confirms.
 
 ## User-away behavior
 - If user is away, keep accumulating pending updates.

@@ -3,22 +3,23 @@
 ## Decision safety
 
 ### If main makes a bad decision, what happens?
-- `web-qa` can flag a **decision error** (not just implementation error) in PASS/FAIL report.
-- `learning` records it as a governance incident in postmortem.
-- The incident must include a **decision-level corrective rule** (e.g., approval threshold, rollback criteria).
+- `web-qa` is limited to web output quality only (UI/UX/content/perf on deliverables).
+- `learning` is the governance QA for decision/process mistakes.
+- `learning` records governance incidents in postmortem with corrective rules (approval threshold, rollback criteria).
 
 ### Who improves main's decision quality?
 - `learning` agent is the primary auditor of main's decision quality.
-- `web-qa` provides independent evidence when decision quality affects output quality.
+- `main` + `learning` review incidents and decide remediation.
 - User has final override authority.
 
-## Approval policy (hard rule)
-- Any change to learning files affecting behavior must be **approved by user** before apply:
-  - `skills/**`
-  - `docs/*governance*`, `docs/*runbook*`, `docs/postmortems/**`
-  - quality-gate scripts
-- Until approved, proposals go to `memory/pending-learning-updates.json`.
-- Unapproved proposals do not modify active skill behavior.
+## Approval policy (tiered)
+- **Important-agent learning files** require user approval before apply:
+  - `skills/**` for `main` and `learning`
+  - governance docs for `main` and `learning`
+  - global quality-gate scripts affecting main behavior
+- **Sub-agent learning files** (`brain`, `web-builder`, `web-qa`) can be updated by `main + learning` decision without user pre-approval.
+- Any unapproved important-agent change goes to `memory/pending-learning-updates.json`.
+- Pending items do not modify active behavior until approved.
 
 ## Severity routing
 - **critical/high**: notify user via main and request approval.

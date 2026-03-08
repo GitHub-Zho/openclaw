@@ -11,7 +11,8 @@ Build a repeatable local pipeline for high-quality website design + implementati
 - **web-builder**
   - Owns implementation only: IA-to-code, responsive layout, content mapping, deployment.
 - **web-qa**
-  - Owns quality only: visual/UX/content/accessibility/perf checks and accept/reject verdicts.
+  - Owns web-output quality only: visual/UX/content/accessibility/perf checks and accept/reject verdicts.
+  - Does not judge governance/process decisions; that belongs to `learning`.
 - **brain** (optional planning specialist)
   - Generates design strategy/options before coding when task is ambiguous.
 - **learning** (conversation/capability QA)
