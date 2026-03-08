@@ -79,26 +79,26 @@ export const cityVisuals = [
   {
     city: 'Shanghai',
     image:
-      'https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=1200&q=80',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/The_Bund%2C_Shanghai%2C_China_%28December_2015%29_-_20.JPG',
     alt: 'The Bund skyline in Shanghai',
   },
   {
     city: 'Suzhou',
     image:
-      'https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Classical Suzhou garden view',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Humble_Administrator%27s_Garden_in_Suzhou%2C_China_%282015%29_-_17.JPG',
+    alt: 'Humble Administrator\'s Garden in Suzhou',
   },
   {
     city: 'Hangzhou',
     image:
-      'https://images.unsplash.com/photo-1510332981392-36692a1b3bcd?auto=format&fit=crop&w=1200&q=80',
-    alt: 'West Lake in Hangzhou',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/West_Lake_IMG_8755_hangzhou_panorama.jpg',
+    alt: 'West Lake panorama in Hangzhou',
   },
   {
     city: 'Beijing',
     image:
-      'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Forbidden City in Beijing',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/China_%28Beijing%29_Aerial_view_of_Forbidden_City_%2838884882275%29.jpg',
+    alt: 'Aerial view of the Forbidden City in Beijing',
   },
 ];
 
