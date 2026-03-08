@@ -1,53 +1,62 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { site, currentTrip, highlights } from '../data/site';
+import { site, currentTrip } from '../data/site';
 ---
-<Layout title={`${site.name} · V1`}> 
-  <section class="card" style="margin-top:18px; padding:28px;">
-    <span class="pill">V1 Promo Site</span>
-    <h1 style="font-size:clamp(30px, 5vw, 52px); margin:12px 0 10px; line-height:1.06; max-width:760px;">
-      {site.name}
+<Layout title={`${site.name} · Youth Minimal V2`}>
+  <section class="section card" style="padding:30px; overflow:hidden;">
+    <span class="pill">2026 Summer · Current Open Program</span>
+    <h1 style="max-width:850px; margin-top:14px;">
+      Travel with people your age.
+      <br />
+      Explore China with real local context.
     </h1>
-    <p class="muted" style="font-size:18px; max-width:760px; margin:0 0 16px;">{site.description}</p>
-    <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;">
-      <a class="btn" href={`/trips/${currentTrip.slug}`}>View Current Trip</a>
-      <a class="btn ghost" href={`/trips/${currentTrip.slug}#register`}>Registration Placeholder</a>
+    <p class="muted" style="max-width:760px; font-size:18px; margin-top:14px;">
+      Not a rigid tour group. Not random solo travel either.
+      This is a student-led route designed to be social, immersive, and actually practical.
+    </p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;">
+      <a class="btn btn-primary" href={`/trips/${currentTrip.slug}`}>View Trip Details</a>
+      <a class="btn btn-ghost" href={`/trips/${currentTrip.slug}#register`}>Registration Placeholder</a>
     </div>
   </section>
 
-  <section class="grid" style="grid-template-columns:1.2fr 1fr; margin-top:18px;">
+  <section class="section grid" style="grid-template-columns:1.1fr 1fr; align-items:stretch;">
+    <article class="card" style="padding:0; overflow:hidden;">
+      <img src="https://images.unsplash.com/photo-1535916707207-35f97e715e1c?auto=format&fit=crop&w=1400&q=80" alt="Young travelers" style="height:100%; min-height:320px; width:100%; object-fit:cover;" />
+    </article>
+
     <article class="card">
-      <h2>Current Program</h2>
-      <p><strong>{currentTrip.title}</strong></p>
+      <h2>{currentTrip.title}</h2>
       <p class="muted">{currentTrip.duration} · {currentTrip.subtitle}</p>
-      <p>{currentTrip.priceCad}</p>
+      <p style="font-weight:700; margin-top:8px;">{currentTrip.priceCad}</p>
       <p class="muted">{currentTrip.accommodation}</p>
-      <p><a href={`/trips/${currentTrip.slug}`}>Open trip details →</a></p>
-    </article>
-
-    <article class="card">
-      <h2>What this trip feels like</h2>
-      <ul class="muted" style="padding-left:18px; margin:0; line-height:1.7;">
-        {highlights.map((h) => <li>{h}</li>)}
-      </ul>
-    </article>
-  </section>
-
-  <section class="grid" style="grid-template-columns:1fr 1fr; margin-top:18px;">
-    <article class="card">
-      <h2>About the club</h2>
-      <p>We are a student-led travel community focused on exploration, connection, and practical support. Trips are curated to feel social, exciting, and manageable for students.</p>
-      <p class="muted">Tone: friendly, clear, and experience-first — not rigid package tourism.</p>
-    </article>
-    <article class="card" id="contact">
-      <h2>Contact (to be finalized)</h2>
-      <p class="muted">Email: TBD · Instagram: TBD · WeChat: TBD</p>
-      <p class="muted">Replace these placeholders before launch.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px;">
+        <span class="pill">City + Culture</span>
+        <span class="pill">Student Social Day</span>
+        <span class="pill">Food Friendly</span>
+        <span class="pill">Organizer Support</span>
+      </div>
+      <p style="margin-top:14px;"><a href={`/trips/${currentTrip.slug}`}>Open full handbook-style page →</a></p>
     </article>
   </section>
 
-  <section class="card" style="margin-top:18px;">
-    <h2>Future Trips (reserved)</h2>
-    <p class="muted">This structure is built to support multiple trip pages later. New routes can be added as separate slugs under <code>/trips/</code>.</p>
+  <section class="section grid" style="grid-template-columns:repeat(3,1fr);">
+    <article class="card">
+      <h3>Young vibe</h3>
+      <p class="muted">Social blocks and flexible exploration, not museum-only rushing.</p>
+    </article>
+    <article class="card">
+      <h3>Actually organized</h3>
+      <p class="muted">Clear structure, logistics support, and transparent package scope.</p>
+    </article>
+    <article class="card">
+      <h3>Built to scale</h3>
+      <p class="muted">This site is structured for multiple future trips under one club brand.</p>
+    </article>
+  </section>
+
+  <section class="section card" id="contact">
+    <h2>Contact (placeholder)</h2>
+    <p class="muted">Email / Instagram / WeChat will be plugged in before launch.</p>
   </section>
 </Layout>

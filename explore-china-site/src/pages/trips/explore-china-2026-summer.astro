@@ -8,97 +8,95 @@ const handbookLinks = {
 };
 ---
 <Layout title={currentTrip.title}>
-  <section class="card" style="margin-top:18px; padding:24px;">
-    <span class="pill">Current Flagship Trip</span>
-    <h1 style="margin:10px 0 8px; font-size:clamp(28px,4vw,44px)">{currentTrip.title}</h1>
-    <p class="muted" style="margin:0 0 14px">{currentTrip.duration} · {currentTrip.subtitle}</p>
-    <p style="max-width:820px">{currentTrip.summary}</p>
+  <section class="section card" style="padding:28px;">
+    <span class="pill">Handbook Style · V1 Route</span>
+    <h1 style="font-size:clamp(32px,5vw,62px); margin-top:10px;">Explore China</h1>
+    <p class="muted" style="font-size:18px; margin-top:8px;">{currentTrip.duration} · {currentTrip.subtitle}</p>
+    <p style="max-width:850px; margin-top:12px;">{currentTrip.summary}</p>
 
     <div class="grid" style="grid-template-columns:1fr 1fr; margin-top:14px;">
-      <div class="card" style="padding:12px">
-        <p style="margin:0 0 6px"><strong>Package Price</strong></p>
-        <p class="muted" style="margin:0">{currentTrip.priceCad}</p>
+      <div class="card" style="background:#f8faff; border-color:#dce7ff;">
+        <p class="muted" style="margin:0">Package</p>
+        <p style="font-size:22px; font-weight:800; margin:6px 0 0;">{currentTrip.priceCad}</p>
       </div>
-      <div class="card" style="padding:12px">
-        <p style="margin:0 0 6px"><strong>Accommodation Assumption</strong></p>
-        <p class="muted" style="margin:0">{currentTrip.accommodation}</p>
+      <div class="card" style="background:#f9fbf7; border-color:#deedd9;">
+        <p class="muted" style="margin:0">Stay Assumption</p>
+        <p style="font-size:22px; font-weight:800; margin:6px 0 0;">{currentTrip.accommodation}</p>
       </div>
     </div>
+
     <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-      <a class="btn" href={handbookLinks.figma} target="_blank" rel="noreferrer">Open Handbook Design (Figma)</a>
-      <a class="btn ghost" href={handbookLinks.notion} target="_blank" rel="noreferrer">Open Handbook Content (Notion)</a>
+      <a class="btn btn-primary" href={handbookLinks.figma} target="_blank" rel="noreferrer">Handbook Design (Figma)</a>
+      <a class="btn btn-ghost" href={handbookLinks.notion} target="_blank" rel="noreferrer">Handbook Content (Notion)</a>
     </div>
   </section>
 
-  <section class="card" style="margin-top:18px;">
-    <h2>Trip Introduction</h2>
-    <p>
-      This handbook-style page is for students interested in joining this route. The program is designed to be immersive,
-      social, and practical: landmark highlights + local atmosphere + cultural exchange + free exploration time.
-    </p>
-    <ul class="muted" style="padding-left:18px; margin:0; line-height:1.7;">
-      {highlights.map((h) => <li>{h}</li>)}
-    </ul>
+  <section class="section grid" style="grid-template-columns:repeat(3,1fr);">
+    <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=900&q=80" alt="Shanghai" style="height:240px; width:100%; object-fit:cover; border-radius:16px; border:1px solid #ece7dc;" />
+    <img src="https://images.unsplash.com/photo-1510332981392-36692a1b3bcd?auto=format&fit=crop&w=900&q=80" alt="Hangzhou" style="height:240px; width:100%; object-fit:cover; border-radius:16px; border:1px solid #ece7dc;" />
+    <img src="https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?auto=format&fit=crop&w=900&q=80" alt="Beijing" style="height:240px; width:100%; object-fit:cover; border-radius:16px; border:1px solid #ece7dc;" />
   </section>
 
-  <section class="card" style="margin-top:18px;">
-    <h2>Handbook Visual Preview</h2>
-    <div class="grid" style="grid-template-columns:1fr 1fr 1fr;">
-      <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=900&q=80" alt="Shanghai city skyline" style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid #d9e4f5;" />
-      <img src="https://images.unsplash.com/photo-1510332981392-36692a1b3bcd?auto=format&fit=crop&w=900&q=80" alt="West Lake Hangzhou" style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid #d9e4f5;" />
-      <img src="https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?auto=format&fit=crop&w=900&q=80" alt="Great Wall Beijing" style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid #d9e4f5;" />
+  <section class="section card">
+    <h2>Why students join this route</h2>
+    <div class="grid" style="grid-template-columns:1fr 1fr;">
+      {highlights.map((h) => (
+        <div class="card" style="padding:12px; background:#fffefb;">
+          <p style="margin:0; font-weight:700;">{h}</p>
+        </div>
+      ))}
     </div>
-    <p class="muted" style="margin-top:10px;">These are temporary visual placeholders. We can replace them with your official handbook images or Figma exports.</p>
   </section>
 
-  <section class="card" style="margin-top:18px;">
-    <h2>10-Day Itinerary</h2>
+  <section class="section card">
+    <h2>10-Day Plan</h2>
     <div class="grid" style="grid-template-columns:1fr 1fr;">
       {itinerary.map((d) => (
         <article class="card" style="padding:14px;">
-          <h3 style="margin:0 0 6px">{d.day} · {d.city}</h3>
-          <p class="muted" style="margin:0; line-height:1.55">{d.plan}</p>
+          <p class="pill" style="margin-bottom:8px;">{d.day}</p>
+          <h3 style="margin-bottom:6px;">{d.city}</h3>
+          <p class="muted" style="margin:0;">{d.plan}</p>
         </article>
       ))}
     </div>
   </section>
 
-  <section class="grid" style="grid-template-columns:1fr 1fr; margin-top:18px;">
+  <section class="section grid" style="grid-template-columns:1fr 1fr;">
     <article class="card">
-      <h2>Inclusions (placeholder)</h2>
-      <ul class="muted" style="padding-left:18px; line-height:1.7; margin:0;">
-        <li>Accommodation (final hotel list in registration pack)</li>
-        <li>Local transport according to final operations plan</li>
-        <li>Selected activity tickets</li>
-        <li>On-trip organizer support</li>
+      <h3>Included (placeholder)</h3>
+      <ul class="muted" style="line-height:1.8; margin:0; padding-left:18px;">
+        <li>Accommodation</li>
+        <li>Local transport according to final ops plan</li>
+        <li>Selected activities</li>
+        <li>Organizer support</li>
       </ul>
     </article>
     <article class="card">
-      <h2>Exclusions (placeholder)</h2>
-      <ul class="muted" style="padding-left:18px; line-height:1.7; margin:0;">
+      <h3>Not included (placeholder)</h3>
+      <ul class="muted" style="line-height:1.8; margin:0; padding-left:18px;">
         <li>International flights</li>
-        <li>Personal shopping and optional upgrades</li>
-        <li>Any non-program personal add-ons</li>
+        <li>Personal shopping / optional upgrades</li>
+        <li>Personal non-program expenses</li>
       </ul>
     </article>
   </section>
 
-  <section id="faq" class="card" style="margin-top:18px;">
+  <section id="faq" class="section card">
     <h2>FAQ</h2>
     {faq.map((f) => (
-      <details style="margin-bottom:10px; border:1px solid #2c3d66; border-radius:10px; padding:10px; background:#0f1730;">
-        <summary style="cursor:pointer">{f.q}</summary>
-        <p class="muted" style="margin-bottom:0">{f.a}</p>
+      <details style="margin-bottom:10px; border:1px solid #ece7dc; border-radius:12px; padding:12px; background:#fff;">
+        <summary style="cursor:pointer; font-weight:700;">{f.q}</summary>
+        <p class="muted" style="margin:8px 0 0;">{f.a}</p>
       </details>
     ))}
   </section>
 
-  <section id="register" class="card" style="margin-top:18px; margin-bottom:40px;">
-    <h2>Registration (reserved area)</h2>
-    <p class="muted">Place your Google Form / Typeform / custom registration flow here.</p>
+  <section id="register" class="section card" style="margin-bottom:36px; text-align:left;">
+    <h2>Registration</h2>
+    <p class="muted">Position reserved for your official signup form/link.</p>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-      <a class="btn" href="#">Apply Now (placeholder)</a>
-      <a class="btn ghost" href="#">Join Waitlist (placeholder)</a>
+      <a class="btn btn-primary" href="#">Apply Now (placeholder)</a>
+      <a class="btn btn-ghost" href="#">Join Waitlist (placeholder)</a>
     </div>
   </section>
 </Layout>
