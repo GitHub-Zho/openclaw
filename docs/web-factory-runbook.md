@@ -13,6 +13,9 @@ Expected agents:
 ## 2) Keep user channels on main
 No channel binding changes required unless you explicitly want channel-specific agents.
 
+Main-agent rule:
+- main is orchestration-only for web projects (goal/constraints/approval), not detailed design execution.
+
 ## 3) Execute one web iteration (manual orchestration)
 
 ### A. main -> brain (optional)
