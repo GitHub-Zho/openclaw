@@ -14,45 +14,140 @@ export const currentTrip = {
   priceCad: 'CAD $3,000 per person (excluding international flights)',
   accommodation: 'Estimated ¥350/person/night (peak summer season)',
   summary:
-    'A student-focused China route blending city highlights, local food, culture, and one dedicated local-student exchange day.',
+    'A student-focused China route blending city highlights, food culture, local student exchange, and practical support from start to finish.',
 };
 
 export const highlights = [
-  'Airport support + smooth onboarding in China',
-  'Historic + modern city balance',
-  'West Lake and Lingyin Temple in Hangzhou',
-  'Great Wall, Forbidden City, Summer Palace in Beijing',
-  'Final social night + local student group day',
+  'Airport pickup + first-day China essentials setup',
+  'Shanghai city highlights: Yu Garden, Bund, Nanjing Road',
+  'Suzhou canal and Jiangnan cultural day',
+  'Hangzhou West Lake + Lingyin Temple + tea culture touchpoints',
+  'Beijing landmarks: Great Wall, Forbidden City, Summer Palace',
+  'One dedicated local-student day + final social night',
 ];
 
 export const itinerary = [
-  { day: 'Day 1', city: 'Shanghai', plan: 'Arrival support, settle in, and essentials setup (SIM/payment/transit orientation).' },
-  { day: 'Day 2', city: 'Suzhou', plan: 'Day trip: museum, gardens, Jiangnan atmosphere, and canal/night-view experience.' },
-  { day: 'Day 3', city: 'Shanghai', plan: 'Yu Garden, Bund, city walk, and food exploration.' },
-  { day: 'Day 4', city: 'Shanghai', plan: 'Flexible city exploration + evening social block.' },
-  { day: 'Day 5', city: 'Hangzhou', plan: 'West Lake, Lingyin Temple, and tea-culture touchpoints.' },
-  { day: 'Day 6', city: 'Beijing', plan: 'Transfer + Beijing city atmosphere day.' },
-  { day: 'Day 7', city: 'Beijing', plan: 'Great Wall day (section decided by final operations plan).' },
-  { day: 'Day 8', city: 'Beijing', plan: 'Forbidden City + Summer Palace.' },
-  { day: 'Day 9', city: 'Beijing', plan: 'Local student group day + closing social night.' },
-  { day: 'Day 10', city: 'Beijing', plan: 'Departure.' },
+  {
+    day: 'Day 1',
+    city: 'Shanghai',
+    plan: 'Arrival support, check-in, SIM/payment/transit setup, and optional spa reset after long-haul flight.',
+  },
+  {
+    day: 'Day 2',
+    city: 'Suzhou',
+    plan: 'National museum + Jiangnan atmosphere + 七里山塘 sunset canal experience, then return.',
+  },
+  {
+    day: 'Day 3',
+    city: 'Shanghai',
+    plan: 'Yu Garden, Old Town, Bund skyline walk, and evening city exploration.',
+  },
+  {
+    day: 'Day 4',
+    city: 'Shanghai',
+    plan: 'Flexible city day: culture spots, food district, and optional nightlife/social block.',
+  },
+  {
+    day: 'Day 5',
+    city: 'Hangzhou',
+    plan: 'West Lake + Lingyin Temple + tea-culture route (Longjing area).',
+  },
+  {
+    day: 'Day 6',
+    city: 'Beijing',
+    plan: 'Transfer north to Beijing, settle in, and light city introduction.',
+  },
+  {
+    day: 'Day 7',
+    city: 'Beijing',
+    plan: 'Great Wall full-day experience (final section confirmed in ops plan).',
+  },
+  {
+    day: 'Day 8',
+    city: 'Beijing',
+    plan: 'Forbidden City + Summer Palace day with curated pacing.',
+  },
+  {
+    day: 'Day 9',
+    city: 'Beijing',
+    plan: 'One-day local student exchange + final social night and closing celebration.',
+  },
+  { day: 'Day 10', city: 'Beijing', plan: 'Departure support and outbound travel.' },
 ];
+
+export const cityVisuals = [
+  {
+    city: 'Shanghai',
+    image:
+      'https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Shanghai skyline at dusk',
+  },
+  {
+    city: 'Suzhou',
+    image:
+      'https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Classical Chinese garden in Suzhou style',
+  },
+  {
+    city: 'Hangzhou',
+    image:
+      'https://images.unsplash.com/photo-1510332981392-36692a1b3bcd?auto=format&fit=crop&w=1200&q=80',
+    alt: 'West Lake style scenery in Hangzhou',
+  },
+  {
+    city: 'Beijing',
+    image:
+      'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Great Wall of China in Beijing region',
+  },
+];
+
+export const included = [
+  'Accommodation package (student-oriented rooming plan)',
+  'In-China transportation according to final itinerary execution',
+  'Core attraction tickets and selected group activities',
+  'Organizer support and daily coordination',
+  'Language support during key activities and logistics moments',
+];
+
+export const notIncluded = [
+  'International flights (to/from China)',
+  'Personal shopping and optional upgrades',
+  'Extra personal expenses outside program scope',
+];
+
+export const handbookSections = {
+  intro:
+    'This program is built for students who want more than standard sightseeing. The goal is to combine iconic places with real local moments, social connection, and practical support so the trip feels exciting and manageable at the same time.',
+  accommodation:
+    'Hotels are selected for cleanliness, comfort, and location. Standard setup is shared double occupancy. Upgrades may be available depending on inventory and final booking windows.',
+  dietary:
+    'We focus on friendly, widely-loved dishes and do not force extreme food experiences. If you have allergies or dietary restrictions, tell us early so we can plan alternatives where possible.',
+  language:
+    'Chinese-speaking student organizers support core logistics and key moments during the trip, especially for check-ins, transport transitions, and major activities.',
+  safety:
+    'The trip uses structured daytime planning plus controlled free-time blocks. Participants receive location guidance, emergency contacts, and clear daily meetup/check-in points.',
+};
 
 export const faq = [
   {
     q: 'Who can join?',
-    a: 'V1 is aimed at student participants. Final eligibility and seat allocation policy will be published before registration opens.',
+    a: 'Current planning focuses on student participants. Final eligibility and seat policy are released before registration opens.',
   },
   {
-    q: 'What is included in the package?',
-    a: 'Core accommodation, local transport, selected activities, and organizer support. Final inclusions/exclusions are announced with the registration pack.',
+    q: 'What does CAD $3,000 include?',
+    a: 'The package is designed to cover core accommodation, in-China transport, selected activity tickets, and organizer support. International flights are excluded.',
   },
   {
-    q: 'How strict is the itinerary?',
-    a: 'Structured but not rigid: core landmarks + social/free exploration blocks to keep the trip enjoyable and flexible.',
+    q: 'How intense is the schedule?',
+    a: 'Structured but not exhausting: core landmarks are fixed, while some social/free exploration windows are intentionally preserved.',
   },
   {
-    q: 'Dietary needs?',
-    a: 'Tell us early and we will do our best to arrange alternatives. Some locations have limited substitutions, so expectations are set in advance.',
+    q: 'Can dietary needs be accommodated?',
+    a: 'Yes, best effort with early notice. Availability varies by city and venue, so strict restrictions may reduce some meal options.',
+  },
+  {
+    q: 'Is this just sightseeing?',
+    a: 'No. It includes local student exchange and social-cultural blocks, not only landmark checklists.',
   },
 ];

@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { currentTrip, itinerary, faq, highlights } from '../../data/site';
+import { currentTrip, itinerary, faq, highlights, cityVisuals, included, notIncluded } from '../../data/site';
 ---
 <Layout title={currentTrip.title}>
   <section class="section card" style="padding:28px;">
@@ -11,11 +11,11 @@ import { currentTrip, itinerary, faq, highlights } from '../../data/site';
 
     <div class="grid" style="grid-template-columns:1fr 1fr; margin-top:14px;">
       <div class="card" style="background:#fafafa;">
-        <p class="muted" style="margin:0">Package</p>
+        <p class="label" style="margin:0">Package</p>
         <p style="font-size:22px; font-weight:700; margin:6px 0 0;">{currentTrip.priceCad}</p>
       </div>
       <div class="card" style="background:#fafafa;">
-        <p class="muted" style="margin:0">Stay Assumption</p>
+        <p class="label" style="margin:0">Stay Assumption</p>
         <p style="font-size:22px; font-weight:700; margin:6px 0 0;">{currentTrip.accommodation}</p>
       </div>
     </div>
@@ -26,14 +26,17 @@ import { currentTrip, itinerary, faq, highlights } from '../../data/site';
     </div>
   </section>
 
-  <section class="section grid" style="grid-template-columns:repeat(3,1fr);">
-    <img class="photo" src="https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=900&q=80" alt="Suzhou garden" />
-    <img class="photo" src="https://images.unsplash.com/photo-1510332981392-36692a1b3bcd?auto=format&fit=crop&w=900&q=80" alt="Hangzhou lake" />
-    <img class="photo" src="https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?auto=format&fit=crop&w=900&q=80" alt="Great Wall" />
+  <section class="section grid" style="grid-template-columns:repeat(4,1fr);">
+    {cityVisuals.map((c) => (
+      <figure style="margin:0;">
+        <img class="photo" src={c.image} alt={c.alt} />
+        <figcaption class="label" style="margin-top:8px; text-align:center;">{c.city}</figcaption>
+      </figure>
+    ))}
   </section>
 
   <section class="section card">
-    <h2>Why this route</h2>
+    <h2>Why this route works</h2>
     <div class="grid" style="grid-template-columns:1fr 1fr;">
       {highlights.map((h) => (
         <div class="card" style="padding:12px; background:#fff;">
@@ -56,6 +59,21 @@ import { currentTrip, itinerary, faq, highlights } from '../../data/site';
     </div>
   </section>
 
+  <section class="section grid" style="grid-template-columns:1fr 1fr;">
+    <article class="card">
+      <h3>Included (core package)</h3>
+      <ul class="muted" style="line-height:1.8; margin:0; padding-left:18px;">
+        {included.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+    <article class="card">
+      <h3>Not included</h3>
+      <ul class="muted" style="line-height:1.8; margin:0; padding-left:18px;">
+        {notIncluded.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+  </section>
+
   <section id="faq" class="section card">
     <h2>FAQ</h2>
     {faq.map((f) => (
@@ -68,7 +86,7 @@ import { currentTrip, itinerary, faq, highlights } from '../../data/site';
 
   <section id="register" class="section card" style="margin-bottom:36px;">
     <h2>Registration</h2>
-    <p class="muted">Official form placeholder. Replace with your real signup flow.</p>
+    <p class="muted">Official form placeholder. Replace this with your final signup form, deadline, and deposit timeline.</p>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
       <a class="btn btn-primary" href="#">Apply Now</a>
       <a class="btn btn-secondary" href="#">Join Waitlist</a>
