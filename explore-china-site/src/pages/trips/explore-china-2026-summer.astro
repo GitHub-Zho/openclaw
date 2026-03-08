@@ -1,46 +1,85 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { currentTrip, itinerary, faq } from '../../data/site';
+import { currentTrip, itinerary, faq, highlights } from '../../data/site';
 ---
 <Layout title={currentTrip.title}>
-  <section class="card" style="margin-top:18px">
-    <h1>{currentTrip.title}</h1>
-    <p class="muted">{currentTrip.duration} · {currentTrip.route.join(' → ')}</p>
-    <p>{currentTrip.summary}</p>
-    <p><strong>Package:</strong> {currentTrip.priceCad}</p>
-    <p class="muted"><strong>Stay estimate:</strong> {currentTrip.accommodation}</p>
+  <section class="card" style="margin-top:18px; padding:24px;">
+    <span class="pill">Current Flagship Trip</span>
+    <h1 style="margin:10px 0 8px; font-size:clamp(28px,4vw,44px)">{currentTrip.title}</h1>
+    <p class="muted" style="margin:0 0 14px">{currentTrip.duration} · {currentTrip.subtitle}</p>
+    <p style="max-width:820px">{currentTrip.summary}</p>
+
+    <div class="grid" style="grid-template-columns:1fr 1fr; margin-top:14px;">
+      <div class="card" style="padding:12px">
+        <p style="margin:0 0 6px"><strong>Package Price</strong></p>
+        <p class="muted" style="margin:0">{currentTrip.priceCad}</p>
+      </div>
+      <div class="card" style="padding:12px">
+        <p style="margin:0 0 6px"><strong>Accommodation Assumption</strong></p>
+        <p class="muted" style="margin:0">{currentTrip.accommodation}</p>
+      </div>
+    </div>
   </section>
 
-  <section style="margin-top:18px" class="card">
-    <h2>Trip intro</h2>
-    <p>This trip is designed to feel like exploration with friends, not a rigid tour. We combine iconic landmarks, local atmosphere, food culture, and one dedicated local-student exchange day.</p>
+  <section class="card" style="margin-top:18px;">
+    <h2>Trip Introduction</h2>
+    <p>
+      This handbook-style page is for students interested in joining this route. The program is designed to be immersive,
+      social, and practical: landmark highlights + local atmosphere + cultural exchange + free exploration time.
+    </p>
+    <ul class="muted" style="padding-left:18px; margin:0; line-height:1.7;">
+      {highlights.map((h) => <li>{h}</li>)}
+    </ul>
   </section>
 
-  <section style="margin-top:18px" class="card">
-    <h2>10-day itinerary</h2>
-    <div class="grid" style="grid-template-columns:1fr 1fr">
+  <section class="card" style="margin-top:18px;">
+    <h2>10-Day Itinerary</h2>
+    <div class="grid" style="grid-template-columns:1fr 1fr;">
       {itinerary.map((d) => (
-        <article class="card" style="padding:12px">
+        <article class="card" style="padding:14px;">
           <h3 style="margin:0 0 6px">{d.day} · {d.city}</h3>
-          <p class="muted" style="margin:0">{d.plan}</p>
+          <p class="muted" style="margin:0; line-height:1.55">{d.plan}</p>
         </article>
       ))}
     </div>
   </section>
 
-  <section style="margin-top:18px" class="card">
-    <h2>FAQ (placeholder)</h2>
+  <section class="grid" style="grid-template-columns:1fr 1fr; margin-top:18px;">
+    <article class="card">
+      <h2>Inclusions (placeholder)</h2>
+      <ul class="muted" style="padding-left:18px; line-height:1.7; margin:0;">
+        <li>Accommodation (final hotel list in registration pack)</li>
+        <li>Local transport according to final operations plan</li>
+        <li>Selected activity tickets</li>
+        <li>On-trip organizer support</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h2>Exclusions (placeholder)</h2>
+      <ul class="muted" style="padding-left:18px; line-height:1.7; margin:0;">
+        <li>International flights</li>
+        <li>Personal shopping and optional upgrades</li>
+        <li>Any non-program personal add-ons</li>
+      </ul>
+    </article>
+  </section>
+
+  <section id="faq" class="card" style="margin-top:18px;">
+    <h2>FAQ</h2>
     {faq.map((f) => (
-      <details style="margin-bottom:10px">
-        <summary>{f.q}</summary>
-        <p class="muted">{f.a}</p>
+      <details style="margin-bottom:10px; border:1px solid #2c3d66; border-radius:10px; padding:10px; background:#0f1730;">
+        <summary style="cursor:pointer">{f.q}</summary>
+        <p class="muted" style="margin-bottom:0">{f.a}</p>
       </details>
     ))}
   </section>
 
-  <section style="margin:18px 0 40px" class="card">
-    <h2>Registration (placeholder)</h2>
-    <p class="muted">Registration form/button will be connected here (Google Form / Typeform / custom form).</p>
-    <a class="btn" href="#">Join waitlist (placeholder)</a>
+  <section id="register" class="card" style="margin-top:18px; margin-bottom:40px;">
+    <h2>Registration (reserved area)</h2>
+    <p class="muted">Place your Google Form / Typeform / custom registration flow here.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <a class="btn" href="#">Apply Now (placeholder)</a>
+      <a class="btn ghost" href="#">Join Waitlist (placeholder)</a>
+    </div>
   </section>
 </Layout>
