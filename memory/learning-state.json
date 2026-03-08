@@ -1,4 +1,6 @@
 {
   "lastLearningAuditTs": null,
-  "lastAuditNote": "initialized"
+  "lastAuditNote": "initialized",
+  "lastAuditSeverity": null,
+  "totalIncidentsLogged": 0
 }

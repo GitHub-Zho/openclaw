@@ -1,0 +1,9 @@
+{
+  "pending": [],
+  "lastNotifiedTs": null,
+  "policy": {
+    "requireUserApproval": true,
+    "notifySeverity": ["critical", "high"],
+    "logOnlySeverity": ["medium", "low"]
+  }
+}

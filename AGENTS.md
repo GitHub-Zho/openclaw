@@ -218,6 +218,7 @@ When web-design work is active, use role separation by default:
 - **brain** = planning/spec (IA, style direction, acceptance criteria)
 - **web-builder** = implementation + deployment
 - **web-qa** = independent PASS/FAIL review
+- **learning** = dialogue/capability QA + learning-file patch proposals
 
 ### Main-agent context hygiene
 
@@ -229,6 +230,7 @@ To avoid decision pollution in main:
   3) acceptance criteria
   4) ship/no-ship status
 - If task is implementation-heavy, route to builder immediately.
+- Learning-file changes (skills/runbooks/gates) require user approval; otherwise keep them in pending queue.
 
 ## Make It Yours
 
