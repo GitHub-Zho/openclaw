@@ -1,5 +1,13 @@
 # Learning Governance (Main + Learning)
 
+## Loop closure evidence (mandatory)
+A learning-governance cycle is considered complete only when all 3 artifacts exist:
+1. Learning artifact (from `workspace-learning/reports/...`)
+2. Main decision record (approve/reject/revise)
+3. Patch provenance list (files changed linked to incident)
+
+No "loop complete" claim is allowed without these artifacts.
+
 ## Decision safety
 
 ### If main makes a bad decision, what happens?

@@ -46,6 +46,10 @@ Send QA rubric + URL + changed files.
 - learning reviews dialogue + agent outputs for process-quality gaps.
 - If improvement gaps found, learning submits rule/gate patch proposal.
 - main approves/rejects and learning applies approved learning-file changes.
+- Closure requires evidence triplet:
+  1) learning report file path
+  2) main decision note
+  3) patch file list
 
 ## 4) Release note format
 - What changed

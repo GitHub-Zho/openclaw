@@ -15,6 +15,10 @@
 - [ ] Key actions reachable within 2-3 clicks
 - [ ] If "from scratch" was requested, IA structure was actually rebuilt (not only style tweaks)
 
+## Governance integrity
+- [ ] If a learning-loop claim is made, independent learning artifact exists (not self-approval only)
+- [ ] Main decision and patch provenance are documented
+
 ## Content
 - [ ] Value proposition clear in first screen
 - [ ] Pricing/inclusions/exclusions are explicit
