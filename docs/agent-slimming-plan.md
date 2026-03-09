@@ -18,7 +18,7 @@ Risks:
 ### Mode A — Lean (default)
 Use for low/medium complexity, low risk.
 Pipeline:
-`main -> (prompt-optimizer OR research, choose one) -> builder -> qa -> main`
+`main -> prompt-optimizer -> (research optional) -> builder -> qa -> main`
 Skip:
 - brain (unless IA unclear)
 - learning realtime loop (log only; heartbeat audits later)
@@ -37,8 +37,9 @@ Requires loop-evidence verification.
 
 ## Token-control rules
 - Limit each specialist output to structured bullets with fixed sections.
-- cap research references to top 3-5 unless explicitly requested.
-- prohibit duplicate analyses (if research runs, brain consumes it; does not re-research).
+- Prompt-optimizer is always-on in both Lean and Full modes.
+- Research is optional in Lean mode; if enabled, default references = 3-5, but may scale up for high-complexity/high-uncertainty tasks.
+- Prohibit duplicate analyses (if research runs, brain consumes it; does not re-research).
 
 ## KPI targets
 - reduce average agent hops per task by >=30% on routine tasks

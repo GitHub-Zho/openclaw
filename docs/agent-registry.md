@@ -86,10 +86,11 @@ Template for new domain:
 ## Operating loop
 ### Lean mode (default)
 1. main defines objective + sub-goal checklist
-2. prompt-optimizer OR research (choose one)
-3. builder implements
-4. qa verifies PASS/FAIL
-5. main approves release
+2. prompt-optimizer refines task packet (always)
+3. research optional (when uncertainty/evidence risk is non-trivial)
+4. builder implements
+5. qa verifies PASS/FAIL
+6. main approves release
 
 ### Full mode (escalation)
 1. main defines objective + sub-goal checklist

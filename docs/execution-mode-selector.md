@@ -28,5 +28,5 @@ Write mode decision in run note with:
 - escalation triggers (if any)
 
 ## Step 4: Verify
-- Lean: require builder+qa evidence
+- Lean: require prompt-optimizer + builder + qa evidence (research evidence if research was invoked)
 - Full: require `verify_agent_loop.sh <loop-id>` PASS
