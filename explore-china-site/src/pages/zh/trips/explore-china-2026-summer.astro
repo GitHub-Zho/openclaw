@@ -1,12 +1,65 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from '../../../data/site';
+import { cityVisuals } from '../../../data/site';
+
+const zhCityNames: Record<string, string> = {
+  Shanghai: '上海',
+  Suzhou: '苏州',
+  Hangzhou: '杭州',
+  Beijing: '北京',
+};
+
+const zhItinerary = [
+  { day: '第1天', city: '上海', plan: '接机、入住、行前适应与本地支付/通信基础设置。' },
+  { day: '第2天', city: '苏州', plan: '博物馆与江南文化体验，傍晚古运河与街区漫游后返程。' },
+  { day: '第3天', city: '上海', plan: '豫园老城厢、外滩城市天际线与核心城区步行体验。' },
+  { day: '第4天', city: '上海', plan: '弹性探索日：文化街区、特色餐饮与晚间社交活动。' },
+  { day: '第5天', city: '杭州', plan: '西湖、灵隐寺与茶文化路线。' },
+  { day: '第6天', city: '北京', plan: '北上转场，完成入住并进行首日城市导览。' },
+  { day: '第7天', city: '北京', plan: '长城全天行程（具体段落按运营计划确认）。' },
+  { day: '第8天', city: '北京', plan: '故宫与颐和园文化历史路线。' },
+  { day: '第9天', city: '北京', plan: '本地学生交流日与结营社交夜。' },
+  { day: '第10天', city: '北京', plan: '离境安排与返程支持。' },
+];
+
+const zhIncluded = [
+  '住宿安排（学生友好房型与拼房机制）',
+  '中国境内交通（按最终执行方案）',
+  '核心景点门票与指定活动',
+  '组织方全程协调支持',
+  '关键节点语言与沟通支持',
+];
+
+const zhNotIncluded = [
+  '国际往返机票',
+  '个人购物与可选升级消费',
+  '超出项目范围的个人支出',
+];
+
+const zhFaq = [
+  {
+    q: '谁可以参加？',
+    a: '当前主要面向学生群体，最终名额与资格规则将在报名开放前公布。',
+  },
+  {
+    q: 'CAD $3,000 包含什么？',
+    a: '主要覆盖核心住宿、境内交通、指定活动门票及组织支持；国际机票不包含。',
+  },
+  {
+    q: '行程会不会太赶？',
+    a: '节奏为“核心固定 + 弹性探索”模式，兼顾体验完整性与舒适度。',
+  },
+  {
+    q: '饮食限制可以安排吗？',
+    a: '可以尽量协调，请尽早告知；不同城市和餐厅可替代项会有差异。',
+  },
+];
 ---
 <Layout title="探索中国 · 10天行程">
   <section class="section card" style="padding:34px; background:linear-gradient(180deg,#fff,#fbfaf6);">
     <p class="pill">旗舰线路</p>
     <h1 style="font-size:clamp(36px,5vw,64px); margin-top:12px;">探索中国 · 10天暑期行程</h1>
-    <p class="muted" style="font-size:18px; max-width:840px;">{currentTrip.summary}</p>
+    <p class="muted" style="font-size:18px; max-width:840px;">这是一条面向加拿大学生用户的中国深度线路：融合城市地标、本地文化、同龄社交交流与清晰可靠的组织支持。</p>
 
     <div class="grid cols-3" style="margin-top:14px;">
       <article class="card" style="padding:14px;"><p class="label" style="margin:0">路线</p><p style="margin:6px 0 0; font-weight:680;">上海 → 苏州 → 杭州 → 北京</p></article>
@@ -24,7 +77,7 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
     {cityVisuals.map((city) => (
       <figure style="margin:0;">
         <img class="photo" src={city.image} alt={city.alt} />
-        <figcaption class="label" style="margin-top:8px; text-align:center;">{city.city}</figcaption>
+        <figcaption class="label" style="margin-top:8px; text-align:center;">{zhCityNames[city.city] ?? city.city}</figcaption>
       </figure>
     ))}
   </section>
@@ -32,7 +85,7 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
   <section class="section card">
     <h2>行程安排（10天）</h2>
     <div class="grid cols-2">
-      {itinerary.map((d) => (
+      {zhItinerary.map((d) => (
         <article class="card" style="padding:14px; background:#fff;">
           <p class="pill" style="margin-bottom:8px;">{d.day}</p>
           <h3 style="margin-bottom:6px;">{d.city}</h3>
@@ -43,13 +96,13 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
   </section>
 
   <section class="section grid cols-2">
-    <article class="card"><h2 style="font-size:30px;">包含内容</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{included.map((item) => <li>{item}</li>)}</ul></article>
-    <article class="card"><h2 style="font-size:30px;">不包含内容</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{notIncluded.map((item) => <li>{item}</li>)}</ul></article>
+    <article class="card"><h2 style="font-size:30px;">包含内容</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{zhIncluded.map((item) => <li>{item}</li>)}</ul></article>
+    <article class="card"><h2 style="font-size:30px;">不包含内容</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{zhNotIncluded.map((item) => <li>{item}</li>)}</ul></article>
   </section>
 
   <section id="faq" class="section card">
     <h2>常见问题</h2>
-    {faq.map((f) => (
+    {zhFaq.map((f) => (
       <details style="margin-bottom:10px; border:1px solid #e7e7e2; border-radius:12px; padding:12px; background:#fff;">
         <summary style="cursor:pointer; font-weight:700;">{f.q}</summary>
         <p class="muted" style="margin:8px 0 0;">{f.a}</p>

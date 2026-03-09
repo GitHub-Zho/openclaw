@@ -1,5 +1,12 @@
 ---
 const { title = 'Exploration & Travel Club' } = Astro.props;
+const path = Astro.url.pathname;
+const isZh = path.startsWith('/zh');
+const switchHref = isZh ? path.replace(/^\/zh/, '') || '/' : `/zh${path === '/' ? '/' : path}`;
+const navHome = isZh ? '/zh/' : '/';
+const navTrip = isZh ? '/zh/trips/explore-china-2026-summer' : '/trips/explore-china-2026-summer';
+const navHandbook = isZh ? '/zh/handbook' : '/handbook';
+const navRegister = `${navTrip}#register`;
 ---
 <!doctype html>
 <html lang="en">
@@ -193,12 +200,12 @@ const { title = 'Exploration & Travel Club' } = Astro.props;
     <header>
       <div class="container">
         <nav>
-          <a class="brand" href="/">Exploration & Travel Club</a>
+          <a class="brand" href={navHome}>{isZh ? '探索中国 · 旅行社群' : 'Exploration & Travel Club'}</a>
           <div class="nav-right">
-            <a class="link" href="/trips/explore-china-2026-summer">Trip</a>
-            <a class="link" href="/handbook">Handbook</a>
-            <a class="link" href="/zh/">中文</a>
-            <a class="btn btn-primary" href="/trips/explore-china-2026-summer#register">Apply</a>
+            <a class="link" href={navTrip}>{isZh ? '行程' : 'Trip'}</a>
+            <a class="link" href={navHandbook}>{isZh ? '手册' : 'Handbook'}</a>
+            <a class="btn btn-secondary" href={switchHref}>{isZh ? 'EN' : '中文'}</a>
+            <a class="btn btn-primary" href={navRegister}>{isZh ? '报名' : 'Apply'}</a>
           </div>
         </nav>
       </div>
