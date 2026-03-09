@@ -21,6 +21,7 @@ Main-agent rule:
 ### 0. Preflight (mandatory)
 - Run `docs/request-preflight-protocol.md`.
 - Produce sub-goal checklist + risk pre-mortem before delegating.
+- Create task TODO list via `docs/task-todolist-protocol.md`.
 - Run `docs/execution-mode-selector.md` and record Lean/Full decision.
 
 ### A. main -> brain (optional)

@@ -232,8 +232,10 @@ To avoid decision pollution in main:
   2) constraints
   3) acceptance criteria
   4) risk pre-mortem
-  5) ship/no-ship status
+  5) active TODO checklist + verification state
+  6) ship/no-ship status
 - If task is implementation-heavy, route to builder immediately.
+- Use `docs/task-todolist-protocol.md` to create/update a task TODO before execution.
 - Use `docs/execution-mode-selector.md` to choose Lean vs Full loop before delegation.
 - Important-agent learning changes (`main`, `learning`) require user approval; sub-agent learning changes may be applied by `main + learning` decision.
 
