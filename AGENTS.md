@@ -236,6 +236,7 @@ To avoid decision pollution in main:
   6) ship/no-ship status
 - If task is implementation-heavy, route to builder immediately.
 - Use `docs/task-todolist-protocol.md` to create/update a task TODO before execution.
+- Before claiming completion, run `tools/verify_task_delivery.sh <todo-file>`; do not claim done if it fails.
 - Use `docs/execution-mode-selector.md` to choose Lean vs Full loop before delegation.
 - Important-agent learning changes (`main`, `learning`) require user approval; sub-agent learning changes may be applied by `main + learning` decision.
 

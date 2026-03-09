@@ -65,7 +65,14 @@ Run:
 - If FAIL: do not claim full-loop execution.
 - Fix missing artifacts/sessions and re-run until PASS.
 
-## 4) Release note format
+## 4) Completion gate (mandatory)
+Before final user-facing completion claim:
+```bash
+/home/ubuntu/.openclaw/workspace/tools/verify_task_delivery.sh <todo-file>
+```
+If FAIL: continue implementation and verification.
+
+## 5) Release note format
 - What changed
 - Why better
 - Remaining risks
