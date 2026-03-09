@@ -35,7 +35,7 @@ export const itinerary = [
   {
     day: 'Day 2',
     city: 'Suzhou',
-    plan: 'National museum + Jiangnan atmosphere + 七里山塘 sunset canal experience, then return.',
+    plan: 'National museum + Jiangnan atmosphere + Shantang Street sunset canal experience, then return.',
   },
   {
     day: 'Day 3',
@@ -79,25 +79,25 @@ export const cityVisuals = [
   {
     city: 'Shanghai',
     image:
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Pudong_Shanghai_Night_Skyline_Jan_2018.jpg',
-    alt: 'Pudong skyline in Shanghai at night',
+      'https://images.unsplash.com/photo-1742184331745-267efee31000?auto=format&fit=crop&w=1400&q=80',
+    alt: 'The Bund skyline in Shanghai at night',
   },
   {
     city: 'Suzhou',
     image:
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Humble_Administrator%27s_Garden_in_Suzhou%2C_China_%282015%29_-_17.JPG',
-    alt: 'Humble Administrator\'s Garden in Suzhou',
+      'https://images.unsplash.com/photo-1636796668666-d2288444a166?auto=format&fit=crop&w=1400&q=80',
+    alt: 'Classical garden bridge scene in Suzhou',
   },
   {
     city: 'Hangzhou',
     image:
-      'https://commons.wikimedia.org/wiki/Special:FilePath/West_Lake_IMG_8755_hangzhou_panorama.jpg',
-    alt: 'West Lake panorama in Hangzhou',
+      'https://images.unsplash.com/photo-1567963737841-c39f864c4ff3?auto=format&fit=crop&w=1400&q=80',
+    alt: 'West Lake scenery in Hangzhou',
   },
   {
     city: 'Beijing',
     image:
-      'https://commons.wikimedia.org/wiki/Special:FilePath/China_%28Beijing%29_Aerial_view_of_Forbidden_City_%2838884882275%29.jpg',
+      'https://images.unsplash.com/photo-1745873495735-24f2f8dc8657?auto=format&fit=crop&w=1400&q=80',
     alt: 'Aerial view of the Forbidden City in Beijing',
   },
 ];
