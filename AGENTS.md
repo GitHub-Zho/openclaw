@@ -234,6 +234,7 @@ To avoid decision pollution in main:
   4) risk pre-mortem
   5) ship/no-ship status
 - If task is implementation-heavy, route to builder immediately.
+- Use `docs/execution-mode-selector.md` to choose Lean vs Full loop before delegation.
 - Important-agent learning changes (`main`, `learning`) require user approval; sub-agent learning changes may be applied by `main + learning` decision.
 
 ## Make It Yours
