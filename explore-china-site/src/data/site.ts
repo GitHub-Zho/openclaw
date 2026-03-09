@@ -79,8 +79,8 @@ export const cityVisuals = [
   {
     city: 'Shanghai',
     image:
-      'https://commons.wikimedia.org/wiki/Special:FilePath/The_Bund%2C_Shanghai%2C_China_%28December_2015%29_-_20.JPG',
-    alt: 'The Bund skyline in Shanghai',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Pudong_Shanghai_Night_Skyline_Jan_2018.jpg',
+    alt: 'Pudong skyline in Shanghai at night',
   },
   {
     city: 'Suzhou',

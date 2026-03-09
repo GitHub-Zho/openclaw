@@ -38,6 +38,26 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
     ))}
   </section>
 
+  <section class="section card">
+    <h2>What each city adds</h2>
+    <div class="grid cols-2">
+      {cityVisuals.map((city) => (
+        <article class="card" style="padding:12px; display:grid; grid-template-columns:140px 1fr; gap:12px; align-items:center;">
+          <img class="photo" src={city.image} alt={city.alt} style="height:120px;" />
+          <div>
+            <h3 style="margin:0 0 4px;">{city.city}</h3>
+            <p class="muted" style="margin:0; font-size:14px;">
+              {city.city === 'Shanghai' && 'Modern skyline, arrival onboarding, and high-energy city rhythm.'}
+              {city.city === 'Suzhou' && 'Jiangnan aesthetics, canals, museum context, and slower pace.'}
+              {city.city === 'Hangzhou' && 'West Lake landscape, temple atmosphere, and tea-culture depth.'}
+              {city.city === 'Beijing' && 'Historic capital landmarks and final social-cultural closure.'}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
   <section class="section grid cols-2">
     <article class="card">
       <h2 style="font-size:30px;">Who this is for</h2>

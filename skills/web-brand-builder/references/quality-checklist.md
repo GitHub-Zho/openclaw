@@ -5,6 +5,7 @@
 - [ ] Spacing follows the same token system
 - [ ] Card radius/border/shadow language consistent
 - [ ] Image tone is visually consistent
+- [ ] Hero and section images are semantically aligned with nearby text (not decorative mismatch)
 
 ## UX and conversion
 - [ ] Primary CTA visible above the fold
