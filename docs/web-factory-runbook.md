@@ -51,6 +51,14 @@ Send QA rubric + URL + changed files.
   2) main decision note
   3) patch file list
 
+### G. loop integrity test (mandatory before claiming "full loop")
+Run:
+```bash
+/home/ubuntu/.openclaw/workspace/tools/verify_agent_loop.sh <loop-id>
+```
+- If FAIL: do not claim full-loop execution.
+- Fix missing artifacts/sessions and re-run until PASS.
+
 ## 4) Release note format
 - What changed
 - Why better
