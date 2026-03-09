@@ -1,15 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { handbookSections, cityVisuals, itinerary } from '../data/site';
+import { handbookSections, cityVisuals, itinerary, currentTrip } from '../data/site';
 ---
 <Layout title="Explore China Handbook">
-  <section class="section card" style="padding:30px;">
+  <section class="section card" style="padding:34px; background:linear-gradient(180deg,#fff,#fbfaf6);">
     <p class="pill">Participant Handbook</p>
-    <h1 style="font-size:clamp(34px,5vw,62px); margin-top:10px;">Explore China Handbook</h1>
+    <h1 style="font-size:clamp(36px,5vw,64px); margin-top:10px;">Explore China Handbook</h1>
     <p class="muted" style="max-width:860px; font-size:18px;">
-      This handbook gives participants a clear view of how the trip is structured,
-      what support is included, and what to expect day by day.
+      A single participant-facing page for route expectations, support policy, and day-by-day structure.
     </p>
+    <div class="grid cols-3" style="margin-top:12px;">
+      <div class="card" style="padding:12px; background:#fff;">
+        <p class="label" style="margin:0">Route</p>
+        <p style="margin:6px 0 0; font-weight:680;">{currentTrip.subtitle}</p>
+      </div>
+      <div class="card" style="padding:12px; background:#fff;">
+        <p class="label" style="margin:0">Duration</p>
+        <p style="margin:6px 0 0; font-weight:680;">{currentTrip.duration}</p>
+      </div>
+      <div class="card" style="padding:12px; background:#fff;">
+        <p class="label" style="margin:0">Package</p>
+        <p style="margin:6px 0 0; font-weight:680;">{currentTrip.priceCad}</p>
+      </div>
+    </div>
   </section>
 
   <section class="section grid cols-2">
@@ -18,7 +31,7 @@ import { handbookSections, cityVisuals, itinerary } from '../data/site';
       <p class="muted" style="margin:0;">{handbookSections.intro}</p>
     </article>
     <article class="card" style="padding:0; overflow:hidden;">
-      <img src={cityVisuals[0].image} alt={cityVisuals[0].alt} style="height:100%; min-height:260px; width:100%; object-fit:cover; filter:saturate(0.88) contrast(0.96) brightness(1.02);" />
+      <img class="photo" src={cityVisuals[0].image} alt={cityVisuals[0].alt} style="height:100%; min-height:280px; border:none;" />
     </article>
   </section>
 
@@ -26,14 +39,14 @@ import { handbookSections, cityVisuals, itinerary } from '../data/site';
     <h2>City reference</h2>
     <div class="grid cols-4">
       {cityVisuals.map((city) => (
-        <article class="card" style="padding:12px;">
-          <img class="photo" src={city.image} alt={city.alt} style="height:150px;" />
+        <article class="card" style="padding:12px; background:#fff;">
+          <img class="photo" src={city.image} alt={city.alt} style="height:160px;" />
           <h3 style="margin:10px 0 6px;">{city.city}</h3>
           <p class="muted" style="margin:0; font-size:14px;">
-            {city.city === 'Shanghai' && 'Arrival support, Old Town and Bund atmosphere.'}
-            {city.city === 'Suzhou' && 'Museum + garden + canal culture day.'}
-            {city.city === 'Hangzhou' && 'West Lake and Lingyin Temple route.'}
-            {city.city === 'Beijing' && 'Iconic heritage sites and final social day.'}
+            {city.city === 'Shanghai' && 'Arrival support, city orientation, Bund and Old Town.'}
+            {city.city === 'Suzhou' && 'Museum + classical garden and canal culture route.'}
+            {city.city === 'Hangzhou' && 'West Lake + Lingyin Temple + tea-culture touchpoint.'}
+            {city.city === 'Beijing' && 'Great Wall, Forbidden City, Summer Palace, social finale.'}
           </p>
         </article>
       ))}
@@ -63,7 +76,7 @@ import { handbookSections, cityVisuals, itinerary } from '../data/site';
     <h2>10-day schedule snapshot</h2>
     <div class="grid cols-2">
       {itinerary.map((d) => (
-        <article class="card" style="padding:12px;">
+        <article class="card" style="padding:12px; background:#fff;">
           <p class="pill" style="margin-bottom:8px;">{d.day}</p>
           <h3 style="margin-bottom:6px;">{d.city}</h3>
           <p class="muted" style="margin:0;">{d.plan}</p>

@@ -3,53 +3,56 @@ import Layout from '../../layouts/Layout.astro';
 import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from '../../data/site';
 ---
 <Layout title={currentTrip.title}>
-  <section class="section card" style="padding:30px;">
+  <section class="section card" style="padding:34px; background:linear-gradient(180deg,#fff,#fbfaf6);">
     <p class="pill">Explore China · Flagship Route</p>
-    <h1 style="font-size:clamp(34px,5vw,62px); margin-top:10px;">{currentTrip.title}</h1>
-    <p class="muted" style="font-size:18px; max-width:820px;">
-      {currentTrip.summary}
-    </p>
+    <h1 style="font-size:clamp(36px,5vw,64px); margin-top:12px;">{currentTrip.title}</h1>
+    <p class="muted" style="font-size:18px; max-width:840px;">{currentTrip.summary}</p>
 
     <div class="grid cols-3" style="margin-top:14px;">
-      <article class="card" style="padding:14px;">
+      <article class="card" style="padding:14px; background:#fff;">
         <p class="label" style="margin:0">Route</p>
         <p style="margin:6px 0 0; font-weight:680;">{currentTrip.subtitle}</p>
       </article>
-      <article class="card" style="padding:14px;">
+      <article class="card" style="padding:14px; background:#fff;">
         <p class="label" style="margin:0">Package</p>
         <p style="margin:6px 0 0; font-weight:680;">{currentTrip.priceCad}</p>
       </article>
-      <article class="card" style="padding:14px;">
+      <article class="card" style="padding:14px; background:#fff;">
         <p class="label" style="margin:0">Accommodation</p>
         <p style="margin:6px 0 0; font-weight:680;">{currentTrip.accommodation}</p>
       </article>
     </div>
 
-    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
       <a class="btn btn-primary" href="#register">Apply</a>
-      <a class="btn btn-secondary" href="/handbook">Open Handbook</a>
+      <a class="btn btn-secondary" href="/handbook">Open Full Handbook</a>
     </div>
   </section>
 
   <section class="section grid cols-4">
-    {cityVisuals.map((city) => <img class="photo" src={city.image} alt={city.alt} />)}
+    {cityVisuals.map((city) => (
+      <figure style="margin:0;">
+        <img class="photo" src={city.image} alt={city.alt} />
+        <figcaption class="label" style="margin-top:8px; text-align:center;">{city.city}</figcaption>
+      </figure>
+    ))}
   </section>
 
   <section class="section grid cols-2">
     <article class="card">
       <h2 style="font-size:30px;">Who this is for</h2>
       <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
-        <li>Students who want a structured but social China experience</li>
+        <li>Students who want structure and social energy, not chaos</li>
         <li>First-time China visitors who need practical support</li>
-        <li>People who enjoy both landmarks and local city life</li>
+        <li>Travelers who value both famous sites and local atmosphere</li>
       </ul>
     </article>
     <article class="card">
       <h2 style="font-size:30px;">Who this may not fit</h2>
       <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
-        <li>Travelers expecting a fully luxury/private itinerary</li>
-        <li>Participants preferring fully unstructured solo travel</li>
-        <li>People unwilling to join group timing for core activities</li>
+        <li>People expecting fully private/luxury trip format</li>
+        <li>Travelers preferring fully unstructured solo planning</li>
+        <li>Participants unwilling to follow group timing for core activities</li>
       </ul>
     </article>
   </section>
@@ -58,7 +61,7 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
     <h2>Day-by-day itinerary</h2>
     <div class="grid cols-2">
       {itinerary.map((d) => (
-        <article class="card" style="padding:14px;">
+        <article class="card" style="padding:14px; background:#fff;">
           <p class="pill" style="margin-bottom:8px;">{d.day}</p>
           <h3 style="margin-bottom:6px;">{d.city}</h3>
           <p class="muted" style="margin:0;">{d.plan}</p>
@@ -94,7 +97,7 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
 
   <section id="register" class="section card" style="margin-bottom:36px;">
     <h2>Apply for this program</h2>
-    <p class="muted">Registration form and timeline will be published here in the next update.</p>
+    <p class="muted">Registration form and final timeline will be announced in the upcoming release.</p>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
       <a class="btn btn-primary" href="#">Start Application</a>
       <a class="btn btn-secondary" href="#">Get Notified</a>
