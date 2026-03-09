@@ -230,7 +230,8 @@ To avoid decision pollution in main:
   1) objective
   2) constraints
   3) acceptance criteria
-  4) ship/no-ship status
+  4) risk pre-mortem
+  5) ship/no-ship status
 - If task is implementation-heavy, route to builder immediately.
 - Important-agent learning changes (`main`, `learning`) require user approval; sub-agent learning changes may be applied by `main + learning` decision.
 

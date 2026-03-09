@@ -18,6 +18,10 @@ Main-agent rule:
 
 ## 3) Execute one web iteration (manual orchestration)
 
+### 0. Preflight (mandatory)
+- Run `docs/request-preflight-protocol.md`.
+- Produce sub-goal checklist + risk pre-mortem before delegating.
+
 ### A. main -> brain (optional)
 Ask for plan/IA if requirements are unclear.
 

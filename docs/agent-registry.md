@@ -84,11 +84,11 @@ Template for new domain:
 - Sub-agent learning files (brain/research/web-builder/web-qa): main+learning approval sufficient
 
 ## Operating loop
-1. main defines objective
+1. main defines objective + sub-goal checklist
 2. prompt-optimizer refines task packets
 3. research supplies evidence brief (if needed)
 4. brain defines plan/spec
 5. builder implements
 6. qa verifies PASS/FAIL
-7. learning runs postmortem/rule proposal
+7. learning runs postmortem/rule proposal + quantitative score
 8. main approves release and governance actions

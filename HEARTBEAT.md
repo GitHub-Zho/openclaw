@@ -16,11 +16,12 @@ Otherwise reply `HEARTBEAT_OK`.
 
 ## On audit
 1. Review recent conversations and agent outputs for process-quality issues.
-2. Classify findings by severity:
+2. Score using `docs/learning-eval-rubric.md` (5 dimensions, total /25).
+3. Classify findings by severity from score thresholds:
    - critical/high
    - medium/low
-3. Create/append proposal entries to `memory/pending-learning-updates.json`.
-4. Update `memory/learning-state.json` timestamps/counters.
+4. Create/append proposal entries to `memory/pending-learning-updates.json`.
+5. Update `memory/learning-state.json` timestamps/counters and last score.
 
 ## Notification policy
 - If critical/high found: send concise alert summary (do NOT auto-apply changes).
