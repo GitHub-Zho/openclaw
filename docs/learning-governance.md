@@ -33,6 +33,8 @@ No "loop complete" claim is allowed without these artifacts.
 - **critical/high**: notify user via main and request approval.
 - **medium/low**: log only; bundle for later approval.
 
+Severity must be computed from `docs/learning-eval-rubric.md` quantitative score.
+
 ## User offline behavior
 - If user is away, queue updates as pending.
 - On next return (or within 24h checkpoint), main summarizes pending updates and asks for batch approval.
