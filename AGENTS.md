@@ -216,6 +216,7 @@ When web-design work is active, use role separation by default:
   - Delegate implementation and detailed visual design work
   - Never claim "redesign complete" without QA verdict
 - **brain** = planning/spec (IA, style direction, acceptance criteria)
+- **prompt-optimizer** = prompt refinement + constraint/acceptance-criteria injection
 - **research** = information collection/synthesis + confidence-rated briefs
 - **web-builder** = implementation + deployment
 - **web-qa** = independent PASS/FAIL review

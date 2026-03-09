@@ -15,6 +15,8 @@ Build a repeatable local pipeline for high-quality website design + implementati
   - Does not judge governance/process decisions; that belongs to `learning`.
 - **brain** (optional planning specialist)
   - Generates design strategy/options before coding when task is ambiguous.
+- **prompt-optimizer** (instruction intelligence)
+  - Refines raw user requests into precise task packets with constraints + acceptance criteria.
 - **research** (information intelligence)
   - Collects and synthesizes multi-source evidence for higher-quality decisions.
   - Provides confidence-graded briefs to main/brain.

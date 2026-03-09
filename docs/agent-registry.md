@@ -54,6 +54,14 @@ Purpose: single source of truth for roles, IO contracts, approval levels, and re
   - user approval required for main/learning critical learning-file updates
 - Reuse scope: all domains
 
+### 7) prompt-optimizer
+- Type: Prompt Intelligence
+- Owns: prompt refinement, constraint completion, acceptance-criteria injection
+- Inputs: raw user intent + context + research findings
+- Outputs: optimized prompt packets for brain/builder/qa
+- Approval level: advisory (main chooses final packet)
+- Reuse scope: all domains with underspecified instructions
+
 ## Reuse vs new-agent rule
 
 ### Reuse existing agents when:
@@ -77,9 +85,10 @@ Template for new domain:
 
 ## Operating loop
 1. main defines objective
-2. research supplies evidence brief (if needed)
-3. brain defines plan/spec
-4. builder implements
-5. qa verifies PASS/FAIL
-6. learning runs postmortem/rule proposal
-7. main approves release and governance actions
+2. prompt-optimizer refines task packets
+3. research supplies evidence brief (if needed)
+4. brain defines plan/spec
+5. builder implements
+6. qa verifies PASS/FAIL
+7. learning runs postmortem/rule proposal
+8. main approves release and governance actions
