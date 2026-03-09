@@ -7,9 +7,9 @@ Purpose: single source of truth for roles, IO contracts, approval levels, and re
 ### 1) main (default)
 - Type: Orchestrator
 - Owns: goals, constraints, approvals, release decisions
-- Inputs: user requests, QA verdicts, learning proposals
+- Inputs: user requests, QA verdicts, learning proposals, public-agent delegation tickets
 - Outputs: task packets, final decisions, release summaries
-- Approval level: final gate for product delivery
+- Approval level: final gate for product delivery and high-risk external requests
 - Reuse scope: all domains
 
 ### 2) brain
