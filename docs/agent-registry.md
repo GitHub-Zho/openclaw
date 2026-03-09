@@ -84,9 +84,17 @@ Template for new domain:
 - Sub-agent learning files (brain/research/web-builder/web-qa): main+learning approval sufficient
 
 ## Operating loop
+### Lean mode (default)
+1. main defines objective + sub-goal checklist
+2. prompt-optimizer OR research (choose one)
+3. builder implements
+4. qa verifies PASS/FAIL
+5. main approves release
+
+### Full mode (escalation)
 1. main defines objective + sub-goal checklist
 2. prompt-optimizer refines task packets
-3. research supplies evidence brief (if needed)
+3. research supplies evidence brief
 4. brain defines plan/spec
 5. builder implements
 6. qa verifies PASS/FAIL

@@ -209,11 +209,12 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 
 ## Multi-Agent Role Split (Main Brain Mode)
 
-When web-design work is active, use role separation by default:
+When web-design work is active, use role separation by default (lean-first, escalate when needed):
 
 - **main (this workspace)** = orchestrator only
   - Own goals, priorities, approvals, and release decisions
   - Delegate implementation and detailed visual design work
+  - Start in lean mode; escalate to full multi-agent loop only on risk/complexity triggers
   - Never claim "redesign complete" without QA verdict
 - **brain** = planning/spec (IA, style direction, acceptance criteria)
 - **prompt-optimizer** = prompt refinement + constraint/acceptance-criteria injection
