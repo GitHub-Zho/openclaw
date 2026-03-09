@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { currentTrip, cityVisuals } from '../../data/site';
+---
+<Layout title="探索中国｜Exploration & Travel Club">
+  <section class="section grid cols-2" style="align-items:stretch;">
+    <article class="card" style="padding:36px; background:linear-gradient(180deg,#fff,#faf9f5);">
+      <p class="pill">2026 夏季 · 学生项目</p>
+      <h1 style="margin-top:14px; max-width:700px;">
+        用更清晰、更有质感的方式
+        <br />
+        探索中国
+      </h1>
+      <p class="muted" style="max-width:620px; margin-top:12px;">
+        这是一个 10 天的学生行程：既有地标体验，也有本地文化与社交交流；
+        节奏清晰、组织可靠，不是“走马观花式打卡”。
+      </p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;">
+        <a class="btn btn-primary" href="/zh/trips/explore-china-2026-summer">查看行程</a>
+        <a class="btn btn-secondary" href="/zh/handbook">查看手册</a>
+      </div>
+    </article>
+
+    <article class="card" style="padding:0; overflow:hidden;">
+      <img src={cityVisuals[2].image} alt={cityVisuals[2].alt} style="height:100%; min-height:440px; width:100%; object-fit:cover; filter:saturate(0.9) contrast(0.98);" />
+    </article>
+  </section>
+
+  <section class="section card" style="padding:22px;">
+    <div class="grid cols-4">
+      <article class="card" style="padding:14px; background:#fcfbf8;">
+        <p class="label" style="margin:0">时长</p>
+        <p style="margin:6px 0 0; font-weight:680;">10 天</p>
+      </article>
+      <article class="card" style="padding:14px; background:#fcfbf8;">
+        <p class="label" style="margin:0">路线</p>
+        <p style="margin:6px 0 0; font-weight:680;">上海 → 苏州 → 杭州 → 北京</p>
+      </article>
+      <article class="card" style="padding:14px; background:#fcfbf8;">
+        <p class="label" style="margin:0">价格</p>
+        <p style="margin:6px 0 0; font-weight:680;">CAD $3,000（不含国际机票）</p>
+      </article>
+      <article class="card" style="padding:14px; background:#fcfbf8;">
+        <p class="label" style="margin:0">住宿</p>
+        <p style="margin:6px 0 0; font-weight:680;">约 CAD $70/人/晚（约¥350）</p>
+      </article>
+    </div>
+  </section>
+</Layout>

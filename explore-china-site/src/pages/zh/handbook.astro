@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { handbookSections, cityVisuals, itinerary } from '../../data/site';
+---
+<Layout title="探索中国手册">
+  <section class="section card" style="padding:34px; background:linear-gradient(180deg,#fff,#fbfaf6);">
+    <p class="pill">Participant Handbook</p>
+    <h1 style="font-size:clamp(36px,5vw,64px); margin-top:10px;">探索中国 · 参与者手册</h1>
+    <p class="muted" style="max-width:860px; font-size:18px;">
+      本页面用于统一展示路线结构、服务边界与每日安排，方便参与者快速判断是否匹配。
+    </p>
+  </section>
+
+  <section class="section grid cols-2">
+    <article class="card">
+      <h2>项目定位</h2>
+      <p class="muted" style="margin:0;">{handbookSections.intro}</p>
+    </article>
+    <article class="card" style="padding:0; overflow:hidden;">
+      <img class="photo" src={cityVisuals[3].image} alt={cityVisuals[3].alt} style="height:100%; min-height:280px; border:none;" />
+    </article>
+  </section>
+
+  <section class="section card">
+    <h2>政策说明</h2>
+    <div class="grid cols-2">
+      <article class="card"><h3>住宿</h3><p class="muted" style="margin:0;">{handbookSections.accommodation}</p></article>
+      <article class="card"><h3>饮食</h3><p class="muted" style="margin:0;">{handbookSections.dietary}</p></article>
+      <article class="card"><h3>语言支持</h3><p class="muted" style="margin:0;">{handbookSections.language}</p></article>
+      <article class="card"><h3>安全与组织</h3><p class="muted" style="margin:0;">{handbookSections.safety}</p></article>
+    </div>
+  </section>
+
+  <section class="section card" style="margin-bottom:36px;">
+    <h2>10天概览</h2>
+    <div class="grid cols-2">
+      {itinerary.map((d) => (
+        <article class="card" style="padding:12px; background:#fff;">
+          <p class="pill" style="margin-bottom:8px;">{d.day}</p>
+          <h3 style="margin-bottom:6px;">{d.city}</h3>
+          <p class="muted" style="margin:0;">{d.plan}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

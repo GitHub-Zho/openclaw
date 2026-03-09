@@ -12,7 +12,7 @@ export const currentTrip = {
   duration: '10 days',
   route: ['Shanghai', 'Suzhou', 'Hangzhou', 'Beijing'],
   priceCad: 'CAD $3,000 per person (excluding international flights)',
-  accommodation: 'Estimated ¥350/person/night (peak summer season)',
+  accommodation: 'Estimated CAD $70/person/night equivalent (peak summer season, approx. ¥350)',
   summary:
     'A student-focused China route blending city highlights, food culture, local student exchange, and practical support from start to finish.',
 };
