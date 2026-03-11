@@ -239,6 +239,8 @@ To avoid decision pollution in main:
 - Before claiming completion, run `tools/verify_task_delivery.sh <todo-file>`; do not claim done if it fails.
 - MAIN hard rule: every implementation/fix by main must include a test/verification step; if any test fails, status stays `in_progress` and main must continue until verification passes.
 - MAIN cannot claim completion on code changes alone; passing verification evidence is mandatory each round.
+- MAIN response-test rule: before sending any claim about process state, implementation status, or verification, run a concrete check and include (1) test method, (2) raw output summary, and (3) conclusion in the reply.
+- If no test was run yet, say "untested" and do not present the claim as confirmed.
 - Use `docs/execution-mode-selector.md` to choose Lean vs Full loop before delegation.
 - Important-agent learning changes (`main`, `learning`) require user approval; sub-agent learning changes may be applied by `main + learning` decision.
 
