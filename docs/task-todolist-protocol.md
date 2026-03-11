@@ -27,7 +27,7 @@ Purpose: prevent "claimed done but not actually done" and reduce loss from long 
 - command output
 - file diff confirmation
 - deployed URL check
-- loop integrity check (`verify_agent_loop.sh`)
+- web-loop integrity check (`verify_web_loop_round.sh docs/workflow-rounds/<round-id>`)
 - visible-state proof for UX claims (snapshot/screenshot from current URL + interaction evidence)
 
 ## Extra rule for visual/interaction tasks

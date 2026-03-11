@@ -29,4 +29,4 @@ Write mode decision in run note with:
 
 ## Step 4: Verify
 - Lean: require prompt-optimizer + builder + qa evidence (research evidence if research was invoked)
-- Full: require `verify_agent_loop.sh <loop-id>` PASS
+- Full: require `verify_web_loop_round.sh docs/workflow-rounds/<round-id>` PASS

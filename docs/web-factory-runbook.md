@@ -60,7 +60,7 @@ Send QA rubric + URL + changed files.
 ### G. loop integrity test (mandatory before claiming "full loop")
 Run:
 ```bash
-/home/ubuntu/.openclaw/workspace/tools/verify_agent_loop.sh <loop-id>
+/home/ubuntu/.openclaw/workspace/tools/verify_web_loop_round.sh docs/workflow-rounds/<round-id>
 ```
 - If FAIL: do not claim full-loop execution.
 - Fix missing artifacts/sessions and re-run until PASS.
