@@ -56,6 +56,14 @@ const navRegister = `${navTrip}#register`;
       }
 
       a { color: inherit; text-decoration: none; }
+      .text-link {
+        color: #0b4ea2;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        font-weight: 600;
+      }
+      .section-title { text-align:center; margin-bottom: 10px; }
+      .section-sub { text-align:center; max-width:720px; margin: 0 auto 14px; }
       img { max-width: 100%; display: block; }
 
       .container { max-width: 1120px; margin: 0 auto; padding: var(--s-6); }
@@ -72,10 +80,10 @@ const navRegister = `${navTrip}#register`;
         padding: var(--s-5);
         box-shadow: 0 1px 0 rgba(15,15,15,0.02);
       }
-      .tone-sand { background: linear-gradient(180deg, #fffdf8, #f8f2e9); }
-      .tone-blue { background: linear-gradient(180deg, #f7fbff, #eaf3ff); }
-      .tone-rose { background: linear-gradient(180deg, #fff8f7, #fdf0ee); }
-      .tone-dark { background: linear-gradient(180deg, #171717, #222); color: #f8f8f8; border-color: #2d2d2d; }
+      .tone-sand { background: linear-gradient(180deg, #fff6e9, #f6e8d2); border-color:#e5d2b1; }
+      .tone-blue { background: linear-gradient(180deg, #ebf4ff, #d8eaff); border-color:#bdd7fa; }
+      .tone-rose { background: linear-gradient(180deg, #ffeef0, #fddfe4); border-color:#efc1c9; }
+      .tone-dark { background: linear-gradient(180deg, #111111, #262626); color: #f8f8f8; border-color: #3d3d3d; }
       .tone-dark .muted { color: #d0d0d0; }
 
       .muted {
@@ -144,6 +152,13 @@ const navRegister = `${navTrip}#register`;
         border-color: #d7d7d0;
       }
       .btn-secondary:hover { background: #f8f8f5; }
+      .form-grid { display:grid; gap:12px; grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .field { display:flex; flex-direction:column; gap:6px; }
+      .field label { font-size:13px; color:#525a62; font-weight:600; }
+      .field input, .field select, .field textarea {
+        border:1px solid #d8dce2; border-radius:12px; padding:11px 12px; font: inherit; background:#fff;
+      }
+      .field textarea { min-height:110px; resize:vertical; }
 
       .pill {
         display: inline-flex;
@@ -201,7 +216,7 @@ const navRegister = `${navTrip}#register`;
         .cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
       @media (max-width: 640px) {
-        .cols-4, .cols-3, .cols-2 { grid-template-columns: 1fr; }
+        .cols-4, .cols-3, .cols-2, .form-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>

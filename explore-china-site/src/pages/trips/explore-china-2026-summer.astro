@@ -48,15 +48,25 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
   </section>
 
   <section id="faq" class="section card tone-blue">
-    <h2>FAQ</h2>
+    <h2 class="section-title">FAQ</h2>
     {faq.map((f) => (
       <details style="margin-bottom:10px; border:1px solid #dce6f2; border-radius:12px; padding:12px; background:#fff;"><summary style="cursor:pointer; font-weight:700;">{f.q}</summary><p class="muted" style="margin:8px 0 0;">{f.a}</p></details>
     ))}
   </section>
 
   <section id="register" class="section card tone-dark" style="margin-bottom:36px;">
-    <h2>Apply for this program</h2>
-    <p class="muted">Registration form and final timeline will be announced in the upcoming release.</p>
-    <div style="display:flex; gap:10px; flex-wrap:wrap;"><a class="btn btn-primary" href="#">Start Application</a><a class="btn btn-secondary" href="#">Get Notified</a></div>
+    <h2 class="section-title">Apply for this program</h2>
+    <p class="muted section-sub">Real submission form — every lead captures email + program intent and redirects to success page.</p>
+    <form class="form-grid" action="https://formsubmit.co/jo_oyoy@outlook.com" method="POST">
+      <input type="hidden" name="_subject" value="New Explore China application lead" />
+      <input type="hidden" name="_next" value="https://explore-china-site.vercel.app/success" />
+      <input type="hidden" name="_captcha" value="false" />
+      <div class="field"><label for="name">Full name</label><input id="name" name="name" required /></div>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" name="email" required /></div>
+      <div class="field"><label for="phone">WhatsApp / Phone (optional)</label><input id="phone" name="phone" /></div>
+      <div class="field"><label for="city">Current city</label><input id="city" name="city" /></div>
+      <div class="field" style="grid-column:1 / -1;"><label for="goal">Why do you want this trip?</label><textarea id="goal" name="goal" required></textarea></div>
+      <div style="grid-column:1 / -1; display:flex; gap:10px; justify-content:center;"><button class="btn btn-primary" type="submit">Submit Application</button><a class="btn btn-secondary" href="/success">Preview success page</a></div>
+    </form>
   </section>
 </Layout>

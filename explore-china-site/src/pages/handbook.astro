@@ -26,18 +26,19 @@ import { handbookSections, cityVisuals, itinerary, currentTrip } from '../data/s
   </section>
 
   <section class="section card tone-rose">
-    <h2>City references</h2>
-    <div class="grid cols-4">
+    <h2 class="section-title">City references</h2>
+    <p class="muted section-sub">Each city now has a structured 3-point focus so participants can evaluate fit quickly.</p>
+    <div class="grid cols-2">
       {cityVisuals.map((city) => (
-        <article class="card" style="padding:12px; background:#fff;">
+        <article class="card" style="padding:12px; background:#fff; display:grid; grid-template-columns:180px 1fr; gap:12px; align-items:start;">
           <img class="photo media-card" src={city.image} alt={city.alt} />
-          <h3 style="margin:10px 0 6px;">{city.city}</h3>
-          <p class="muted" style="margin:0; font-size:14px;">
-            {city.city === 'Shanghai' && 'Arrival support, city orientation, Bund and Old Town.'}
-            {city.city === 'Suzhou' && 'Museum + classical garden and canal culture route.'}
-            {city.city === 'Hangzhou' && 'West Lake + Lingyin Temple + tea-culture touchpoint.'}
-            {city.city === 'Beijing' && 'Great Wall, Forbidden City, Summer Palace, social finale.'}
-          </p>
+          <div>
+            <h3 style="margin:6px 0 8px;">{city.city}</h3>
+            {city.city === 'Shanghai' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>Arrival onboarding + payment/SIM setup</li><li>Bund skyline and old-town contrast</li><li>High-energy urban rhythm for first impression</li></ul>}
+            {city.city === 'Suzhou' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>Classical garden aesthetics and design logic</li><li>Canal district walk and night ambience</li><li>Museum context for Jiangnan history</li></ul>}
+            {city.city === 'Hangzhou' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>West Lake natural landscape route</li><li>Lingyin Temple heritage stop</li><li>Tea-culture touchpoint in Longjing area</li></ul>}
+            {city.city === 'Beijing' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>Great Wall + Forbidden City anchor landmarks</li><li>Summer Palace and imperial-city context</li><li>Student exchange day and social finale</li></ul>}
+          </div>
         </article>
       ))}
     </div>

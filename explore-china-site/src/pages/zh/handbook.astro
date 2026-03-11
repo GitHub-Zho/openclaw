@@ -36,18 +36,19 @@ const zhSections = {
   </section>
 
   <section class="section card tone-rose">
-    <h2>城市参考</h2>
-    <div class="grid cols-4">
+    <h2 class="section-title">城市参考</h2>
+    <p class="muted section-sub">每个城市提供 3 个核心内容点，便于快速判断价值与风格是否匹配。</p>
+    <div class="grid cols-2">
       {cityVisuals.map((city) => (
-        <article class="card" style="padding:12px; background:#fff;">
+        <article class="card" style="padding:12px; background:#fff; display:grid; grid-template-columns:180px 1fr; gap:12px; align-items:start;">
           <img class="photo media-card" src={city.image} alt={city.alt} />
-          <h3 style="margin:10px 0 6px;">{city.city}</h3>
-          <p class="muted" style="margin:0; font-size:14px;">
-            {city.city === 'Shanghai' && '接机与城市导览，建立前两日节奏。'}
-            {city.city === 'Suzhou' && '江南园林与运河氛围，文化密度高。'}
-            {city.city === 'Hangzhou' && '西湖自然景观与茶文化触点。'}
-            {city.city === 'Beijing' && '长城与故宫等核心历史地标闭环。'}
-          </p>
+          <div>
+            <h3 style="margin:6px 0 8px;">{city.city}</h3>
+            {city.city === 'Shanghai' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>落地支持：支付、通信、出行快速上手</li><li>外滩与老城厢的城市对比体验</li><li>建立前期行程节奏与社交破冰</li></ul>}
+            {city.city === 'Suzhou' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>园林美学与江南空间文化</li><li>古运河街区步行与夜间氛围</li><li>博物馆内容补充历史理解</li></ul>}
+            {city.city === 'Hangzhou' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>西湖路线：自然与城市共存</li><li>灵隐寺历史文化触点</li><li>龙井茶文化体验</li></ul>}
+            {city.city === 'Beijing' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>长城、故宫等高价值核心地标</li><li>颐和园与首都历史脉络</li><li>本地学生交流与结营社交夜</li></ul>}
+          </div>
         </article>
       ))}
     </div>
