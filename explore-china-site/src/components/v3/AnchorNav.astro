@@ -1,0 +1,66 @@
+---
+interface LinkItem { href: string; label: string }
+const { id = 'tour-nav', links, ctaHref, ctaLabel } = Astro.props as {
+  id?: string;
+  links: LinkItem[];
+  ctaHref: string;
+  ctaLabel: string;
+};
+---
+<section class="section card tour-nav" id={id}>
+  <nav class="tour-nav-inner" aria-label="Section navigation">
+    {links.map((l) => <a class="tour-nav-link" href={l.href}>{l.label}</a>)}
+    <a class="btn btn-primary tour-nav-cta" href={ctaHref}>{ctaLabel}</a>
+  </nav>
+</section>
+
+<script is:inline define:vars={{ id }}>
+  (() => {
+    const root = document.getElementById(id);
+    const nav = root?.querySelector('.tour-nav-inner');
+    if (!nav) return;
+    const links = [...nav.querySelectorAll('.tour-nav-link')];
+    const targets = links.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+
+    const setActive = (hash) => {
+      links.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === hash));
+    };
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => setActive(link.getAttribute('href')));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target?.id) setActive(`#${visible.target.id}`);
+    }, { rootMargin: '-30% 0px -55% 0px', threshold: [0.2, 0.5, 0.8] });
+
+    targets.forEach((t) => observer.observe(t));
+  })();
+</script>
+
+<style>
+  .tour-nav {
+    position: sticky;
+    top: 68px;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(6px);
+  }
+  .tour-nav-inner { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+  .tour-nav-link {
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #d8dce3;
+    color: #1b1f24;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .tour-nav-link.active {
+    background: #121212;
+    color: #fff;
+    border-color: #121212;
+  }
+  .tour-nav-cta { margin-left: 4px; }
+</style>

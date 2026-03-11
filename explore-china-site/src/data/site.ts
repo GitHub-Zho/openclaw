@@ -79,25 +79,25 @@ export const cityVisuals = [
   {
     city: 'Shanghai',
     image:
-      'https://images.unsplash.com/photo-1742184331745-267efee31000?auto=format&fit=crop&w=1400&q=80',
+      'https://unsplash.com/photos/0p37Ch2LYQc/download?force=true&w=1400',
     alt: 'The Bund skyline in Shanghai at night',
   },
   {
     city: 'Suzhou',
     image:
-      'https://images.unsplash.com/photo-1636796668666-d2288444a166?auto=format&fit=crop&w=1400&q=80',
+      'https://unsplash.com/photos/HfpEhLCgvcc/download?force=true&w=1400',
     alt: 'Classical garden bridge scene in Suzhou',
   },
   {
     city: 'Hangzhou',
     image:
-      'https://images.unsplash.com/photo-1567963737841-c39f864c4ff3?auto=format&fit=crop&w=1400&q=80',
+      'https://unsplash.com/photos/CyvoE5akJuE/download?force=true&w=1400',
     alt: 'West Lake scenery in Hangzhou',
   },
   {
     city: 'Beijing',
     image:
-      'https://images.unsplash.com/photo-1745873495735-24f2f8dc8657?auto=format&fit=crop&w=1400&q=80',
+      'https://unsplash.com/photos/2RGwK0NDLv8/download?force=true&w=1400',
     alt: 'Aerial view of the Forbidden City in Beijing',
   },
 ];

@@ -1,0 +1,39 @@
+---
+interface Item { day: string; title: string; body: string; hotel: string; meals: string; transport: string }
+const { id = 'itinerary', title, items, labels } = Astro.props as {
+  id?: string;
+  title: string;
+  items: Item[];
+  labels: { hotel: string; meals: string; transport: string };
+};
+---
+<section id={id} class="section card tone-blue">
+  <h2 class="section-title">{title}</h2>
+  <div class="itin-grid">
+    {items.map((it, idx) => (
+      <details class="itin-item" open={idx === 0}>
+        <summary>
+          <span class="pill">{it.day}</span>
+          <strong>{it.title}</strong>
+        </summary>
+        <p class="muted">{it.body}</p>
+        <div class="itin-meta">
+          <article><p class="label">{labels.hotel}</p><p>{it.hotel}</p></article>
+          <article><p class="label">{labels.meals}</p><p>{it.meals}</p></article>
+          <article><p class="label">{labels.transport}</p><p>{it.transport}</p></article>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style>
+  .itin-grid { display:grid; gap:10px; }
+  .itin-item { background:#fff; border:1px solid #d7dfed; border-radius:14px; padding:12px; }
+  .itin-item summary { display:flex; align-items:center; gap:10px; cursor:pointer; font-size:18px; }
+  .itin-item p { margin: 10px 0 0; }
+  .itin-meta { margin-top: 10px; display:grid; gap:8px; grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .itin-meta article { background:#f8fbff; border:1px solid #e0e9f6; border-radius:10px; padding:8px; }
+  .itin-meta article p { margin:0; }
+  @media (max-width: 800px) { .itin-meta { grid-template-columns:1fr; } }
+</style>

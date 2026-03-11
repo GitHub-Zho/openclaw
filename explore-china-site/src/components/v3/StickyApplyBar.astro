@@ -1,0 +1,17 @@
+---
+const { href = '#apply', label } = Astro.props as { href?: string; label: string };
+---
+<a href={href} class="mobile-apply btn btn-primary">{label}</a>
+
+<style>
+  .mobile-apply {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index: 35;
+    box-shadow: 0 12px 24px rgba(0,0,0,.28);
+  }
+  @media (min-width: 980px) {
+    .mobile-apply { right: 16px; bottom: 20px; }
+  }
+</style>

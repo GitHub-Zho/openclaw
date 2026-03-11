@@ -2,23 +2,96 @@
 import Layout from '../../../layouts/Layout.astro';
 import { cityVisuals } from '../../../data/site';
 import Carousel from '../../../components/v3/Carousel.astro';
-import DayTabs from '../../../components/v3/DayTabs.astro';
 import FaqList from '../../../components/v3/FaqList.astro';
+import AnchorNav from '../../../components/v3/AnchorNav.astro';
+import HeroTour from '../../../components/v3/HeroTour.astro';
+import ItineraryAccordion from '../../../components/v3/ItineraryAccordion.astro';
+import DecisionStack from '../../../components/v3/DecisionStack.astro';
+import ApplyScaffold from '../../../components/v3/ApplyScaffold.astro';
+import StickyApplyBar from '../../../components/v3/StickyApplyBar.astro';
 
-const days = [
-  { key:'d1', label:'D1-D2', title:'上海 + 苏州', body:'落地支持、支付通信设置、江南博物馆与运河街区。', hotel:'市中心4星', meals:'D2起早餐', transport:'接机+城际高铁' },
-  { key:'d3', label:'D3-D5', title:'上海 + 杭州', body:'外滩与老城对比、西湖与茶文化线。', hotel:'学生友好4星', meals:'早餐+部分午餐', transport:'市内通勤+步行线路' },
-  { key:'d6', label:'D6-D10', title:'北京', body:'长城、故宫、颐和园与交流收官。', hotel:'地铁友好4星', meals:'早餐+结营晚餐', transport:'高铁转场+日程调度' },
+const itinerary = [
+  { day: '第1-2天', title: '上海抵达与苏州衔接', body: '接机、基础安顿后进入运河街区与博物馆节奏，降低初到城市切换压力。', hotel:'市中心 4★', meals:'第2天起含早餐', transport:'接机 + 城际高铁' },
+  { day: '第3-5天', title: '上海与杭州城市文化段', body: '外滩与老城对照、茶文化体验与晚间社交窗口，形成城市记忆点。', hotel:'学生友好 4★', meals:'每日早餐 + 精选午餐', transport:'城市交通 + 导览步行' },
+  { day: '第6-8天', title: '北京核心地标段', body: '长城、故宫、颐和园，按体力和密度做分层安排。', hotel:'地铁便利 4★', meals:'早餐 + 特色晚餐', transport:'高铁衔接 + 当地路线' },
+  { day: '第9-10天', title: '交流日与离境支持', body: '本地学生交流、结营夜、离境前复盘与送机支持。', hotel:'交通友好 4★', meals:'早餐 + 结营晚餐', transport:'离境专车' },
 ];
-const faq = [{q:'谁可以报名？',a:'以学生为主，含基础审核。'},{q:'订金多少？',a:'席位确认后CAD $300。'},{q:'多久回复？',a:'有效线索24小时内回复。'}];
+const faq = [
+  { q:'谁适合报名？', a:'以学生群体为主，提交资料后做基础匹配。' },
+  { q:'订金是多少？', a:'席位确认后支付 CAD $300。' },
+  { q:'多久会回复？', a:'有效线索通常 24 小时内回复。' },
+];
 ---
-<Layout title="探索中国 V3">
-  <section class="section card tone-dark" style="padding:42px; text-align:center;" id="overview"><p class="pill">V3 交互重构</p><h1 style="font-size:clamp(40px,6vw,76px); margin:12px 0;">探索中国 2026</h1><p class="muted section-sub">使用可复用 Astro 组件重建交互一致性。</p></section>
-  <section class="section card" style="position:sticky;top:70px;z-index:12;background:#fff;"><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;"><a class="btn btn-secondary" href="#overview">概览</a><a class="btn btn-secondary" href="#media">媒体</a><a class="btn btn-secondary" href="#itinerary">行程</a><a class="btn btn-secondary" href="#faq">问答</a><a class="btn btn-primary" href="#apply">报名</a></div></section>
+<Layout title="探索中国 V2">
+  <HeroTour
+    badge="经典线路页结构 · 重构版"
+    title="探索中国 2026"
+    subtitle="基于经典旅行页的信息架构：信任信息 + 日程展开 + 转化辅助，桌面与移动端一致可读。"
+    image={cityVisuals[0].image}
+    imageAlt={cityVisuals[0].alt}
+    route="上海 → 苏州 → 杭州 → 北京"
+    price="CAD 3,000 / 人"
+    departs="暑期批次 · 小团席位"
+    stats={[{label:'时长', value:'10天'},{label:'城市', value:'4'},{label:'回复', value:'<24h'}]}
+    ctas={[{href:'#apply',label:'立即申请'},{href:'#itinerary',label:'查看行程',kind:'secondary'}]}
+  />
 
-  <Carousel id="media" title="城市轮播" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label:c.city}))} />
-  <DayTabs id="itinerary" title="行程日签" days={days} />
+  <AnchorNav links={[{href:'#overview',label:'概览'},{href:'#media',label:'图集'},{href:'#itinerary',label:'行程'},{href:'#decision',label:'决策支持'},{href:'#faq',label:'FAQ'}]} ctaHref="#apply" ctaLabel="查看席位" />
+
+  <section id="overview" class="section grid cols-3">
+    <article class="card tone-sand"><p class="label">亮点</p><h3>地标 + 在地文化</h3><p class="muted">用经典旅行商页面的组织方式，明确每天交付内容。</p></article>
+    <article class="card tone-sand"><p class="label">报名节奏</p><h3>提交 → 确认</h3><p class="muted">先提交资料，再由顾问确认席位和下一步时间点。</p></article>
+    <article class="card tone-sand"><p class="label">支持模型</p><h3>中英双语协同</h3><p class="muted">行程中的物流、城市切换、应急沟通均提供双语支持。</p></article>
+  </section>
+
+  <Carousel id="media" title="城市图集轮播" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label:c.city}))} />
+
+  <ItineraryAccordion id="itinerary" title="行程展开" items={itinerary} labels={{ hotel: '住宿', meals:'餐食', transport:'交通' }} />
+
+  <DecisionStack
+    id="decision"
+    title="报名前的决策支持"
+    subtitle="把信任证明、行程密度和执行方式前置，减少移动端决策阻力。"
+    pillars={[
+      { label:'信任证明', title:'边界透明', detail:'包含/不包含、席位流程在订金前完整展示。' },
+      { label:'节奏证明', title:'结构化 + 弹性', detail:'每天有固定核心节点，同时保留可控自由时段。' },
+      { label:'执行证明', title:'双语支持闭环', detail:'导览、接驳、群内通知均支持中英混合沟通。' },
+    ]}
+    checklistTitle="申请前建议"
+    checklist={[
+      '确认护照有效期与签证准备时间。',
+      '先确定房型偏好：拼房标准 / 私享升级意向。',
+      '准备一个学习或社交目标，便于顾问推荐节奏。',
+    ]}
+    snapshots={[
+      { label:'席位流程', value:'2 步', note:'提交表单 → 24小时内顾问回访。' },
+      { label:'城市覆盖', value:'4 城', note:'兼顾超一线、文化、首都体验。' },
+      { label:'支持语言', value:'中 + 英', note:'旅途中关键节点双语同步。' },
+      { label:'决策速度', value:'快速反馈', note:'多数有效报名当日可获席位信息。' },
+    ]}
+  />
+
+  <section class="section grid cols-2" id="inclusion">
+    <article class="card tone-rose"><h3>包含内容</h3><ul class="muted"><li>4★ 住宿组合</li><li>城际交通与既定路线执行</li><li>核心景点与交流活动</li><li>双语行程协同支持</li></ul></article>
+    <article class="card"><h3>不包含</h3><ul class="muted"><li>国际机票</li><li>个人购物消费</li><li>私享升级项目</li><li>签证/保险（如需）</li></ul></article>
+  </section>
+
   <FaqList id="faq" title="常见问题" items={faq} />
 
-  <section id="apply" class="section card tone-dark" style="margin-bottom:36px;"><h2 class="section-title">报名</h2><form class="form-grid" action="https://formsubmit.co/jo_oyoy@outlook.com" method="POST"><input type="hidden" name="_subject" value="探索中国V3报名" /><input type="hidden" name="_next" value="https://explore-china-site.vercel.app/zh/success" /><input type="hidden" name="_captcha" value="false" /><div class="field"><label>姓名</label><input name="name" required /></div><div class="field"><label>邮箱</label><input name="email" type="email" required /></div><div class="field" style="grid-column:1/-1;"><label>期待</label><textarea name="goal"></textarea></div><div style="grid-column:1/-1;display:flex;justify-content:center;"><button class="btn btn-primary" type="submit">提交</button></div></form></section>
+  <ApplyScaffold
+    id="apply"
+    title="先申请，再确认"
+    subtitle="一次提交基础信息，我们会在同一回复中给你席位状态、时间节点和费用边界。"
+    bullets={[
+      '回访会明确当前席位与预计确认时间。',
+      '此步骤不强制付款，先完成匹配评估。',
+      '你会得到顾问联系方式，便于后续直接沟通。',
+    ]}
+    labels={{ name:'姓名', email:'邮箱', phone:'电话 / WhatsApp', city:'所在城市', goal:'目标' }}
+    submitLabel="提交申请"
+    subject="探索中国 V2 线索"
+    nextUrl="https://explore-china-site.vercel.app/zh/success"
+  />
+
+  <StickyApplyBar href="#apply" label="快速申请" />
 </Layout>

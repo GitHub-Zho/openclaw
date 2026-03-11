@@ -1,0 +1,53 @@
+---
+const {
+  id = 'apply',
+  title,
+  subtitle,
+  bullets,
+  labels,
+  submitLabel,
+  subject,
+  nextUrl,
+} = Astro.props as {
+  id?: string;
+  title: string;
+  subtitle: string;
+  bullets: string[];
+  labels: { name: string; email: string; phone: string; city: string; goal: string };
+  submitLabel: string;
+  subject: string;
+  nextUrl: string;
+};
+---
+<section id={id} class="section card tone-dark apply-shell" style="margin-bottom:36px;">
+  <div>
+    <h2 class="section-title" style="text-align:left;">{title}</h2>
+    <p class="muted">{subtitle}</p>
+    <ul class="apply-points muted">
+      {bullets.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+
+  <form class="form-grid apply-form" action="https://formsubmit.co/jo_oyoy@outlook.com" method="POST">
+    <input type="hidden" name="_subject" value={subject} />
+    <input type="hidden" name="_next" value={nextUrl} />
+    <input type="hidden" name="_captcha" value="false" />
+
+    <div class="field"><label>{labels.name}</label><input name="name" required /></div>
+    <div class="field"><label>{labels.email}</label><input name="email" type="email" required /></div>
+    <div class="field"><label>{labels.phone}</label><input name="phone" /></div>
+    <div class="field"><label>{labels.city}</label><input name="city" /></div>
+    <div class="field" style="grid-column:1/-1;"><label>{labels.goal}</label><textarea name="goal"></textarea></div>
+    <div style="grid-column:1/-1;display:flex;justify-content:flex-start;"><button class="btn btn-primary" type="submit">{submitLabel}</button></div>
+  </form>
+</section>
+
+<style>
+  .apply-shell { display:grid; grid-template-columns: .9fr 1.1fr; gap: 16px; align-items:start; }
+  .apply-points { margin: 0; padding-left: 18px; }
+  .apply-points li { margin-bottom: 8px; }
+  .apply-form .field label { color: #ccd4df; }
+  @media (max-width: 980px) {
+    .apply-shell { grid-template-columns: 1fr; }
+  }
+</style>
