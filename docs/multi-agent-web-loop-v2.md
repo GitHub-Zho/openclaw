@@ -53,3 +53,9 @@ If any check fails, round remains open and must be fixed before proceeding.
   - `main-decision.md`
 - Mandatory verifier command before closing round:
   - `tools/verify_web_loop_round.sh docs/workflow-rounds/<round-id>`
+
+## Hard completion gate (must-pass)
+- A fix/process change is **NOT implemented** unless test/verifier passes.
+- If any test fails, status remains `in_progress` and work must continue until pass.
+- No "done" claim is allowed on code-only completion or partial verification.
+- This applies to every round and every bug/process fix.
