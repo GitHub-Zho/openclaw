@@ -1,18 +1,39 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from '../../data/site';
+
+const opsPlan = [
+  { day: 'D1-D2', transport: 'Airport pickup + private transfer + intercity rail', stay: '4★ city-center hotel', meals: 'Breakfast from D2' },
+  { day: 'D3-D5', transport: 'City transit + curated walking routes', stay: '4★ student-friendly rooms', meals: 'Daily breakfast + selected group meals' },
+  { day: 'D6-D10', transport: 'Beijing transfer + local day routing', stay: '4★ transport-connected area', meals: 'Breakfast + celebration dinner' },
+];
 ---
 <Layout title={currentTrip.title}>
   <section class="section card tone-sand" style="padding:34px;">
     <p class="pill">Explore China · Flagship Route</p>
-    <h1 style="font-size:clamp(36px,5vw,64px); margin-top:12px;">{currentTrip.title}</h1>
-    <p class="muted" style="font-size:18px; max-width:840px;">{currentTrip.summary}</p>
+    <h1 style="font-size:clamp(36px,5vw,64px); margin-top:12px; text-align:center;">{currentTrip.title}</h1>
+    <p class="muted section-sub" style="font-size:18px;">A student-focused China route blending city highlights, food culture, local student exchange, and practical support from start to finish.</p>
+
     <div class="grid cols-3" style="margin-top:14px;">
       <article class="card" style="padding:14px; background:#fff;"><p class="label" style="margin:0">Route</p><p style="margin:6px 0 0; font-weight:680;">{currentTrip.subtitle}</p></article>
       <article class="card" style="padding:14px; background:#fff;"><p class="label" style="margin:0">Package</p><p style="margin:6px 0 0; font-weight:680;">{currentTrip.priceCad}</p></article>
       <article class="card" style="padding:14px; background:#fff;"><p class="label" style="margin:0">Accommodation</p><p style="margin:6px 0 0; font-weight:680;">{currentTrip.accommodation}</p></article>
     </div>
-    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;"><a class="btn btn-primary" href="#register">Apply</a><a class="btn btn-secondary" href="/handbook">Open Full Handbook</a></div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; justify-content:center;">
+      <a class="btn btn-primary" href="#register">Apply</a>
+      <a class="btn btn-secondary" href="/handbook">Open Full Handbook</a>
+    </div>
+  </section>
+
+  <section class="section card tone-blue">
+    <h2 class="section-title">Trust & service confidence</h2>
+    <div class="grid cols-4">
+      <article class="card" style="background:#fff;"><p class="label">Response SLA</p><p style="font-weight:700; margin:6px 0 0;">Within 24h</p></article>
+      <article class="card" style="background:#fff;"><p class="label">Language support</p><p style="font-weight:700; margin:6px 0 0;">EN / 中文</p></article>
+      <article class="card" style="background:#fff;"><p class="label">Execution style</p><p style="font-weight:700; margin:6px 0 0;">Structured + Flexible</p></article>
+      <article class="card" style="background:#fff;"><p class="label">Lead channel</p><p style="font-weight:700; margin:6px 0 0;">Form + Email follow-up</p></article>
+    </div>
   </section>
 
   <section class="section grid cols-4">
@@ -28,13 +49,17 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
     <article class="card tone-rose">
       <h2 style="font-size:32px;">Experience depth</h2>
       <p class="muted">Beyond landmarks, each city has social and cultural context blocks designed for students.</p>
-      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;"><li>Arrival onboarding and practical setup</li><li>Museum + heritage + local neighborhoods</li><li>Dedicated student exchange and closing night</li></ul>
+      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
+        <li>Arrival onboarding and practical setup</li>
+        <li>Museum + heritage + local neighborhoods</li>
+        <li>Dedicated student exchange and closing night</li>
+      </ul>
     </article>
     <article class="card" style="padding:0; overflow:hidden;"><img class="photo media-wide" src={cityVisuals[0].image} alt={cityVisuals[0].alt} /></article>
   </section>
 
   <section class="section card">
-    <h2>Day-by-day itinerary</h2>
+    <h2 class="section-title">Day-by-day itinerary</h2>
     <div class="grid cols-2">
       {itinerary.map((d) => (
         <article class="card" style="padding:14px; background:#fff;"><p class="pill" style="margin-bottom:8px;">{d.day}</p><h3 style="margin-bottom:6px;">{d.city}</h3><p class="muted" style="margin:0;">{d.plan}</p></article>
@@ -42,9 +67,43 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
     </div>
   </section>
 
+  <section class="section card tone-sand">
+    <h2 class="section-title">Pricing & booking rules</h2>
+    <div class="grid cols-3">
+      <article class="card" style="background:#fff;"><h3>Deposit</h3><p class="muted" style="margin:0;">Reserve seat with CAD $300 deposit after confirmation call.</p></article>
+      <article class="card" style="background:#fff;"><h3>Balance</h3><p class="muted" style="margin:0;">Remaining balance due 30 days before departure.</p></article>
+      <article class="card" style="background:#fff;"><h3>Cancellation</h3><p class="muted" style="margin:0;">Refund and change policy delivered with formal booking email.</p></article>
+    </div>
+  </section>
+
+  <section class="section card tone-rose">
+    <h2 class="section-title">Operational details (what happens in real execution)</h2>
+    <div class="grid cols-3">
+      {opsPlan.map((o) => (
+        <article class="card" style="background:#fff;"><p class="pill">{o.day}</p><p class="muted" style="margin:10px 0 0;"><strong>Transport:</strong> {o.transport}</p><p class="muted" style="margin:8px 0 0;"><strong>Stay:</strong> {o.stay}</p><p class="muted" style="margin:8px 0 0;"><strong>Meals:</strong> {o.meals}</p></article>
+      ))}
+    </div>
+  </section>
+
   <section class="section grid cols-2">
     <article class="card"><h2 style="font-size:30px;">Included</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{included.map((item) => <li>{item}</li>)}</ul></article>
     <article class="card"><h2 style="font-size:30px;">Not included</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{notIncluded.map((item) => <li>{item}</li>)}</ul></article>
+  </section>
+
+  <section class="section card tone-blue">
+    <h2 class="section-title">Travel prep guide hub (inspired by official sites)</h2>
+    <div class="grid cols-2">
+      <article class="card" style="background:#fff;">
+        <h3>Official travel preparation references</h3>
+        <p class="muted">Visa-free entry, tax refund, transport and payment prep:</p>
+        <p><a class="text-link" href="https://www.travelchina.org.cn/en" target="_blank">Travel China official portal ↗</a></p>
+      </article>
+      <article class="card" style="background:#fff;">
+        <h3>Detailed operator-style itinerary sample</h3>
+        <p class="muted">Reference for hotel/meals/guide detail level:</p>
+        <p><a class="text-link" href="https://www.chinatravel.com/tour/classic-china-tour" target="_blank">Classic China tour detail page ↗</a></p>
+      </article>
+    </div>
   </section>
 
   <section id="faq" class="section card tone-blue">
@@ -56,7 +115,7 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
 
   <section id="register" class="section card tone-dark" style="margin-bottom:36px;">
     <h2 class="section-title">Apply for this program</h2>
-    <p class="muted section-sub">Real submission form — every lead captures email + program intent and redirects to success page.</p>
+    <p class="muted section-sub">Real submission form — lead capture + response workflow. We reply to valid applications within 24 hours.</p>
     <form class="form-grid" action="https://formsubmit.co/jo_oyoy@outlook.com" method="POST">
       <input type="hidden" name="_subject" value="New Explore China application lead" />
       <input type="hidden" name="_next" value="https://explore-china-site.vercel.app/success" />
