@@ -24,6 +24,7 @@ Contract reference: `docs/agent-role-contract.md` (must be followed)
 3. **research gate (before builder when external context is needed)**
    - main/brain draft research request -> prompt-optimizer refines -> research executes
    - research returns digested findings directly to main/brain (not via optimizer)
+   - if research run fails/timeouts, retry once with narrowed scope and record both attempts in `research-report.md`
 
 4. **builder gate**
    - Implement only approved scope
