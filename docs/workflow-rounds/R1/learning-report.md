@@ -2,6 +2,7 @@
 
 Round: R1
 Status: completed
+LEARNING_LESSON_REF: L-2026-03-11-RESEARCH-TIMEOUT-SAMPLING
 
 ## Failures observed
 1. Brain run failed/unfinished while builder round still progressed.

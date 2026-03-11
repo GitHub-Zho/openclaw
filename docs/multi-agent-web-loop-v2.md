@@ -42,6 +42,9 @@ Contract reference: `docs/agent-role-contract.md` (must be followed)
    - learning must monitor subagent performance quality (brain/prompt-optimizer/research/builder/qa), detect weak patterns, and propose fixes.
    - learning must log process failures (e.g., "rule documented but not enforceable") into postmortem notes.
    - learning-proposed subagent fixes must be submitted to main first; apply only after main approval.
+   - learning must update `docs/learning-experience-library.md` with any new lesson (or explicitly state no new lesson).
+   - learning must continuously detect cross-agent recurring issues from dialogue/run outcomes and convert them into reusable prevention rules.
+   - each round must include at least one random spot-check finding reviewed by learning.
    - next round is blocked until learning report includes corrective control (script/check/gate), owner, and follow-up check.
 
 ## Workload split

@@ -28,6 +28,8 @@ grep -Eq '^BRAIN_SPEC_READY:\s*yes' "$ROUND_DIR/main-decision.md" || { echo "FAI
 
 grep -Eq '^INTERACTION_PROOF:\s*yes' "$ROUND_DIR/main-decision.md" || { echo "FAIL missing round sanity interaction proof flag"; exit 1; }
 grep -Eq '^LEARNING_REVIEW_DONE:\s*yes' "$ROUND_DIR/main-decision.md" || { echo "FAIL missing learning review completion flag"; exit 1; }
+grep -Eq '^LEARNING_LESSON_REF:\s*|^NO_NEW_LESSON:\s*yes' "$ROUND_DIR/learning-report.md" || { echo "FAIL learning-report must include LEARNING_LESSON_REF or NO_NEW_LESSON: yes"; exit 1; }
+[[ -f "/home/ubuntu/.openclaw/workspace/docs/learning-experience-library.md" ]] || { echo "FAIL missing learning experience library"; exit 1; }
 
 # strict handoff order check via jsonl log
 ORDER=$(python3 - <<'PY' "$ROUND_DIR/handoff-log.jsonl"
