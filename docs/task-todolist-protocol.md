@@ -28,3 +28,9 @@ Purpose: prevent "claimed done but not actually done" and reduce loss from long 
 - file diff confirmation
 - deployed URL check
 - loop integrity check (`verify_agent_loop.sh`)
+- visible-state proof for UX claims (snapshot/screenshot from current URL + interaction evidence)
+
+## Extra rule for visual/interaction tasks
+- Do not mark a visual/interaction item `done` unless user-visible evidence exists.
+- Evidence must come from current production URL (fresh open), not stale tab references.
+- If evidence conflicts (e.g., user says not visible), downgrade status to `in_progress` and re-verify.

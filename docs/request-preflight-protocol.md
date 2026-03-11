@@ -33,6 +33,13 @@ Run on every non-trivial request (especially build/design/automation tasks).
    - Verify all required sub-goals were delivered (not just main one).
    - Run loop integrity check when claiming multi-agent execution.
 
+7. **Anti-hallucination visible-proof gate (mandatory for UI/UX claims)**
+   - Never claim visual/interaction completion from code/build logs alone.
+   - Re-open production URL directly before verification (do not trust stale browser tabs).
+   - If screenshot/snapshot returns unrelated page once, discard and re-open URL before continuing.
+   - For dynamic interactions, collect behavior proof (e.g., state change after next/prev click).
+   - If proof is incomplete, report as: "shipped in code, visible verification pending".
+
 ## Mandatory output fields (internal)
 - Sub-goal checklist
 - Risk list + mitigation mapping
