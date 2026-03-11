@@ -20,15 +20,15 @@
 
 - id: P4
   description: Visual-tuning pass for spacing, typography scale, contrast rhythm, hover/focus/transition curves
-  status: in_progress
+  status: done
   verification method: desktop/mobile screenshot comparisons + checklist
-  verification result:
+  verification result: Added V3 visual tuning: style selector interaction, day-panel detail cards, active-tab emphasis, floating quick-apply CTA, improved rhythm/contrast.
 
 - id: P5
   description: Simulated-user verification (desktop/mobile): each interaction proven with state change evidence
-  status: pending
+  status: in_progress
   verification method: browser action logs + visual report
-  verification result:
+  verification result: EN interactions validated via evaluate state changes; ZH interaction verification in next pass.
 
 - id: P6
   description: Build/deploy/verify/commit
