@@ -43,3 +43,13 @@ After each implementation round, main must run a quick process sanity test befor
 2. Confirm handoff order was respected (brain -> prompt-optimizer -> builder -> qa -> main).
 3. Confirm at least one runtime interaction proof was captured for the round.
 If any check fails, round remains open and must be fixed before proceeding.
+
+## Enforced artifact + verifier
+- Round artifacts must be stored at: `docs/workflow-rounds/<round-id>/`
+  - `brain-spec.md`
+  - `prompt-optimized.md`
+  - `builder-report.md`
+  - `qa-report.md`
+  - `main-decision.md`
+- Mandatory verifier command before closing round:
+  - `tools/verify_web_loop_round.sh docs/workflow-rounds/<round-id>`
