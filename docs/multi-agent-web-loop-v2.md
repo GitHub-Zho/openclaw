@@ -29,6 +29,10 @@ Prevent builder overload and enforce planning/verification separation.
 5. **main decision gate**
    - main approves next round task based on brain + qa outputs
 
+6. **learning gate (mandatory)**
+   - learning must log any process failure (e.g., "rule documented but not enforceable") into a postmortem note before next round starts.
+   - next round is blocked until learning note includes corrective control (script/check/gate) and owner.
+
 ## Workload split
 - brain: 40% (spec + decomposition + validation criteria)
 - builder: 40% (implementation)
