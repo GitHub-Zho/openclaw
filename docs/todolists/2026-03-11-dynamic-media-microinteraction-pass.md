@@ -4,7 +4,7 @@
   description: Add dynamic media module (auto-playing carousel) to EN/ZH trip pages using free-safe assets already in project
   status: done
   verification method: inspect trip pages for marquee/motion section and animated media cards
-  verification result: Added dynamic motion carousel modules on EN/ZH trip pages using duplicated city media track.
+  verification result: Added obvious JS autoplay carousel with prev/next buttons + pagination dots on EN/ZH trip pages.
 
 - id: T2
   description: Improve microinteractions globally (cards/buttons/accordion motion)
