@@ -1,7 +1,19 @@
 {
-  "lastLearningAuditTs": null,
-  "lastAuditNote": "initialized",
-  "lastAuditSeverity": null,
-  "lastAuditScore": null,
+  "lastLearningAuditTs": 1773197880,
+  "lastAuditNote": "heartbeat audit run: PASS (25/25), no process-quality issues found; evidence: HEARTBEAT policy read, rubric read, recent transcript reviewed",
+  "lastAuditSeverity": "none",
+  "lastAuditScore": 25,
+  "lastAuditDimensions": {
+    "instructionFidelity": 5,
+    "evidenceQuality": 5,
+    "processIntegrity": 5,
+    "resultQuality": 5,
+    "governanceCompliance": 5
+  },
+  "lastAuditEvidence": [
+    "/home/ubuntu/.openclaw/workspace/HEARTBEAT.md",
+    "/home/ubuntu/.openclaw/workspace/docs/learning-eval-rubric.md",
+    "/home/ubuntu/.openclaw/agents/main/sessions/1b965d21-88d6-48e2-8d17-7d115fda47b3.jsonl"
+  ],
   "totalIncidentsLogged": 0
 }
