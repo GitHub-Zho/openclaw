@@ -30,8 +30,9 @@ Prevent builder overload and enforce planning/verification separation.
    - main approves next round task based on brain + qa outputs
 
 6. **learning gate (mandatory)**
-   - learning must log any process failure (e.g., "rule documented but not enforceable") into a postmortem note before next round starts.
-   - next round is blocked until learning note includes corrective control (script/check/gate) and owner.
+   - learning must run every round and produce `learning-report.md` in the round artifact folder.
+   - learning must log process failures (e.g., "rule documented but not enforceable") into postmortem notes.
+   - next round is blocked until learning report includes corrective control (script/check/gate), owner, and follow-up check.
 
 ## Workload split
 - brain: 40% (spec + decomposition + validation criteria)
@@ -54,6 +55,7 @@ If any check fails, round remains open and must be fixed before proceeding.
   - `prompt-optimized.md`
   - `builder-report.md`
   - `qa-report.md`
+  - `learning-report.md`
   - `main-decision.md`
 - Mandatory verifier command before closing round:
   - `tools/verify_web_loop_round.sh docs/workflow-rounds/<round-id>`
