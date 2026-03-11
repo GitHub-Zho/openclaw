@@ -1,0 +1,7 @@
+---
+const { title, items, id } = Astro.props as { title: string; id: string; items: { q:string; a:string }[] };
+---
+<section id={id} class="section card tone-blue">
+  <h2 class="section-title">{title}</h2>
+  {items.map((f) => <details><summary>{f.q}</summary><p class="muted">{f.a}</p></details>)}
+</section>

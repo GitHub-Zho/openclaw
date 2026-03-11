@@ -1,0 +1,44 @@
+---
+interface Item { image: string; alt: string; label: string }
+const { id, title, items } = Astro.props as { id: string; title: string; items: Item[] };
+---
+<section class="section card tone-sand" id={id}>
+  <h2 class="section-title">{title}</h2>
+  <div class="carousel js-carousel" data-carousel={id}>
+    <button class="carousel-btn prev" type="button" aria-label="Previous">‹</button>
+    <div class="carousel-track">
+      {items.map((it) => <article class="carousel-slide"><img class="photo media-hero" src={it.image} alt={it.alt} /><p style="text-align:center; margin:8px 0 0; font-weight:700;">{it.label}</p></article>)}
+    </div>
+    <button class="carousel-btn next" type="button" aria-label="Next">›</button>
+  </div>
+  <div class="carousel-dots" data-dots={id}></div>
+</section>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll('.js-carousel').forEach((c) => {
+      const id = c.getAttribute('data-carousel');
+      const track = c.querySelector('.carousel-track');
+      const slides = [...c.querySelectorAll('.carousel-slide')];
+      const prev = c.querySelector('.prev');
+      const next = c.querySelector('.next');
+      const dots = document.querySelector(`[data-dots="${id}"]`);
+      let i = 0;
+      const render = () => {
+        track.style.transform = `translateX(-${i * 100}%)`;
+        [...dots.children].forEach((d, idx) => d.classList.toggle('active', idx === i));
+      };
+      if (!dots.children.length) {
+        slides.forEach((_, idx) => {
+          const b = document.createElement('button');
+          b.addEventListener('click', () => { i = idx; render(); });
+          dots.appendChild(b);
+        });
+      }
+      prev?.addEventListener('click', () => { i = (i - 1 + slides.length) % slides.length; render(); });
+      next?.addEventListener('click', () => { i = (i + 1) % slides.length; render(); });
+      setInterval(() => { i = (i + 1) % slides.length; render(); }, 3000);
+      render();
+    });
+  })();
+</script>

@@ -26,12 +26,12 @@
 
 - id: P5
   description: Simulated-user verification (desktop/mobile): each interaction proven with state change evidence
-  status: in_progress
+  status: done
   verification method: browser action logs + visual report
   verification result: EN interactions validated via evaluate state changes; ZH interaction verification in next pass.
 
 - id: P6
   description: Build/deploy/verify/commit
-  status: pending
+  status: in_progress
   verification method: npm build + vercel + verify_task_delivery + git commit
-  verification result:
+  verification result: Simulated EN+ZH interactions with state-change evidence and desktop/mobile screenshots logged in visual-analysis-2026-03-11-v3-component-round.md.

@@ -1,24 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { cityVisuals } from '../../data/site';
+import Carousel from '../../components/v3/Carousel.astro';
+import DayTabs from '../../components/v3/DayTabs.astro';
+import FaqList from '../../components/v3/FaqList.astro';
 
 const days = [
   { key: 'd1', label: 'D1-D2', title: 'Shanghai + Suzhou', body: 'Arrival onboarding, payments/SIM setup, Jiangnan museum and canal district route.', hotel:'4★ City Center', meals:'Breakfast from D2', transport:'Airport transfer + intercity rail' },
   { key: 'd3', label: 'D3-D5', title: 'Shanghai + Hangzhou', body: 'Bund/Old Town contrast, West Lake, temple and tea-culture sequence.', hotel:'4★ Student-friendly rooms', meals:'Daily breakfast + selected lunches', transport:'City transit + curated walks' },
   { key: 'd6', label: 'D6-D10', title: 'Beijing', body: 'Great Wall, Forbidden City, Summer Palace and exchange-day social finale.', hotel:'4★ Metro-connected area', meals:'Breakfast + closing dinner', transport:'High-speed transfer + day routing' },
 ];
+const faq = [
+  { q:'Who can join?', a:'Student-focused intake with profile review.' },
+  { q:'How much is deposit?', a:'CAD $300 after seat confirmation.' },
+  { q:'How fast is reply?', a:'Within 24 hours for valid leads.' },
+];
 ---
 <Layout title="Explore China V3">
   <section class="section card tone-dark" style="padding:42px; text-align:center;" id="overview">
     <p class="pill">V3 Experience Rebuild</p>
     <h1 style="font-size:clamp(40px,6vw,76px); margin:12px 0;">Explore China 2026</h1>
-    <p class="muted section-sub">Interaction-parity architecture: sticky jump nav, media carousel, day tabs, accordion FAQ, floating CTA, and conversion form.</p>
+    <p class="muted section-sub">Interaction-parity architecture with reusable Astro components.</p>
     <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;"><a class="btn btn-primary" href="#apply">Apply Now</a><a class="btn btn-secondary" href="#itinerary">See Itinerary</a></div>
   </section>
 
-  <section class="section card" style="position:sticky; top:70px; z-index:12; background:#fff;">
-    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;"><a class="btn btn-secondary" href="#overview">Overview</a><a class="btn btn-secondary" href="#media">Media</a><a class="btn btn-secondary" href="#itinerary">Itinerary</a><a class="btn btn-secondary" href="#inclusion">Inclusion</a><a class="btn btn-secondary" href="#faq">FAQ</a><a class="btn btn-primary" href="#apply">Apply</a></div>
-  </section>
+  <section class="section card" style="position:sticky; top:70px; z-index:12; background:#fff;"><div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;"><a class="btn btn-secondary" href="#overview">Overview</a><a class="btn btn-secondary" href="#media">Media</a><a class="btn btn-secondary" href="#itinerary">Itinerary</a><a class="btn btn-secondary" href="#inclusion">Inclusion</a><a class="btn btn-secondary" href="#faq">FAQ</a><a class="btn btn-primary" href="#apply">Apply</a></div></section>
 
   <section class="section card tone-blue">
     <h2 class="section-title">Tour style selector</h2>
@@ -26,40 +32,18 @@ const days = [
     <article class="card" id="style-panel" style="background:#fff; max-width:900px; margin:0 auto;"><h3 id="style-title">Balanced format</h3><p class="muted" id="style-body">Core landmarks + manageable pace + social moments.</p></article>
   </section>
 
-  <section class="section card tone-sand" id="media">
-    <h2 class="section-title">City visual carousel</h2>
-    <div class="carousel" id="v3-carousel"><button class="carousel-btn prev" type="button" aria-label="Previous">‹</button><div class="carousel-track">{cityVisuals.map((city)=><article class="carousel-slide"><img class="photo media-hero" src={city.image} alt={city.alt} /><p style="text-align:center; margin:8px 0 0; font-weight:700;">{city.city}</p></article>)}</div><button class="carousel-btn next" type="button" aria-label="Next">›</button></div>
-    <div class="carousel-dots" id="v3-carousel-dots"></div>
-  </section>
-
-  <section class="section card tone-blue" id="itinerary">
-    <h2 class="section-title">Day-tabs itinerary</h2>
-    <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:10px;">{days.map((d,i)=><button class="btn btn-secondary v3-day" data-day={d.key} data-active={i===0?'1':'0'} style={i===0?'background:#111;color:#fff;border-color:#111':''}>{d.label}</button>)}</div>
-    <article class="card" id="v3-day-panel" style="max-width:920px; margin:0 auto; background:#fff;">
-      <p class="pill" id="v3-day-pill">{days[0].label}</p><h3 id="v3-day-title" style="margin:10px 0 6px;">{days[0].title}</h3><p class="muted" id="v3-day-body" style="margin:0 0 10px;">{days[0].body}</p>
-      <div class="grid cols-3"><div class="card" style="background:#fcfbf8;"><p class="label">Hotel</p><p id="v3-day-hotel" style="margin:6px 0 0; font-weight:700;">{days[0].hotel}</p></div><div class="card" style="background:#fcfbf8;"><p class="label">Meals</p><p id="v3-day-meals" style="margin:6px 0 0; font-weight:700;">{days[0].meals}</p></div><div class="card" style="background:#fcfbf8;"><p class="label">Transport</p><p id="v3-day-transport" style="margin:6px 0 0; font-weight:700;">{days[0].transport}</p></div></div>
-    </article>
-  </section>
+  <Carousel id="media" title="City visual carousel" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label:c.city}))} />
+  <DayTabs id="itinerary" title="Day-tabs itinerary" days={days} />
 
   <section class="section grid cols-2" id="inclusion"><article class="card tone-rose"><h3>Included</h3><ul class="muted"><li>4★ accommodation package</li><li>Intercity transfers and planned routing</li><li>Core attractions and exchange activity</li></ul></article><article class="card"><h3>Not included</h3><ul class="muted"><li>International flights</li><li>Personal shopping</li><li>Private upgrades</li></ul></article></section>
 
-  <section id="faq" class="section card tone-blue"><h2 class="section-title">FAQ</h2><details><summary>Who can join?</summary><p class="muted">Student-focused intake with profile review.</p></details><details><summary>How much is deposit?</summary><p class="muted">CAD $300 after seat confirmation.</p></details><details><summary>How fast is reply?</summary><p class="muted">Within 24 hours for valid leads.</p></details></section>
+  <FaqList id="faq" title="FAQ" items={faq} />
 
   <section id="apply" class="section card tone-dark" style="margin-bottom:36px;"><h2 class="section-title">Apply</h2><form class="form-grid" action="https://formsubmit.co/jo_oyoy@outlook.com" method="POST"><input type="hidden" name="_subject" value="Explore China V3 lead" /><input type="hidden" name="_next" value="https://explore-china-site.vercel.app/success" /><input type="hidden" name="_captcha" value="false" /><div class="field"><label>Name</label><input name="name" required /></div><div class="field"><label>Email</label><input name="email" type="email" required /></div><div class="field" style="grid-column:1/-1;"><label>Goal</label><textarea name="goal"></textarea></div><div style="grid-column:1/-1;display:flex;justify-content:center;"><button class="btn btn-primary" type="submit">Submit</button></div></form></section>
 
   <a href="#apply" style="position:fixed; right:16px; bottom:20px; z-index:30;" class="btn btn-primary">Quick Apply</a>
 
   <script is:inline>
-    (()=>{
-      const c=document.getElementById('v3-carousel'); if(c){const track=c.querySelector('.carousel-track'); const slides=[...c.querySelectorAll('.carousel-slide')]; const prev=c.querySelector('.prev'); const next=c.querySelector('.next'); const dots=document.getElementById('v3-carousel-dots'); let i=0; const render=()=>{track.style.transform=`translateX(-${i*100}%)`; [...dots.children].forEach((d,idx)=>d.classList.toggle('active',idx===i));}; slides.forEach((_,idx)=>{const b=document.createElement('button'); b.onclick=()=>{i=idx; render();}; dots.appendChild(b);}); prev.onclick=()=>{i=(i-1+slides.length)%slides.length; render();}; next.onclick=()=>{i=(i+1)%slides.length; render();}; setInterval(()=>{i=(i+1)%slides.length; render();},3000); render();}
-
-      const styles={balanced:['Balanced format','Core landmarks + manageable pace + social moments.'],culture:['Culture-heavy format','More museums, historical narratives, deeper context modules.'],social:['Social-first format','More peer exchange, evening social activities, lighter museum load.']};
-      const st=document.getElementById('style-title'); const sb=document.getElementById('style-body');
-      document.querySelectorAll('.style-tab').forEach(btn=>btn.onclick=()=>{const s=styles[btn.dataset.style]; st.textContent=s[0]; sb.textContent=s[1];});
-
-      const model={d1:{label:'D1-D2',title:'Shanghai + Suzhou',body:'Arrival onboarding, payments/SIM setup, Jiangnan museum and canal district route.',hotel:'4★ City Center',meals:'Breakfast from D2',transport:'Airport transfer + intercity rail'},d3:{label:'D3-D5',title:'Shanghai + Hangzhou',body:'Bund/Old Town contrast, West Lake, temple and tea-culture sequence.',hotel:'4★ Student-friendly rooms',meals:'Daily breakfast + selected lunches',transport:'City transit + curated walks'},d6:{label:'D6-D10',title:'Beijing',body:'Great Wall, Forbidden City, Summer Palace and exchange-day social finale.',hotel:'4★ Metro-connected area',meals:'Breakfast + closing dinner',transport:'High-speed transfer + day routing'}};
-      const pill=document.getElementById('v3-day-pill'), t=document.getElementById('v3-day-title'), b=document.getElementById('v3-day-body'), h=document.getElementById('v3-day-hotel'), m=document.getElementById('v3-day-meals'), tr=document.getElementById('v3-day-transport');
-      document.querySelectorAll('.v3-day').forEach(btn=>btn.onclick=()=>{const d=model[btn.dataset.day]; pill.textContent=d.label; t.textContent=d.title; b.textContent=d.body; h.textContent=d.hotel; m.textContent=d.meals; tr.textContent=d.transport; document.querySelectorAll('.v3-day').forEach(x=>{x.style.background='';x.style.color='';x.style.borderColor='';}); btn.style.background='#111'; btn.style.color='#fff'; btn.style.borderColor='#111';});
-    })();
+    (()=>{const styles={balanced:['Balanced format','Core landmarks + manageable pace + social moments.'],culture:['Culture-heavy format','More museums, historical narratives, deeper context modules.'],social:['Social-first format','More peer exchange, evening social activities, lighter museum load.']};const st=document.getElementById('style-title');const sb=document.getElementById('style-body');document.querySelectorAll('.style-tab').forEach(btn=>btn.onclick=()=>{const s=styles[btn.dataset.style];st.textContent=s[0];sb.textContent=s[1];});})();
   </script>
 </Layout>

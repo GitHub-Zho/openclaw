@@ -1,24 +1,24 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { cityVisuals } from '../../../data/site';
+import Carousel from '../../../components/v3/Carousel.astro';
+import DayTabs from '../../../components/v3/DayTabs.astro';
+import FaqList from '../../../components/v3/FaqList.astro';
+
+const days = [
+  { key:'d1', label:'D1-D2', title:'上海 + 苏州', body:'落地支持、支付通信设置、江南博物馆与运河街区。', hotel:'市中心4星', meals:'D2起早餐', transport:'接机+城际高铁' },
+  { key:'d3', label:'D3-D5', title:'上海 + 杭州', body:'外滩与老城对比、西湖与茶文化线。', hotel:'学生友好4星', meals:'早餐+部分午餐', transport:'市内通勤+步行线路' },
+  { key:'d6', label:'D6-D10', title:'北京', body:'长城、故宫、颐和园与交流收官。', hotel:'地铁友好4星', meals:'早餐+结营晚餐', transport:'高铁转场+日程调度' },
+];
+const faq = [{q:'谁可以报名？',a:'以学生为主，含基础审核。'},{q:'订金多少？',a:'席位确认后CAD $300。'},{q:'多久回复？',a:'有效线索24小时内回复。'}];
 ---
 <Layout title="探索中国 V3">
-  <section class="section card tone-dark" style="padding:42px; text-align:center;" id="overview">
-    <p class="pill">V3 交互重构</p><h1 style="font-size:clamp(40px,6vw,76px); margin:12px 0;">探索中国 2026</h1>
-    <p class="muted section-sub">锚点导航 + 城市轮播 + 行程日签切换 + FAQ折叠 + 报名转化闭环。</p>
-  </section>
+  <section class="section card tone-dark" style="padding:42px; text-align:center;" id="overview"><p class="pill">V3 交互重构</p><h1 style="font-size:clamp(40px,6vw,76px); margin:12px 0;">探索中国 2026</h1><p class="muted section-sub">使用可复用 Astro 组件重建交互一致性。</p></section>
   <section class="section card" style="position:sticky;top:70px;z-index:12;background:#fff;"><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;"><a class="btn btn-secondary" href="#overview">概览</a><a class="btn btn-secondary" href="#media">媒体</a><a class="btn btn-secondary" href="#itinerary">行程</a><a class="btn btn-secondary" href="#faq">问答</a><a class="btn btn-primary" href="#apply">报名</a></div></section>
 
-  <section id="media" class="section card tone-sand"><h2 class="section-title">城市轮播</h2><div class="carousel" id="v3-carousel-zh"><button class="carousel-btn prev" type="button">‹</button><div class="carousel-track">{cityVisuals.map((c)=><article class="carousel-slide"><img class="photo media-hero" src={c.image} alt={c.alt} /><p style="text-align:center; margin:8px 0 0; font-weight:700;">{c.city}</p></article>)}</div><button class="carousel-btn next" type="button">›</button></div><div class="carousel-dots" id="v3-carousel-zh-dots"></div></section>
-
-  <section id="itinerary" class="section card tone-blue"><h2 class="section-title">行程日签</h2><div style="display:flex;justify-content:center;gap:8px;"><button class="btn btn-secondary zhday" data-day="1">D1-D2</button><button class="btn btn-secondary zhday" data-day="2">D3-D5</button><button class="btn btn-secondary zhday" data-day="3">D6-D10</button></div><article class="card" id="zh-day-panel" style="max-width:900px;margin:10px auto 0;background:#fff;"><p class="pill">D1-D2</p><h3 id="zh-day-title">上海 + 苏州</h3><p id="zh-day-body" class="muted">落地支持、支付通信设置、江南博物馆与运河街区。</p></article></section>
-
-  <section id="faq" class="section card tone-blue"><h2 class="section-title">常见问题</h2><details><summary>谁可以报名？</summary><p class="muted">以学生为主，含基础审核。</p></details><details><summary>多久回复？</summary><p class="muted">有效线索24小时内回复。</p></details></section>
+  <Carousel id="media" title="城市轮播" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label:c.city}))} />
+  <DayTabs id="itinerary" title="行程日签" days={days} />
+  <FaqList id="faq" title="常见问题" items={faq} />
 
   <section id="apply" class="section card tone-dark" style="margin-bottom:36px;"><h2 class="section-title">报名</h2><form class="form-grid" action="https://formsubmit.co/jo_oyoy@outlook.com" method="POST"><input type="hidden" name="_subject" value="探索中国V3报名" /><input type="hidden" name="_next" value="https://explore-china-site.vercel.app/zh/success" /><input type="hidden" name="_captcha" value="false" /><div class="field"><label>姓名</label><input name="name" required /></div><div class="field"><label>邮箱</label><input name="email" type="email" required /></div><div class="field" style="grid-column:1/-1;"><label>期待</label><textarea name="goal"></textarea></div><div style="grid-column:1/-1;display:flex;justify-content:center;"><button class="btn btn-primary" type="submit">提交</button></div></form></section>
-
-  <script is:inline>
-    (()=>{const c=document.getElementById('v3-carousel-zh');if(c){const t=c.querySelector('.carousel-track');const s=[...c.querySelectorAll('.carousel-slide')];const p=c.querySelector('.prev');const n=c.querySelector('.next');const d=document.getElementById('v3-carousel-zh-dots');let i=0;const r=()=>{t.style.transform=`translateX(-${i*100}%)`;[...d.children].forEach((x,idx)=>x.classList.toggle('active',idx===i));};s.forEach((_,idx)=>{const b=document.createElement('button');b.onclick=()=>{i=idx;r();};d.appendChild(b);});p.onclick=()=>{i=(i-1+s.length)%s.length;r();};n.onclick=()=>{i=(i+1)%s.length;r();};setInterval(()=>{i=(i+1)%s.length;r();},3000);r();}
-    const m={1:['D1-D2','上海 + 苏州','落地支持、支付通信设置、江南博物馆与运河街区。'],2:['D3-D5','上海 + 杭州','外滩与老城对比、西湖与茶文化线。'],3:['D6-D10','北京','长城、故宫、颐和园与交流收官。']};const t=document.getElementById('zh-day-title');const b=document.getElementById('zh-day-body');const p=document.querySelector('#zh-day-panel .pill');document.querySelectorAll('.zhday').forEach(btn=>btn.onclick=()=>{const d=m[btn.dataset.day];p.textContent=d[0];t.textContent=d[1];b.textContent=d[2];});})();
-  </script>
 </Layout>
