@@ -4,6 +4,7 @@
 Prevent builder overload and enforce planning/verification separation.
 
 ## Stage gates (must pass in order)
+Contract reference: `docs/agent-role-contract.md` (must be followed)
 1. **brain-spec gate (required before builder)**
    - IA map
    - visual tokens (type, spacing, contrast, component density)
@@ -17,21 +18,29 @@ Prevent builder overload and enforce planning/verification separation.
 2. **prompt-optimizer gate**
    - Convert brain spec into strict builder prompt
    - Include non-goals and anti-regression constraints
+   - Also optimize: user->main, main->research, brain->research, brain->builder prompt channels
+   - Add ambiguity checks to prevent requirement misread
 
-3. **builder gate**
+3. **research gate (before builder when external context is needed)**
+   - main/brain draft research request -> prompt-optimizer refines -> research executes
+   - research returns digested findings directly to main/brain (not via optimizer)
+
+4. **builder gate**
    - Implement only approved scope
    - No independent spec drift
 
-4. **qa gate (hard stop)**
+5. **qa gate (hard stop)**
    - Independent PASS/FAIL runtime check
    - If FAIL: return gap list to brain, not directly to builder
 
-5. **main decision gate**
+6. **main decision gate**
    - main approves next round task based on brain + qa outputs
 
-6. **learning gate (mandatory)**
+7. **learning gate (mandatory)**
    - learning must run every round and produce `learning-report.md` in the round artifact folder.
+   - learning must monitor subagent performance quality (brain/prompt-optimizer/research/builder/qa), detect weak patterns, and propose fixes.
    - learning must log process failures (e.g., "rule documented but not enforceable") into postmortem notes.
+   - learning-proposed subagent fixes must be submitted to main first; apply only after main approval.
    - next round is blocked until learning report includes corrective control (script/check/gate), owner, and follow-up check.
 
 ## Workload split
@@ -45,7 +54,7 @@ If brain-spec is missing or not skill-referenced, builder cannot start.
 ## Round-completion sanity rule (new)
 After each implementation round, main must run a quick process sanity test before declaring round closure:
 1. Confirm stage artifacts exist (brain spec, optimized prompt, builder report, QA PASS/FAIL).
-2. Confirm handoff order was respected (brain -> prompt-optimizer -> builder -> qa -> main).
+2. Confirm handoff order was respected (brain -> prompt-optimizer -> research -> builder -> qa -> main -> learning).
 3. Confirm at least one runtime interaction proof was captured for the round.
 If any check fails, round remains open and must be fixed before proceeding.
 
@@ -53,6 +62,7 @@ If any check fails, round remains open and must be fixed before proceeding.
 - Round artifacts must be stored at: `docs/workflow-rounds/<round-id>/`
   - `brain-spec.md`
   - `prompt-optimized.md`
+  - `research-report.md`
   - `builder-report.md`
   - `qa-report.md`
   - `learning-report.md`

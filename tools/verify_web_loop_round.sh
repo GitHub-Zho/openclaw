@@ -8,6 +8,7 @@ fi
 req=(
   "$ROUND_DIR/brain-spec.md"
   "$ROUND_DIR/prompt-optimized.md"
+  "$ROUND_DIR/research-report.md"
   "$ROUND_DIR/builder-report.md"
   "$ROUND_DIR/qa-report.md"
   "$ROUND_DIR/learning-report.md"
