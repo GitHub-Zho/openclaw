@@ -58,6 +58,12 @@ const zhOpsPlan = [
     ))}
   </section>
 
+  <section class="section card tone-dark">
+    <h2 class="section-title">动态媒体轮播</h2>
+    <p class="muted section-sub">连续滚动的动态画廊，提供接近视频的观感，同时保持素材来源清晰合规（项目自有/免费可用素材）。</p>
+    <div class="motion-wrap"><div class="motion-track">{[...cityVisuals, ...cityVisuals].map((city, idx) => (<article class="card motion-card" style="padding:10px; background:#fff; color:#151515;" key={`${city.city}-${idx}`}><img class="photo media-card" src={city.image} alt={city.alt} /><p class="label" style="margin:8px 0 0; text-align:center;">{zhCityNames[city.city] ?? city.city}</p></article>))}</div></div>
+  </section>
+
   <section class="section grid cols-2">
     <article class="card tone-rose"><h2 style="font-size:32px;">体验亮点</h2><p class="muted">不是单纯打卡，而是“地标 + 文化 + 社交 + 支持”的组合体验。</p><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;"><li>行前到达与城市落地支持</li><li>文化路线与城市节奏并重</li><li>本地学生交流与结营活动</li></ul></article>
     <article class="card" style="padding:0; overflow:hidden;"><img class="photo media-wide" src={cityVisuals[0].image} alt={cityVisuals[0].alt} /></article>

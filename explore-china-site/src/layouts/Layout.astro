@@ -79,7 +79,9 @@ const navRegister = `${navTrip}#register`;
         border-radius: var(--radius);
         padding: var(--s-5);
         box-shadow: 0 1px 0 rgba(15,15,15,0.02);
+        transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
       }
+      .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(22,22,22,0.08); border-color: #d8d3c7; }
       .tone-sand { background: linear-gradient(180deg, #fff6e9, #f6e8d2); border-color:#e5d2b1; }
       .tone-blue { background: linear-gradient(180deg, #ebf4ff, #d8eaff); border-color:#bdd7fa; }
       .tone-rose { background: linear-gradient(180deg, #ffeef0, #fddfe4); border-color:#efc1c9; }
@@ -137,14 +139,14 @@ const navRegister = `${navTrip}#register`;
         font-size: var(--body-sm);
         font-weight: 600;
         border: 1px solid transparent;
-        transition: 120ms ease;
+        transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
       }
 
       .btn-primary {
         background: #161616;
         color: #fff;
       }
-      .btn-primary:hover { background: #000; transform: translateY(-1px); }
+      .btn-primary:hover { background: #000; transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0,0,0,0.25); }
 
       .btn-secondary {
         background: #fff;
@@ -200,6 +202,14 @@ const navRegister = `${navTrip}#register`;
       .media-wide { aspect-ratio: 16 / 9; height: auto; }
       .media-card { aspect-ratio: 4 / 3; height: auto; }
       .media-tall { aspect-ratio: 3 / 4; height: auto; }
+      .motion-track { display:flex; gap:14px; width:max-content; animation: marquee 28s linear infinite; }
+      .motion-wrap { overflow:hidden; border-radius: var(--radius); }
+      .motion-wrap:hover .motion-track { animation-play-state: paused; }
+      .motion-card { min-width: 280px; max-width: 280px; }
+      @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+      details summary { list-style: none; position: relative; padding-right: 22px; }
+      details summary::after { content:'+'; position:absolute; right:4px; top:0; color:#6a7380; font-weight:700; }
+      details[open] summary::after { content:'−'; }
 
       .footer {
         margin-top: var(--s-8);
@@ -217,6 +227,9 @@ const navRegister = `${navTrip}#register`;
       }
       @media (max-width: 640px) {
         .cols-4, .cols-3, .cols-2, .form-grid { grid-template-columns: 1fr; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .card, .btn, .motion-track { transition: none !important; animation: none !important; }
       }
     </style>
   </head>

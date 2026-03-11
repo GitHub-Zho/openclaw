@@ -45,6 +45,21 @@ const opsPlan = [
     ))}
   </section>
 
+  <section class="section card tone-dark">
+    <h2 class="section-title">Dynamic media reel</h2>
+    <p class="muted section-sub">Continuous motion carousel to simulate a video-like experience while keeping licensing clean (project-owned/free-safe media).</p>
+    <div class="motion-wrap">
+      <div class="motion-track">
+        {[...cityVisuals, ...cityVisuals].map((city, idx) => (
+          <article class="card motion-card" style="padding:10px; background:#fff; color:#151515;" key={`${city.city}-${idx}`}>
+            <img class="photo media-card" src={city.image} alt={city.alt} />
+            <p class="label" style="margin:8px 0 0; text-align:center;">{city.city}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="section grid cols-2">
     <article class="card tone-rose">
       <h2 style="font-size:32px;">Experience depth</h2>
