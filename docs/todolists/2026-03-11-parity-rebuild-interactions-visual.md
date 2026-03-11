@@ -32,6 +32,6 @@
 
 - id: P6
   description: Build/deploy/verify/commit
-  status: in_progress
+  status: done
   verification method: npm build + vercel + verify_task_delivery + git commit
   verification result: Simulated EN+ZH interactions with state-change evidence and desktop/mobile screenshots logged in visual-analysis-2026-03-11-v3-component-round.md.
