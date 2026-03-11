@@ -12,6 +12,13 @@ Use before claiming any UI/UX/interaction feature is complete.
 - [ ] Confirm expected element exists (heading/button/card/etc.).
 - [ ] Confirm expected styling difference is present (layout, color, spacing, etc.).
 
+## B2) Visual-analysis proof (mandatory for web design tasks)
+- [ ] Provide before/after screenshot pair (or baseline/reference vs current).
+- [ ] Describe visual delta in human terms (hierarchy, balance, rhythm, contrast, whitespace, alignment).
+- [ ] Verify at least one desktop width and one mobile width.
+- [ ] If change is color/contrast related, include explicit contrast/readability judgement (pass/fail + rationale).
+- [ ] Do not mark done if evidence is code-only without visual comparison.
+
 ## C) Interaction proof
 For each claimed interaction (carousel, accordion, hover-like behavior):
 - [ ] Trigger interaction once.
