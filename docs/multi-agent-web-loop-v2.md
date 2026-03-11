@@ -54,7 +54,7 @@ If brain-spec is missing or not skill-referenced, builder cannot start.
 ## Round-completion sanity rule (new)
 After each implementation round, main must run a quick process sanity test before declaring round closure:
 1. Confirm stage artifacts exist (brain spec, optimized prompt, builder report, QA PASS/FAIL).
-2. Confirm handoff order was respected (brain -> prompt-optimizer -> research -> builder -> qa -> main -> learning).
+2. Confirm handoff order was respected (brain -> prompt-optimizer -> research -> builder -> qa -> main -> learning), validated from `handoff-log.jsonl`.
 3. Confirm at least one runtime interaction proof was captured for the round.
 If any check fails, round remains open and must be fixed before proceeding.
 
@@ -67,6 +67,7 @@ If any check fails, round remains open and must be fixed before proceeding.
   - `qa-report.md`
   - `learning-report.md`
   - `main-decision.md`
+  - `handoff-log.jsonl`
 - Mandatory verifier command before closing round:
   - `tools/verify_web_loop_round.sh docs/workflow-rounds/<round-id>`
 

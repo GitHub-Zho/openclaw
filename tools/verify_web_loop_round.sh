@@ -13,6 +13,7 @@ req=(
   "$ROUND_DIR/qa-report.md"
   "$ROUND_DIR/learning-report.md"
   "$ROUND_DIR/main-decision.md"
+  "$ROUND_DIR/handoff-log.jsonl"
 )
 for f in "${req[@]}"; do
   [[ -f "$f" ]] || { echo "FAIL missing artifact: $f"; exit 1; }
@@ -27,5 +28,28 @@ grep -Eq '^BRAIN_SPEC_READY:\s*yes' "$ROUND_DIR/main-decision.md" || { echo "FAI
 
 grep -Eq '^INTERACTION_PROOF:\s*yes' "$ROUND_DIR/main-decision.md" || { echo "FAIL missing round sanity interaction proof flag"; exit 1; }
 grep -Eq '^LEARNING_REVIEW_DONE:\s*yes' "$ROUND_DIR/main-decision.md" || { echo "FAIL missing learning review completion flag"; exit 1; }
+
+# strict handoff order check via jsonl log
+ORDER=$(python3 - <<'PY' "$ROUND_DIR/handoff-log.jsonl"
+import json,sys
+path=sys.argv[1]
+stages=[]
+with open(path,'r',encoding='utf-8') as f:
+    for line in f:
+        line=line.strip()
+        if not line: continue
+        obj=json.loads(line)
+        stage=obj.get('stage','').strip()
+        if stage: stages.append(stage)
+print(','.join(stages))
+PY
+)
+EXPECTED="brain,prompt-optimizer,research,builder,qa,main,learning"
+if [[ "$ORDER" != "$EXPECTED" ]]; then
+  echo "FAIL handoff order mismatch"
+  echo "  expected: $EXPECTED"
+  echo "  observed: $ORDER"
+  exit 1
+fi
 
 echo "PASS web-loop round verification: $ROUND_DIR"

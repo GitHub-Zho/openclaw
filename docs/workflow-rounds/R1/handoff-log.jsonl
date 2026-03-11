@@ -1,0 +1,7 @@
+{"stage":"brain","actor":"brain-round1","status":"failed","note":"initial spec attempt failed"}
+{"stage":"prompt-optimizer","actor":"prompt-optimizer-round1","status":"done"}
+{"stage":"research","actor":"research-round1","status":"done"}
+{"stage":"builder","actor":"web-builder-round2","status":"done"}
+{"stage":"qa","actor":"qa-round1","status":"done","result":"FAIL"}
+{"stage":"main","actor":"main","status":"done","decision":"replan_by_brain"}
+{"stage":"learning","actor":"learning-round2","status":"done"}
