@@ -16,55 +16,58 @@ const zhItinerary = [
 ];
 
 const zhSections = {
-  intro:
-    '本项目面向希望深入体验中国城市文化的学生群体。我们强调“清晰组织 + 本地体验 + 社交连接”，在保证可执行性的同时保留旅行自由度。',
-  accommodation:
-    '住宿优先选择交通便利、卫生与舒适度稳定的酒店。默认双人拼房，可根据名额与库存提供升级方案。',
-  dietary:
-    '餐饮以友好、接受度高的本地菜系为主，不会强制极端饮食挑战。如有过敏或饮食限制，请尽早告知便于协调。',
-  language:
-    '组织方提供关键节点语言支持，重点覆盖接送、入住、交通换乘和核心活动沟通。',
-  safety:
-    '采用“核心活动固定 + 弹性时段可控”的组织方式，配套每日集合点、紧急联系人与行程通知机制。',
+  intro: '本项目面向希望深入体验中国城市文化的学生群体。我们强调“清晰组织 + 本地体验 + 社交连接”，在保证可执行性的同时保留旅行自由度。',
+  accommodation: '住宿优先选择交通便利、卫生与舒适度稳定的酒店。默认双人拼房，可根据名额与库存提供升级方案。',
+  dietary: '餐饮以友好、接受度高的本地菜系为主，不会强制极端饮食挑战。如有过敏或饮食限制，请尽早告知便于协调。',
+  language: '组织方提供关键节点语言支持，重点覆盖接送、入住、交通换乘和核心活动沟通。',
+  safety: '采用“核心活动固定 + 弹性时段可控”的组织方式，配套每日集合点、紧急联系人与行程通知机制。',
 };
 ---
 <Layout title="探索中国手册">
-  <section class="section card" style="padding:34px; background:linear-gradient(180deg,#fff,#fbfaf6);">
+  <section class="section card tone-sand" style="padding:34px;">
     <p class="pill">参与者手册</p>
     <h1 style="font-size:clamp(36px,5vw,64px); margin-top:10px;">探索中国 · 参与者手册</h1>
-    <p class="muted" style="max-width:860px; font-size:18px;">
-      本页面用于统一展示路线结构、服务边界与每日安排，方便参与者快速判断是否匹配。
-    </p>
+    <p class="muted" style="max-width:860px; font-size:18px;">本页面用于统一展示路线结构、服务边界与每日安排，方便参与者快速判断是否匹配。</p>
   </section>
 
   <section class="section grid cols-2">
-    <article class="card">
-      <h2>项目定位</h2>
-      <p class="muted" style="margin:0;">{zhSections.intro}</p>
-    </article>
-    <article class="card" style="padding:0; overflow:hidden;">
-      <img class="photo" src={cityVisuals[3].image} alt={cityVisuals[3].alt} style="height:100%; min-height:280px; border:none;" />
-    </article>
+    <article class="card tone-blue"><h2>项目定位</h2><p class="muted" style="margin:0;">{zhSections.intro}</p></article>
+    <article class="card" style="padding:0; overflow:hidden;"><img class="photo media-wide" src={cityVisuals[3].image} alt={cityVisuals[3].alt} /></article>
   </section>
 
-  <section class="section card">
-    <h2>政策说明</h2>
-    <div class="grid cols-2">
-      <article class="card"><h3>住宿</h3><p class="muted" style="margin:0;">{zhSections.accommodation}</p></article>
-      <article class="card"><h3>饮食</h3><p class="muted" style="margin:0;">{zhSections.dietary}</p></article>
-      <article class="card"><h3>语言支持</h3><p class="muted" style="margin:0;">{zhSections.language}</p></article>
-      <article class="card"><h3>安全与组织</h3><p class="muted" style="margin:0;">{zhSections.safety}</p></article>
+  <section class="section card tone-rose">
+    <h2>城市参考</h2>
+    <div class="grid cols-4">
+      {cityVisuals.map((city) => (
+        <article class="card" style="padding:12px; background:#fff;">
+          <img class="photo media-card" src={city.image} alt={city.alt} />
+          <h3 style="margin:10px 0 6px;">{city.city}</h3>
+          <p class="muted" style="margin:0; font-size:14px;">
+            {city.city === 'Shanghai' && '接机与城市导览，建立前两日节奏。'}
+            {city.city === 'Suzhou' && '江南园林与运河氛围，文化密度高。'}
+            {city.city === 'Hangzhou' && '西湖自然景观与茶文化触点。'}
+            {city.city === 'Beijing' && '长城与故宫等核心历史地标闭环。'}
+          </p>
+        </article>
+      ))}
     </div>
   </section>
 
-  <section class="section card" style="margin-bottom:36px;">
+  <section class="section grid cols-2">
+    <article class="card"><h3>住宿</h3><p class="muted" style="margin:0;">{zhSections.accommodation}</p></article>
+    <article class="card"><h3>饮食</h3><p class="muted" style="margin:0;">{zhSections.dietary}</p></article>
+    <article class="card"><h3>语言支持</h3><p class="muted" style="margin:0;">{zhSections.language}</p></article>
+    <article class="card"><h3>安全与组织</h3><p class="muted" style="margin:0;">{zhSections.safety}</p></article>
+  </section>
+
+  <section class="section card tone-dark" style="margin-bottom:36px;">
     <h2>10天概览</h2>
     <div class="grid cols-2">
       {zhItinerary.map((d) => (
-        <article class="card" style="padding:12px; background:#fff;">
+        <article class="card" style="padding:12px; background:#fff; color:#151515; border-color:#ece7dd;">
           <p class="pill" style="margin-bottom:8px;">{d.day}</p>
           <h3 style="margin-bottom:6px;">{d.city}</h3>
-          <p class="muted" style="margin:0;">{d.plan}</p>
+          <p class="muted" style="margin:0; color:#545a60;">{d.plan}</p>
         </article>
       ))}
     </div>

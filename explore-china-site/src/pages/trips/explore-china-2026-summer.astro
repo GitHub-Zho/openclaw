@@ -3,124 +3,60 @@ import Layout from '../../layouts/Layout.astro';
 import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from '../../data/site';
 ---
 <Layout title={currentTrip.title}>
-  <section class="section card" style="padding:34px; background:linear-gradient(180deg,#fff,#fbfaf6);">
+  <section class="section card tone-sand" style="padding:34px;">
     <p class="pill">Explore China · Flagship Route</p>
     <h1 style="font-size:clamp(36px,5vw,64px); margin-top:12px;">{currentTrip.title}</h1>
     <p class="muted" style="font-size:18px; max-width:840px;">{currentTrip.summary}</p>
-
     <div class="grid cols-3" style="margin-top:14px;">
-      <article class="card" style="padding:14px; background:#fff;">
-        <p class="label" style="margin:0">Route</p>
-        <p style="margin:6px 0 0; font-weight:680;">{currentTrip.subtitle}</p>
-      </article>
-      <article class="card" style="padding:14px; background:#fff;">
-        <p class="label" style="margin:0">Package</p>
-        <p style="margin:6px 0 0; font-weight:680;">{currentTrip.priceCad}</p>
-      </article>
-      <article class="card" style="padding:14px; background:#fff;">
-        <p class="label" style="margin:0">Accommodation</p>
-        <p style="margin:6px 0 0; font-weight:680;">{currentTrip.accommodation}</p>
-      </article>
+      <article class="card" style="padding:14px; background:#fff;"><p class="label" style="margin:0">Route</p><p style="margin:6px 0 0; font-weight:680;">{currentTrip.subtitle}</p></article>
+      <article class="card" style="padding:14px; background:#fff;"><p class="label" style="margin:0">Package</p><p style="margin:6px 0 0; font-weight:680;">{currentTrip.priceCad}</p></article>
+      <article class="card" style="padding:14px; background:#fff;"><p class="label" style="margin:0">Accommodation</p><p style="margin:6px 0 0; font-weight:680;">{currentTrip.accommodation}</p></article>
     </div>
-
-    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
-      <a class="btn btn-primary" href="#register">Apply</a>
-      <a class="btn btn-secondary" href="/handbook">Open Full Handbook</a>
-    </div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;"><a class="btn btn-primary" href="#register">Apply</a><a class="btn btn-secondary" href="/handbook">Open Full Handbook</a></div>
   </section>
 
   <section class="section grid cols-4">
     {cityVisuals.map((city) => (
-      <figure style="margin:0;">
-        <img class="photo" src={city.image} alt={city.alt} />
+      <figure style="margin:0;" class="card tone-blue">
+        <img class="photo media-card" src={city.image} alt={city.alt} />
         <figcaption class="label" style="margin-top:8px; text-align:center;">{city.city}</figcaption>
       </figure>
     ))}
   </section>
 
-  <section class="section card">
-    <h2>What each city adds</h2>
-    <div class="grid cols-2">
-      {cityVisuals.map((city) => (
-        <article class="card" style="padding:12px; display:grid; grid-template-columns:140px 1fr; gap:12px; align-items:center;">
-          <img class="photo" src={city.image} alt={city.alt} style="height:120px;" />
-          <div>
-            <h3 style="margin:0 0 4px;">{city.city}</h3>
-            <p class="muted" style="margin:0; font-size:14px;">
-              {city.city === 'Shanghai' && 'Modern skyline, arrival onboarding, and high-energy city rhythm.'}
-              {city.city === 'Suzhou' && 'Jiangnan aesthetics, canals, museum context, and slower pace.'}
-              {city.city === 'Hangzhou' && 'West Lake landscape, temple atmosphere, and tea-culture depth.'}
-              {city.city === 'Beijing' && 'Historic capital landmarks and final social-cultural closure.'}
-            </p>
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
-
   <section class="section grid cols-2">
-    <article class="card">
-      <h2 style="font-size:30px;">Who this is for</h2>
-      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
-        <li>Students who want structure and social energy, not chaos</li>
-        <li>First-time China visitors who need practical support</li>
-        <li>Travelers who value both famous sites and local atmosphere</li>
-      </ul>
+    <article class="card tone-rose">
+      <h2 style="font-size:32px;">Experience depth</h2>
+      <p class="muted">Beyond landmarks, each city has social and cultural context blocks designed for students.</p>
+      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;"><li>Arrival onboarding and practical setup</li><li>Museum + heritage + local neighborhoods</li><li>Dedicated student exchange and closing night</li></ul>
     </article>
-    <article class="card">
-      <h2 style="font-size:30px;">Who this may not fit</h2>
-      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
-        <li>People expecting fully private/luxury trip format</li>
-        <li>Travelers preferring fully unstructured solo planning</li>
-        <li>Participants unwilling to follow group timing for core activities</li>
-      </ul>
-    </article>
+    <article class="card" style="padding:0; overflow:hidden;"><img class="photo media-wide" src={cityVisuals[0].image} alt={cityVisuals[0].alt} /></article>
   </section>
 
   <section class="section card">
     <h2>Day-by-day itinerary</h2>
     <div class="grid cols-2">
       {itinerary.map((d) => (
-        <article class="card" style="padding:14px; background:#fff;">
-          <p class="pill" style="margin-bottom:8px;">{d.day}</p>
-          <h3 style="margin-bottom:6px;">{d.city}</h3>
-          <p class="muted" style="margin:0;">{d.plan}</p>
-        </article>
+        <article class="card" style="padding:14px; background:#fff;"><p class="pill" style="margin-bottom:8px;">{d.day}</p><h3 style="margin-bottom:6px;">{d.city}</h3><p class="muted" style="margin:0;">{d.plan}</p></article>
       ))}
     </div>
   </section>
 
   <section class="section grid cols-2">
-    <article class="card">
-      <h2 style="font-size:30px;">Included</h2>
-      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
-        {included.map((item) => <li>{item}</li>)}
-      </ul>
-    </article>
-    <article class="card">
-      <h2 style="font-size:30px;">Not included</h2>
-      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
-        {notIncluded.map((item) => <li>{item}</li>)}
-      </ul>
-    </article>
+    <article class="card"><h2 style="font-size:30px;">Included</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{included.map((item) => <li>{item}</li>)}</ul></article>
+    <article class="card"><h2 style="font-size:30px;">Not included</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{notIncluded.map((item) => <li>{item}</li>)}</ul></article>
   </section>
 
-  <section id="faq" class="section card">
+  <section id="faq" class="section card tone-blue">
     <h2>FAQ</h2>
     {faq.map((f) => (
-      <details style="margin-bottom:10px; border:1px solid #e7e7e2; border-radius:12px; padding:12px; background:#fff;">
-        <summary style="cursor:pointer; font-weight:700;">{f.q}</summary>
-        <p class="muted" style="margin:8px 0 0;">{f.a}</p>
-      </details>
+      <details style="margin-bottom:10px; border:1px solid #dce6f2; border-radius:12px; padding:12px; background:#fff;"><summary style="cursor:pointer; font-weight:700;">{f.q}</summary><p class="muted" style="margin:8px 0 0;">{f.a}</p></details>
     ))}
   </section>
 
-  <section id="register" class="section card" style="margin-bottom:36px;">
+  <section id="register" class="section card tone-dark" style="margin-bottom:36px;">
     <h2>Apply for this program</h2>
     <p class="muted">Registration form and final timeline will be announced in the upcoming release.</p>
-    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-      <a class="btn btn-primary" href="#">Start Application</a>
-      <a class="btn btn-secondary" href="#">Get Notified</a>
-    </div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;"><a class="btn btn-primary" href="#">Start Application</a><a class="btn btn-secondary" href="#">Get Notified</a></div>
   </section>
 </Layout>

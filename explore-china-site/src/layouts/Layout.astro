@@ -72,6 +72,11 @@ const navRegister = `${navTrip}#register`;
         padding: var(--s-5);
         box-shadow: 0 1px 0 rgba(15,15,15,0.02);
       }
+      .tone-sand { background: linear-gradient(180deg, #fffdf8, #f8f2e9); }
+      .tone-blue { background: linear-gradient(180deg, #f7fbff, #eaf3ff); }
+      .tone-rose { background: linear-gradient(180deg, #fff8f7, #fdf0ee); }
+      .tone-dark { background: linear-gradient(180deg, #171717, #222); color: #f8f8f8; border-color: #2d2d2d; }
+      .tone-dark .muted { color: #d0d0d0; }
 
       .muted {
         color: var(--muted);
@@ -174,8 +179,12 @@ const navRegister = `${navTrip}#register`;
         object-fit: cover;
         border-radius: var(--radius);
         border: 1px solid var(--line);
-        filter: saturate(0.88) contrast(0.96) brightness(1.02);
+        filter: saturate(0.9) contrast(0.98) brightness(1.02);
       }
+      .media-hero { height: min(52vh, 520px); }
+      .media-wide { aspect-ratio: 16 / 9; height: auto; }
+      .media-card { aspect-ratio: 4 / 3; height: auto; }
+      .media-tall { aspect-ratio: 3 / 4; height: auto; }
 
       .footer {
         margin-top: var(--s-8);

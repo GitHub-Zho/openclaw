@@ -65,12 +65,12 @@ import { cityVisuals } from '../data/site';
     </div>
   </section>
 
-  <section class="section card">
+  <section class="section card tone-rose">
     <h2>City structure</h2>
     <div class="grid cols-4">
       {cityVisuals.map((city) => (
         <article class="card" style="padding:12px; background:#fff;">
-          <img class="photo" src={city.image} alt={city.alt} style="height:190px;" />
+          <img class="photo media-card" src={city.image} alt={city.alt} />
           <h3 style="margin:10px 0 4px;">{city.city}</h3>
           <p class="muted" style="font-size:14px; margin:0;">
             {city.city === 'Shanghai' && 'Arrival onboarding, Bund skyline, and city orientation.'}
@@ -80,6 +80,15 @@ import { cityVisuals } from '../data/site';
           </p>
         </article>
       ))}
+    </div>
+  </section>
+
+  <section class="section card tone-dark">
+    <h2>What students say this format solves</h2>
+    <div class="grid cols-3">
+      <article class="card" style="background:#fff; color:#151515;"><p style="margin:0; font-weight:680;">“I need structure, but not a rigid tour bus vibe.”</p><p class="muted" style="margin-top:8px; color:#5b6168;">Core activities are fixed; exploration windows are preserved.</p></article>
+      <article class="card" style="background:#fff; color:#151515;"><p style="margin:0; font-weight:680;">“I don’t want hidden surprises in budget.”</p><p class="muted" style="margin-top:8px; color:#5b6168;">Inclusion / exclusion boundaries are shown before commitment.</p></article>
+      <article class="card" style="background:#fff; color:#151515;"><p style="margin:0; font-weight:680;">“I want social connection, not solo drift.”</p><p class="muted" style="margin-top:8px; color:#5b6168;">Student exchange day + final social night create closure.</p></article>
     </div>
   </section>
 </Layout>
