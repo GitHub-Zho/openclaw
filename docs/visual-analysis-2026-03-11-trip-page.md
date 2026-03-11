@@ -3,30 +3,37 @@
 Verified URL:
 - https://explore-china-site.vercel.app/trips/explore-china-2026-summer
 
-Captured evidence:
-- Desktop-ish screenshot: `/home/ubuntu/.openclaw/media/browser/9b127c4c-5fe3-4615-bf0b-81de7a89da97.jpg`
-- Full-page screenshot A: `/home/ubuntu/.openclaw/media/browser/e5bc905b-17bb-4a05-baf9-fd572631c0bc.jpg`
-- Mobile screenshot: `/home/ubuntu/.openclaw/media/browser/c4906dc5-69c6-47ba-b28f-d37c98d6fc2d.jpg`
+Evidence sources:
+- DOM snapshot (fresh production): confirms trust module, dynamic carousel module, pricing/ops modules, prep hub, FAQ, form.
+- Screenshots:
+  - `/home/ubuntu/.openclaw/media/browser/4465fe3d-5ae3-4743-b285-5eee4fef0ef7.jpg`
+  - `/home/ubuntu/.openclaw/media/browser/08b85652-d95a-4099-a215-6dff18834284.jpg`
 
-## Findings (human visual judgement)
-1. **Major layout collapse / non-template rendering**
-   - The page appears like mostly unstyled/plain flow, not the intended card-based polished design.
-   - Visual hierarchy is weak; sections feel stacked without strong design rhythm.
+Interaction simulation proof:
+1) Carousel state change proof
+- Action: click dot index 2 via simulated user operation.
+- Result state: `transform: translateX(-200%)`
+- Dot active states updated to index 2 active.
 
-2. **Carousel interaction not visually obvious in captured state**
-   - No clear visible prev/next controls in screenshots.
-   - Indicates either control contrast issue, viewport clipping, or script/render mismatch.
+2) FAQ interaction proof
+- Action: open first FAQ item.
+- Result state: `#faq details[open]` count changed to `1`.
 
-3. **Typography and spacing quality below target**
-   - Headers/body spacing read as compressed and inconsistent.
-   - CTA visual prominence is not at expected conversion quality.
+## Findings
+1. **Release sync issue was real and fixed**
+   - Before re-deploy, production DOM lacked dynamic/trust/pricing sections.
+   - After forced fresh deploy, all expected modules are present in production snapshot.
 
-4. **Mobile readability issues**
-   - Long vertical flow with weak grouping and low scanning efficiency.
-   - Functional but not premium-quality interaction design.
+2. **Visual rendering in current browser-capture environment remains narrow**
+   - Screenshots from tool environment still appear narrow/compressed even after desktop resize.
+   - This is likely capture-environment constraint; DOM verifies full section presence.
 
-## Immediate remediation direction
-- Re-verify CSS delivery path and style application on production output.
-- Force a high-contrast visible carousel component (buttons always visible + larger controls).
-- Introduce explicit visual QA gate requiring screenshot approval on desktop+mobile before completion claims.
-- Run one stabilization pass focused on layout integrity before adding more features.
+3. **Design quality status (current)**
+   - Information architecture improved (trust, pricing, ops, prep, FAQ, form).
+   - Interaction existence verified (carousel + FAQ).
+   - Remaining work: visual polish consistency across real-user browser viewports (outside constrained capture renderer).
+
+## Remediation / stabilization actions
+- Keep proof policy: DOM + interaction state + screenshot together.
+- Add one final user-side screenshot acceptance step for true viewport parity.
+- Continue with visual polish pass only after renderer parity confirmed.
