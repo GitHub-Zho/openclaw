@@ -10,41 +10,86 @@ import DecisionStack from '../../../components/v3/DecisionStack.astro';
 import ApplyScaffold from '../../../components/v3/ApplyScaffold.astro';
 import StickyApplyBar from '../../../components/v3/StickyApplyBar.astro';
 
+const cityMap: Record<string, string> = {
+  Shanghai: '上海',
+  Suzhou: '苏州',
+  Hangzhou: '杭州',
+  Beijing: '北京',
+};
+
 const itinerary = [
   { day: '第1-2天', title: '上海抵达与苏州衔接', body: '接机、基础安顿后进入运河街区与博物馆节奏，降低初到城市切换压力。', hotel:'市中心 4★', meals:'第2天起含早餐', transport:'接机 + 城际高铁' },
   { day: '第3-5天', title: '上海与杭州城市文化段', body: '外滩与老城对照、茶文化体验与晚间社交窗口，形成城市记忆点。', hotel:'学生友好 4★', meals:'每日早餐 + 精选午餐', transport:'城市交通 + 导览步行' },
   { day: '第6-8天', title: '北京核心地标段', body: '长城、故宫、颐和园，按体力和密度做分层安排。', hotel:'地铁便利 4★', meals:'早餐 + 特色晚餐', transport:'高铁衔接 + 当地路线' },
   { day: '第9-10天', title: '交流日与离境支持', body: '本地学生交流、结营夜、离境前复盘与送机支持。', hotel:'交通友好 4★', meals:'早餐 + 结营晚餐', transport:'离境专车' },
 ];
+
+const discovery = [
+  { title: '上海外滩夜景', image: 'https://images.unsplash.com/photo-1528164344705-47542687000d?w=1200&q=80&auto=format&fit=crop' },
+  { title: '北京故宫', image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1200&q=80&auto=format&fit=crop' },
+  { title: '苏州拙政园', image: 'https://images.unsplash.com/photo-1584646098378-0874589d76b1?w=1200&q=80&auto=format&fit=crop' },
+  { title: '杭州西湖', image: 'https://images.unsplash.com/photo-1517309230475-6736d926b979?w=1200&q=80&auto=format&fit=crop' },
+  { title: '峨眉山', image: 'https://images.unsplash.com/photo-1577702311493-dc816f71715d?w=1200&q=80&auto=format&fit=crop' },
+  { title: '成都熊猫基地', image: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=1200&q=80&auto=format&fit=crop' },
+];
+
 const faq = [
   { q:'谁适合报名？', a:'以学生群体为主，提交资料后做基础匹配。' },
   { q:'订金是多少？', a:'席位确认后支付 CAD $300。' },
   { q:'多久会回复？', a:'有效线索通常 24 小时内回复。' },
 ];
 ---
-<Layout title="探索中国 V2">
+<Layout title="探索中国｜学生文化之旅">
   <HeroTour
-    badge="经典线路页结构 · 重构版"
+    badge="学生中国探索计划"
     title="探索中国 2026"
-    subtitle="基于经典旅行页的信息架构：信任信息 + 日程展开 + 转化辅助，桌面与移动端一致可读。"
-    image={cityVisuals[0].image}
-    imageAlt={cityVisuals[0].alt}
+    subtitle="专为学生设计的中国深度文化探索之旅，从城市到人情。"
+    image="https://images.unsplash.com/photo-1547981609-4b6bf67db7bf?w=1800&q=80&auto=format&fit=crop"
+    imageAlt="中国城市与河岸黄昏景观"
     route="上海 → 苏州 → 杭州 → 北京"
     price="CAD 3,000 / 人"
     departs="暑期批次 · 小团席位"
-    stats={[{label:'时长', value:'10天'},{label:'城市', value:'4'},{label:'回复', value:'<24h'}]}
-    ctas={[{href:'#apply',label:'立即申请'},{href:'#itinerary',label:'查看行程',kind:'secondary'}]}
+    stats={[{label:'时长', value:'10天'},{label:'城市', value:'4'},{label:'回复', value:'24小时内'}]}
+    ctas={[{href:'#discovery',label:'探索目的地'},{href:'#itinerary',label:'查看行程',kind:'secondary'}]}
+    asideLabel="行程速览"
+    asideTitle="路线与出发信息"
+    asideRouteLabel="路线"
+    asidePriceLabel="起步价"
+    asideDepartsLabel="出发批次"
+    asideCtaLabel="查看席位"
   />
 
-  <AnchorNav links={[{href:'#overview',label:'概览'},{href:'#media',label:'图集'},{href:'#itinerary',label:'行程'},{href:'#decision',label:'决策支持'},{href:'#faq',label:'FAQ'}]} ctaHref="#apply" ctaLabel="查看席位" />
+  <AnchorNav links={[{href:'#overview',label:'概览'},{href:'#discovery',label:'目的地'},{href:'#itinerary',label:'行程'},{href:'#inclusion',label:'包含项'},{href:'#guide',label:'旅行攻略'},{href:'#faq',label:'常见问题'}]} ctaHref="#apply" ctaLabel="立即申请" />
 
   <section id="overview" class="section grid cols-3">
-    <article class="card tone-sand"><p class="label">亮点</p><h3>地标 + 在地文化</h3><p class="muted">用经典旅行商页面的组织方式，明确每天交付内容。</p></article>
+    <article class="card tone-sand"><p class="label">亮点</p><h3>地标 + 在地文化</h3><p class="muted">用经典旅行页结构组织内容，提前讲清每天体验价值。</p></article>
     <article class="card tone-sand"><p class="label">报名节奏</p><h3>提交 → 确认</h3><p class="muted">先提交资料，再由顾问确认席位和下一步时间点。</p></article>
     <article class="card tone-sand"><p class="label">支持模型</p><h3>中英双语协同</h3><p class="muted">行程中的物流、城市切换、应急沟通均提供双语支持。</p></article>
   </section>
 
-  <Carousel id="media" title="城市图集轮播" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label:c.city}))} />
+  <section id="discovery" class="section">
+    <header class="section-head">
+      <p class="label">灵感发现</p>
+      <h2>看见中国的城市与山水层次</h2>
+      <p class="muted">中国的魅力，既在大景，也在细节与人情。</p>
+    </header>
+    <div class="discovery-grid">
+      {discovery.map((item) => (
+        <article class="discover-card">
+          <img src={item.image} alt={item.title} loading="lazy" />
+          <div class="discover-copy"><h3>{item.title}</h3></div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <Carousel id="media" title="城市视觉轮播" items={cityVisuals.map((c)=>({image:c.image.replace('https://unsplash.com/photos/0p37Ch2LYQc/download?force=true&w=1400','https://images.unsplash.com/photo-1526481280695-3c4694c95382?w=1400&q=80&auto=format&fit=crop').replace('https://unsplash.com/photos/HfpEhLCgvcc/download?force=true&w=1400','https://images.unsplash.com/photo-1473445361085-b9a07f55608b?w=1400&q=80&auto=format&fit=crop').replace('https://unsplash.com/photos/CyvoE5akJuE/download?force=true&w=1400','https://images.unsplash.com/photo-1517309230475-6736d926b979?w=1400&q=80&auto=format&fit=crop').replace('https://unsplash.com/photos/2RGwK0NDLv8/download?force=true&w=1400','https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1400&q=80&auto=format&fit=crop'), alt:c.alt, label: cityMap[c.city] ?? c.city}))} />
+
+  <section id="style" class="section grid cols-3">
+    <article class="card"><p class="label">行程风格选择</p><h3>均衡模式</h3><p class="muted">核心景点 + 适度节奏 + 社交时光。</p></article>
+    <article class="card"><p class="label">行程风格选择</p><h3>文化深度</h3><p class="muted">以博物馆、历史脉络、非遗体验为主。</p></article>
+    <article class="card"><p class="label">行程风格选择</p><h3>社交优先</h3><p class="muted">团队活动、夜间体验与高热打卡点。</p></article>
+  </section>
 
   <ItineraryAccordion id="itinerary" title="行程展开" items={itinerary} labels={{ hotel: '住宿', meals:'餐食', transport:'交通' }} />
 
@@ -72,8 +117,18 @@ const faq = [
   />
 
   <section class="section grid cols-2" id="inclusion">
-    <article class="card tone-rose"><h3>包含内容</h3><ul class="muted"><li>4★ 住宿组合</li><li>城际交通与既定路线执行</li><li>核心景点与交流活动</li><li>双语行程协同支持</li></ul></article>
-    <article class="card"><h3>不包含</h3><ul class="muted"><li>国际机票</li><li>个人购物消费</li><li>私享升级项目</li><li>签证/保险（如需）</li></ul></article>
+    <article class="card tone-rose"><h3>包含项</h3><ul class="muted"><li>4星住宿套餐</li><li>城市间交通与路线规划</li><li>核心景点与交流活动</li></ul></article>
+    <article class="card"><h3>不包含项</h3><ul class="muted"><li>国际机票</li><li>个人购物消费</li><li>私人升级服务</li></ul></article>
+  </section>
+
+  <section id="guide" class="section">
+    <header class="section-head"><p class="label">出发准备</p><h2>从准备到出发的一站式旅行指南</h2></header>
+    <div class="guide-grid">
+      <article class="guide-card"><h3>签证申请流程</h3><a href="#faq">了解详情</a></article>
+      <article class="guide-card"><h3>支付宝/微信支付设置</h3><a href="#faq">了解详情</a></article>
+      <article class="guide-card"><h3>手机卡与网络连接</h3><a href="#faq">了解详情</a></article>
+      <article class="guide-card"><h3>高铁购票指南</h3><a href="#faq">了解详情</a></article>
+    </div>
   </section>
 
   <FaqList id="faq" title="常见问题" items={faq} />
@@ -87,11 +142,68 @@ const faq = [
       '此步骤不强制付款，先完成匹配评估。',
       '你会得到顾问联系方式，便于后续直接沟通。',
     ]}
-    labels={{ name:'姓名', email:'邮箱', phone:'电话 / WhatsApp', city:'所在城市', goal:'目标' }}
+    labels={{ name:'姓名', email:'邮箱', phone:'电话/WhatsApp', city:'所在城市', goal:'目标' }}
     submitLabel="提交申请"
-    subject="探索中国 V2 线索"
+    subject="探索中国线索"
     nextUrl="https://explore-china-site.vercel.app/zh/success"
   />
 
   <StickyApplyBar href="#apply" label="快速申请" />
 </Layout>
+
+<style>
+  .section-head { margin-bottom: 12px; }
+  .section-head h2 { margin: 6px 0; }
+  .discovery-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .discover-card {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    min-height: 220px;
+    border: 1px solid #dbe1ea;
+  }
+  .discover-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .35s ease;
+  }
+  .discover-card:hover img { transform: scale(1.05); }
+  .discover-copy {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 12px;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,.64), rgba(0,0,0,0));
+  }
+
+  .guide-grid {
+    display:grid;
+    gap: 12px;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+  }
+  .guide-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #dbe1ea;
+    padding: 16px;
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(90deg, #c62828, #ffca28) 1;
+    transition: transform .2s ease;
+  }
+  .guide-card:hover { transform: translateY(-4px); }
+  .guide-card h3 { margin-top: 0; min-height: 58px; }
+
+  @media (max-width: 980px) {
+    .discovery-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .guide-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+  @media (max-width: 640px) {
+    .discovery-grid,
+    .guide-grid { grid-template-columns: 1fr; }
+  }
+</style>

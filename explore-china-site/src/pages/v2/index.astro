@@ -16,27 +16,43 @@ const itinerary = [
   { day: 'Day 6-8', title: 'Beijing core landmarks', body: 'Great Wall, Forbidden City and Summer Palace with calibrated pacing.', hotel:'4★ metro-connected', meals:'Breakfast + one feature dinner', transport:'High-speed transfer + day routing' },
   { day: 'Day 9-10', title: 'Exchange day and departure support', body: 'Local student exchange and closing night before outbound transfer.', hotel:'4★ transport-friendly', meals:'Breakfast + closing dinner', transport:'Private transfer for departure' },
 ];
+
+const discovery = [
+  { title: 'The Bund at Night, Shanghai', image: 'https://images.unsplash.com/photo-1528164344705-47542687000d?w=1200&q=80&auto=format&fit=crop' },
+  { title: 'The Forbidden City, Beijing', image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1200&q=80&auto=format&fit=crop' },
+  { title: "Humble Administrator's Garden, Suzhou", image: 'https://images.unsplash.com/photo-1584646098378-0874589d76b1?w=1200&q=80&auto=format&fit=crop' },
+  { title: 'West Lake, Hangzhou', image: 'https://images.unsplash.com/photo-1517309230475-6736d926b979?w=1200&q=80&auto=format&fit=crop' },
+  { title: 'Mount Emei, Sichuan', image: 'https://images.unsplash.com/photo-1577702311493-dc816f71715d?w=1200&q=80&auto=format&fit=crop' },
+  { title: 'Giant Panda Base, Chengdu', image: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=1200&q=80&auto=format&fit=crop' },
+];
+
 const faq = [
   { q:'Who can join?', a:'Student-focused intake with profile review.' },
   { q:'How much is deposit?', a:'CAD $300 after seat confirmation.' },
   { q:'How fast is reply?', a:'Within 24 hours for valid leads.' },
 ];
 ---
-<Layout title="Explore China V2">
+<Layout title="Explore China | Student Journey">
   <HeroTour
-    badge="Classic Tour Layout · Rebuilt"
+    badge="China student experience"
     title="Explore China 2026"
-    subtitle="A classic-tour information flow with trust context, expandable day blocks, and conversion-ready intake support."
-    image={cityVisuals[0].image}
-    imageAlt={cityVisuals[0].alt}
+    subtitle="Your student gateway to authentic China — culture, cities, and connections."
+    image="https://images.unsplash.com/photo-1547981609-4b6bf67db7bf?w=1800&q=80&auto=format&fit=crop"
+    imageAlt="China city skyline and river at dusk"
     route="Shanghai → Suzhou → Hangzhou → Beijing"
     price="CAD 3,000 / traveler"
     departs="Summer windows · small-group seats"
     stats={[{label:'Duration', value:'10 days'},{label:'Cities', value:'4'},{label:'Response', value:'<24h'}]}
-    ctas={[{href:'#apply',label:'Apply now'},{href:'#itinerary',label:'View itinerary',kind:'secondary'}]}
+    ctas={[{href:'#discovery',label:'Discover destinations'},{href:'#itinerary',label:'View itinerary',kind:'secondary'}]}
+    asideLabel="Trip brief"
+    asideTitle="Route & departure"
+    asideRouteLabel="Route"
+    asidePriceLabel="From"
+    asideDepartsLabel="Departures"
+    asideCtaLabel="Check seats"
   />
 
-  <AnchorNav links={[{href:'#overview',label:'Overview'},{href:'#media',label:'Media'},{href:'#itinerary',label:'Itinerary'},{href:'#decision',label:'Decision support'},{href:'#faq',label:'FAQ'}]} ctaHref="#apply" ctaLabel="Check seats" />
+  <AnchorNav links={[{href:'#overview',label:'Overview'},{href:'#discovery',label:'Destinations'},{href:'#itinerary',label:'Itinerary'},{href:'#inclusion',label:'Inclusions'},{href:'#guide',label:'Travel guide'},{href:'#faq',label:'FAQ'}]} ctaHref="#apply" ctaLabel="Apply" />
 
   <section id="overview" class="section grid cols-3">
     <article class="card tone-sand"><p class="label">Tour highlights</p><h3>Landmarks + local culture</h3><p class="muted">Structured pacing inspired by classic operator pages, with clear delivery scope.</p></article>
@@ -44,7 +60,29 @@ const faq = [
     <article class="card tone-sand"><p class="label">Support model</p><h3>Bilingual operations</h3><p class="muted">EN/中文 support for logistics and city transitions during the trip.</p></article>
   </section>
 
-  <Carousel id="media" title="City visual carousel" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label:c.city}))} />
+  <section id="discovery" class="section">
+    <header class="section-head">
+      <p class="label">Inspirational Discovery</p>
+      <h2>Where iconic scenes meet local stories</h2>
+      <p class="muted">China's charm lies in tiny villages, grand vistas, exquisite crafts and romances.</p>
+    </header>
+    <div class="discovery-grid">
+      {discovery.map((item) => (
+        <article class="discover-card">
+          <img src={item.image} alt={item.title} loading="lazy" />
+          <div class="discover-copy"><h3>{item.title}</h3></div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <Carousel id="media" title="City visual carousel" items={cityVisuals.map((c)=>({image:c.image.replace('https://unsplash.com/photos/0p37Ch2LYQc/download?force=true&w=1400','https://images.unsplash.com/photo-1526481280695-3c4694c95382?w=1400&q=80&auto=format&fit=crop').replace('https://unsplash.com/photos/HfpEhLCgvcc/download?force=true&w=1400','https://images.unsplash.com/photo-1473445361085-b9a07f55608b?w=1400&q=80&auto=format&fit=crop').replace('https://unsplash.com/photos/CyvoE5akJuE/download?force=true&w=1400','https://images.unsplash.com/photo-1517309230475-6736d926b979?w=1400&q=80&auto=format&fit=crop').replace('https://unsplash.com/photos/2RGwK0NDLv8/download?force=true&w=1400','https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1400&q=80&auto=format&fit=crop'), alt:c.alt, label:c.city}))} />
+
+  <section id="style" class="section grid cols-3">
+    <article class="card"><p class="label">Tour style selector</p><h3>Balanced</h3><p class="muted">Core landmarks, comfortable pacing, and social windows.</p></article>
+    <article class="card"><p class="label">Tour style selector</p><h3>Culture-heavy</h3><p class="muted">Museums, heritage routes, and craft-rich experiences.</p></article>
+    <article class="card"><p class="label">Tour style selector</p><h3>Social-first</h3><p class="muted">Group activities, nightlife energy, and photogenic hotspots.</p></article>
+  </section>
 
   <ItineraryAccordion id="itinerary" title="Tour itinerary" items={itinerary} labels={{ hotel: 'Hotel', meals:'Meals', transport:'Transport' }} />
 
@@ -72,8 +110,18 @@ const faq = [
   />
 
   <section class="section grid cols-2" id="inclusion">
-    <article class="card tone-rose"><h3>Included</h3><ul class="muted"><li>4★ accommodation package</li><li>Intercity transfers and planned routing</li><li>Core attractions and exchange activity</li><li>English-speaking trip coordination</li></ul></article>
-    <article class="card"><h3>Not included</h3><ul class="muted"><li>International flights</li><li>Personal shopping</li><li>Private upgrades</li><li>Visa/insurance (if needed)</li></ul></article>
+    <article class="card tone-rose"><h3>Included</h3><ul class="muted"><li>4★ accommodation package</li><li>Intercity transfers and planned routing</li><li>Core attractions and exchange activity</li></ul></article>
+    <article class="card"><h3>Not included</h3><ul class="muted"><li>International flights</li><li>Personal shopping</li><li>Private upgrades</li></ul></article>
+  </section>
+
+  <section id="guide" class="section">
+    <header class="section-head"><p class="label">Planning a Trip to China?</p><h2>Your all-in-one guide — from preparation to departure.</h2></header>
+    <div class="guide-grid">
+      <article class="guide-card"><h3>How to Apply for a Chinese Visa</h3><a href="#faq">Learn More</a></article>
+      <article class="guide-card"><h3>Setting Up Mobile Payments in China</h3><a href="#faq">Learn More</a></article>
+      <article class="guide-card"><h3>Getting a SIM Card & Staying Connected</h3><a href="#faq">Learn More</a></article>
+      <article class="guide-card"><h3>How to Buy High-Speed Rail Tickets</h3><a href="#faq">Learn More</a></article>
+    </div>
   </section>
 
   <FaqList id="faq" title="FAQ" items={faq} />
@@ -89,9 +137,66 @@ const faq = [
     ]}
     labels={{ name:'Name', email:'Email', phone:'Phone / WhatsApp', city:'Current city', goal:'Goal' }}
     submitLabel="Submit"
-    subject="Explore China V2 lead"
+    subject="Explore China lead"
     nextUrl="https://explore-china-site.vercel.app/success"
   />
 
   <StickyApplyBar href="#apply" label="Quick Apply" />
 </Layout>
+
+<style>
+  .section-head { margin-bottom: 12px; }
+  .section-head h2 { margin: 6px 0; }
+  .discovery-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .discover-card {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    min-height: 220px;
+    border: 1px solid #dbe1ea;
+  }
+  .discover-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .35s ease;
+  }
+  .discover-card:hover img { transform: scale(1.05); }
+  .discover-copy {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 12px;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,.64), rgba(0,0,0,0));
+  }
+
+  .guide-grid {
+    display:grid;
+    gap: 12px;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+  }
+  .guide-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #dbe1ea;
+    padding: 16px;
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(90deg, #c62828, #ffca28) 1;
+    transition: transform .2s ease;
+  }
+  .guide-card:hover { transform: translateY(-4px); }
+  .guide-card h3 { margin-top: 0; min-height: 58px; }
+
+  @media (max-width: 980px) {
+    .discovery-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .guide-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+  @media (max-width: 640px) {
+    .discovery-grid,
+    .guide-grid { grid-template-columns: 1fr; }
+  }
+</style>
