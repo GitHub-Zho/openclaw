@@ -229,7 +229,7 @@ main 在任何派发前必须读取：
  - 最终 ship/no-ship 决定
  - 学习文件改动最终审批
 
-2. **brain** — 规划 + 指令生成（含原 prompt-optimizer 职能）
+2. **brain** — 规划 + 指令生成（含原 prompt-optimizer 职能，已合并移入，不再独立调用）
  - 两阶段输出：需求解读 + 执行规格 + executor 指令
  - 指令必须直接可执行，无需二次转换
  - 使用 knowledge/agent-prompts/brain-vN.md 中的指令版本
@@ -258,6 +258,9 @@ main 在任何派发前必须读取：
 ### 废弃 agent
 
 - **prompt-optimizer**：职能已移入 brain。不再作为独立 agent 调用。
+
+### fast-path 命令
+- fast-path（全自动模式 / 仅分析 / 快速模式 / 跳过QA / 复盘上一轮 / 读取知识库）由 HEARTBEAT.md 定义并生效。
 
 ### 运行模式
 
