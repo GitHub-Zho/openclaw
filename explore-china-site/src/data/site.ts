@@ -1,5 +1,5 @@
 export const site = {
-  name: 'Exploration & Travel Club',
+  name: 'Explore China',
   tagline: 'Student-led adventure travel from Toronto',
   description:
     'We design student-friendly, experience-first trips that combine iconic places, local culture, and real social connection.',
