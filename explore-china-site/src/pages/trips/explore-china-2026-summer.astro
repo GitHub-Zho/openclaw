@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from '../../data/site';
+import { currentTrip, faq, included, notIncluded, cityVisuals } from '../../data/site';
+import { cities } from '../../data/cities';
+import CitySection from '../../components/sections/CitySection.astro';
 ---
 <Layout title={currentTrip.title} lang="en" alternateHref="/zh/trips/explore-china-2026-summer" alternateLabel="中文">
   <section id="overview" class="section card tone-sand" style="padding:34px;">
@@ -38,13 +40,11 @@ import { currentTrip, itinerary, faq, included, notIncluded, cityVisuals } from 
     <div class="carousel-dots" id="city-carousel-en-dots"></div>
   </section>
 
-  <section id="itinerary" class="section card">
-    <h2 class="section-title">Day-by-day itinerary</h2>
-    <div class="grid cols-2">
-      {itinerary.map((d) => (
-        <article class="card" style="padding:14px; background:#fff;"><p class="pill" style="margin-bottom:8px;">{d.day}</p><h3 style="margin-bottom:6px;">{d.city}</h3><p class="muted" style="margin:0;">{d.plan}</p></article>
-      ))}
-    </div>
+  <section id="itinerary" class="section">
+    <h2 class="section-title">City-by-city immersive itinerary</h2>
+    {cities.map((city, idx) => (
+      <CitySection city={city} lang="en" eagerHero={idx === 0} />
+    ))}
   </section>
 
   <section class="section grid cols-2">

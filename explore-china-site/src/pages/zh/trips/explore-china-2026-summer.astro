@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { cityVisuals } from '../../../data/site';
+import { cities } from '../../../data/cities';
+import CitySection from '../../../components/sections/CitySection.astro';
 
 const zhCityNames: Record<string, string> = { Shanghai: '上海', Suzhou: '苏州', Hangzhou: '杭州', Beijing: '北京' };
 const zhItinerary = [
@@ -53,7 +55,12 @@ const zhFaq = [
     <div class="carousel-dots" id="city-carousel-zh-dots"></div>
   </section>
 
-  <section id="itinerary" class="section card"><h2 class="section-title">行程安排（10天）</h2><div class="grid cols-2">{zhItinerary.map((d) => (<article class="card" style="padding:14px; background:#fff;"><p class="pill" style="margin-bottom:8px;">{d.day}</p><h3 style="margin-bottom:6px;">{d.city}</h3><p class="muted" style="margin:0;">{d.plan}</p></article>))}</div></section>
+  <section id="itinerary" class="section">
+    <h2 class="section-title">城市沉浸式行程</h2>
+    {cities.map((city, idx) => (
+      <CitySection city={city} lang="zh" eagerHero={idx === 0} />
+    ))}
+  </section>
 
   <section class="section grid cols-2"><article class="card"><h2 style="font-size:30px;">包含内容</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{zhIncluded.map((item) => <li>{item}</li>)}</ul></article><article class="card"><h2 style="font-size:30px;">不包含内容</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{zhNotIncluded.map((item) => <li>{item}</li>)}</ul></article></section>
 

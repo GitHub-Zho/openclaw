@@ -8,6 +8,8 @@ import FaqList from '../../../components/v3/FaqList.astro';
 import ApplyScaffold from '../../../components/v3/ApplyScaffold.astro';
 import StickyApplyBar from '../../../components/v3/StickyApplyBar.astro';
 import { cityVisuals } from '../../../data/site';
+import { cities } from '../../../data/cities';
+import CitySection from '../../../components/sections/CitySection.astro';
 
 const cityMap: Record<string, string> = { Shanghai: '上海', Suzhou: '苏州', Hangzhou: '杭州', Beijing: '北京' };
 
@@ -79,6 +81,12 @@ const faq = [
   <Carousel id="media" title="城市视觉轮播" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label: cityMap[c.city] ?? c.city}))} />
 
   <DayTabs id="itinerary" title="行程标签" days={days} labels={{hotel:'住宿', meals:'餐食', transport:'交通'}} />
+
+  <section class="section">
+    {cities.map((city, idx) => (
+      <CitySection city={city} lang="zh" eagerHero={idx === 0} />
+    ))}
+  </section>
 
   <section id="inclusion" class="section grid cols-2">
     <article class="card tone-rose"><h3>包含</h3><ul class="muted"><li>住宿安排（学生友好房型，含拼房机制）</li><li>中国境内城市间及市内交通</li><li>核心景点门票与指定团队活动</li><li>组织方全程协调支持</li><li>关键节点中英双语支持</li></ul></article>

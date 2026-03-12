@@ -8,6 +8,8 @@ import FaqList from '../../components/v3/FaqList.astro';
 import ApplyScaffold from '../../components/v3/ApplyScaffold.astro';
 import StickyApplyBar from '../../components/v3/StickyApplyBar.astro';
 import { cityVisuals } from '../../data/site';
+import { cities } from '../../data/cities';
+import CitySection from '../../components/sections/CitySection.astro';
 
 const days = [
   {
@@ -65,6 +67,12 @@ const faq = [
   </section>
 
   <DayTabs id="itinerary" title="Itinerary tabs" days={days} />
+
+  <section class="section">
+    {cities.map((city, idx) => (
+      <CitySection city={city} lang="en" eagerHero={idx === 0} />
+    ))}
+  </section>
 
   <section id="inclusion" class="section grid cols-2">
     <article class="card tone-rose"><h3>Included</h3><ul class="muted"><li>4★ accommodation package</li><li>Intercity and local transport</li><li>Core attractions and team activities</li><li>Bilingual coordination support</li></ul></article>
