@@ -1,6 +1,6 @@
 ---
 interface Day { key:string; label:string; title:string; body:string; hotel:string; meals:string; transport:string }
-const { id, title, days } = Astro.props as { id:string; title:string; days: Day[] };
+const { id, title, days, labels = { hotel: 'Hotel', meals: 'Meals', transport: 'Transport' } } = Astro.props as { id:string; title:string; days: Day[]; labels?: {hotel:string; meals:string; transport:string} };
 ---
 <section class="section card tone-blue" id={id}>
   <h2 class="section-title">{title}</h2>
@@ -10,11 +10,11 @@ const { id, title, days } = Astro.props as { id:string; title:string; days: Day[
   <article class="card" data-panel={id} style="max-width:920px; margin:0 auto; background:#fff;">
     <p class="pill" data-field="label">{days[0].label}</p>
     <h3 style="margin:10px 0 6px;" data-field="title">{days[0].title}</h3>
-    <p class="muted" style="margin:0 0 10px;" data-field="body">{days[0].body}</p>
+    <p class="muted" style="margin:0 0 10px; white-space:pre-line;" data-field="body">{days[0].body}</p>
     <div class="grid cols-3">
-      <div class="card" style="background:#fcfbf8;"><p class="label">Hotel</p><p style="margin:6px 0 0; font-weight:700;" data-field="hotel">{days[0].hotel}</p></div>
-      <div class="card" style="background:#fcfbf8;"><p class="label">Meals</p><p style="margin:6px 0 0; font-weight:700;" data-field="meals">{days[0].meals}</p></div>
-      <div class="card" style="background:#fcfbf8;"><p class="label">Transport</p><p style="margin:6px 0 0; font-weight:700;" data-field="transport">{days[0].transport}</p></div>
+      <div class="card" style="background:#fcfbf8;"><p class="label">{labels.hotel}</p><p style="margin:6px 0 0; font-weight:700;" data-field="hotel">{days[0].hotel}</p></div>
+      <div class="card" style="background:#fcfbf8;"><p class="label">{labels.meals}</p><p style="margin:6px 0 0; font-weight:700;" data-field="meals">{days[0].meals}</p></div>
+      <div class="card" style="background:#fcfbf8;"><p class="label">{labels.transport}</p><p style="margin:6px 0 0; font-weight:700;" data-field="transport">{days[0].transport}</p></div>
     </div>
   </article>
 </section>
@@ -24,7 +24,7 @@ const { id, title, days } = Astro.props as { id:string; title:string; days: Day[
     const map = Object.fromEntries(days.map((d) => [d.key, d]));
     const panel = document.querySelector(`[data-panel="${id}"]`);
     const set = (k, v) => {
-      const el = panel.querySelector(`[data-field="${k}"]`);
+      const el = panel?.querySelector(`[data-field="${k}"]`);
       if (el) el.textContent = v;
     };
     document.querySelectorAll(`.js-day[data-group="${id}"]`).forEach((btn) => {

@@ -1,25 +1,50 @@
 ---
-const { isZh = false } = Astro.props;
+interface Props {
+  lang: 'en' | 'zh';
+  alternateHref: string;
+  alternateLabel: string;
+  minimal?: boolean;
+}
+
+const { lang, alternateHref, alternateLabel, minimal = false } = Astro.props as Props;
+const isZh = lang === 'zh';
+
+const links = isZh
+  ? [
+      { label: '概览', href: '/zh/trips/explore-china-2026-summer#overview' },
+      { label: '目的地', href: '/zh/trips/explore-china-2026-summer#destinations' },
+      { label: '行程', href: '/zh/trips/explore-china-2026-summer#itinerary' },
+      { label: '手册', href: '/zh/handbook' },
+      { label: '常见问题', href: '/zh/trips/explore-china-2026-summer#faq' },
+    ]
+  : [
+      { label: 'Overview', href: '/trips/explore-china-2026-summer#overview' },
+      { label: 'Destinations', href: '/trips/explore-china-2026-summer#destinations' },
+      { label: 'Itinerary', href: '/trips/explore-china-2026-summer#itinerary' },
+      { label: 'Guide', href: '/handbook' },
+      { label: 'FAQ', href: '/trips/explore-china-2026-summer#faq' },
+    ];
 ---
 <header class="navbar fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
   <div class="container navbar__inner flex items-center justify-between h-16 md:h-20">
-    <a href={isZh ? '/zh/' : '/'} class="navbar__logo text-white font-semibold tracking-wide">
-      {isZh ? '探索中国' : 'Explore China'}
-    </a>
-    <nav class="navbar__links hidden md:flex gap-8 text-sm font-medium tracking-wide text-white" aria-label="Main navigation">
-      <a href="#overview">{isZh ? '概览' : 'Overview'}</a>
-      <a href="#destinations">{isZh ? '目的地' : 'Destinations'}</a>
-      <a href="#itinerary">{isZh ? '行程' : 'Itinerary'}</a>
-      <a href="#guide">{isZh ? '攻略' : 'Guide'}</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <div class="navbar__actions flex items-center gap-3">
-      <a href={isZh ? '/v2/' : '/zh/v2/'} class="navbar__lang text-white text-sm">{isZh ? 'EN' : '中文'}</a>
-      <a href="#apply" class="btn btn--primary bg-red-700 text-white px-5 py-2 text-sm font-semibold hover:bg-red-800 transition-colors">{isZh ? '立即申请' : 'Apply Now'}</a>
-    </div>
-    <button class="navbar__hamburger md:hidden text-white" aria-label="Open menu" aria-expanded="false">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
+    <a href={isZh ? '/zh/' : '/'} class="navbar__logo text-white font-semibold tracking-wide">{isZh ? '探索中国' : 'Exploration & Travel Club'}</a>
+
+    {minimal ? (
+      <div class="flex items-center gap-3">
+        <a href={alternateHref} class="navbar__lang text-white text-sm">{alternateLabel}</a>
+        <a href={isZh ? '/zh/trips/explore-china-2026-summer' : '/trips/explore-china-2026-summer'} class="btn btn--primary bg-red-700 text-white px-5 py-2 text-sm font-semibold hover:bg-red-800 transition-colors">{isZh ? '查看行程' : 'View Itinerary'}</a>
+      </div>
+    ) : (
+      <>
+        <nav class="navbar__links hidden md:flex gap-8 text-sm font-medium tracking-wide text-white" aria-label="Main navigation">
+          {links.map((l) => <a href={l.href}>{l.label}</a>)}
+        </nav>
+        <div class="navbar__actions flex items-center gap-3">
+          <a href={alternateHref} class="navbar__lang text-white text-sm">{alternateLabel}</a>
+          <a href={isZh ? '/zh/trips/explore-china-2026-summer#register' : '/trips/explore-china-2026-summer#register'} class="btn btn--primary bg-red-700 text-white px-5 py-2 text-sm font-semibold hover:bg-red-800 transition-colors">{isZh ? '立即报名' : 'Apply Now'}</a>
+        </div>
+      </>
+    )}
   </div>
 </header>
 

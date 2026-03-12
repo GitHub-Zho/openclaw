@@ -3,21 +3,33 @@ import '../styles/global.css';
 import Navbar from '../components/v1/Navbar.astro';
 import Footer from '../components/v1/Footer.astro';
 
-const { title = 'Explore China', isZh = false } = Astro.props;
+const {
+  title = 'Explore China',
+  lang = 'en',
+  alternateHref,
+  alternateLabel,
+  minimalNav = false,
+} = Astro.props as {
+  title?: string;
+  lang?: 'en' | 'zh';
+  alternateHref: string;
+  alternateLabel: string;
+  minimalNav?: boolean;
+};
 ---
 <!doctype html>
-<html lang={isZh ? 'zh-CN' : 'en'}>
+<html lang={lang === 'zh' ? 'zh-CN' : 'en'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={isZh ? '学生中国文化探索之旅' : 'Student-led China cultural travel program'} />
+    <meta name="description" content={lang === 'zh' ? '学生中国文化探索之旅' : 'Student-led China cultural travel program'} />
     <title>{title}</title>
   </head>
   <body>
-    <Navbar isZh={isZh} />
-    <main>
+    <Navbar lang={lang} alternateHref={alternateHref} alternateLabel={alternateLabel} minimal={minimalNav} />
+    <main class="pt-16 md:pt-20">
       <slot />
     </main>
-    <Footer isZh={isZh} />
+    <Footer lang={lang} />
   </body>
 </html>

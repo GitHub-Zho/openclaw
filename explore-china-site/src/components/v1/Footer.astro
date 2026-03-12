@@ -1,9 +1,42 @@
 ---
-const { isZh = false } = Astro.props;
+const { lang = 'en' } = Astro.props as { lang?: 'en' | 'zh' };
+const isZh = lang === 'zh';
 ---
 <footer class="footer">
-  <div class="container flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-sm">
-    <p>© {new Date().getFullYear()} Explore China</p>
-    <p>{isZh ? '学生文化探索项目' : 'Student cultural exploration program'}</p>
+  <div class="container grid md:grid-cols-3 gap-6 py-8">
+    <div>
+      <p class="font-semibold">{isZh ? '© 2026 探索中国 · 旅行社群' : '© 2026 Exploration & Travel Club'}</p>
+      <p class="text-sm text-stone-600 mt-1">{isZh ? '学生文化探索项目' : 'Student cultural exploration program'}</p>
+    </div>
+    <div>
+      <p class="font-semibold mb-1">{isZh ? '快速链接' : 'Quick links'}</p>
+      <div class="flex flex-wrap gap-3 text-sm text-stone-700">
+        {isZh ? (
+          <>
+            <a href="/zh/trips/explore-china-2026-summer#itinerary">行程</a>
+            <a href="/zh/handbook">手册</a>
+            <a href="/zh/trips/explore-china-2026-summer#faq">常见问题</a>
+            <a href="/zh/trips/explore-china-2026-summer#register">立即报名</a>
+          </>
+        ) : (
+          <>
+            <a href="/trips/explore-china-2026-summer#itinerary">Itinerary</a>
+            <a href="/handbook">Handbook</a>
+            <a href="/trips/explore-china-2026-summer#faq">FAQ</a>
+            <a href="/trips/explore-china-2026-summer#register">Apply</a>
+          </>
+        )}
+      </div>
+    </div>
+    <div class="text-sm">
+      <p class="font-semibold mb-1">Contact</p>
+      <a class="text-stone-700" href="mailto:hello@explorationclub.ca">hello@explorationclub.ca</a>
+    </div>
+  </div>
+  <div class="border-t border-stone-200">
+    <div class="container flex items-center justify-between py-3 text-xs text-stone-600">
+      <span>{isZh ? '© 2026 探索中国 · 旅行社群' : '© 2026 Exploration & Travel Club'}</span>
+      <a href="#">{isZh ? '隐私政策' : 'Privacy Policy'}</a>
+    </div>
   </div>
 </footer>

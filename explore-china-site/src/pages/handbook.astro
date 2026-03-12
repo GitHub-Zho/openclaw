@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { handbookSections, cityVisuals, itinerary, currentTrip } from '../data/site';
 ---
-<Layout title="Explore China Handbook">
-  <section class="section card tone-sand" style="padding:34px;">
+<Layout title="Explore China Handbook" lang="en" alternateHref="/zh/handbook" alternateLabel="中文">
+  <section id="guide" class="section card tone-sand" style="padding:34px;">
     <p class="pill">Participant Handbook</p>
     <h1 style="font-size:clamp(36px,5vw,64px); margin-top:10px;">Explore China Handbook</h1>
     <p class="muted" style="max-width:860px; font-size:18px;">A single participant-facing page for route expectations, support policy, and day-by-day structure.</p>
@@ -14,52 +14,35 @@ import { handbookSections, cityVisuals, itinerary, currentTrip } from '../data/s
     </div>
   </section>
 
-  <section class="section grid cols-2">
+  <section id="overview" class="section grid cols-2">
     <article class="card tone-blue">
       <h2>Program intent</h2>
       <p class="muted" style="margin:0 0 12px;">{handbookSections.intro}</p>
       <a class="btn btn-secondary" href="/trips/explore-china-2026-summer">View full trip flow</a>
     </article>
-    <article class="card" style="padding:0; overflow:hidden;">
-      <img class="photo media-wide" src={cityVisuals[3].image} alt={cityVisuals[3].alt} />
-    </article>
+    <article class="card" style="padding:0; overflow:hidden;"><img class="photo media-wide" src={cityVisuals[3].image} alt={cityVisuals[3].alt} /></article>
   </section>
 
-  <section class="section card tone-rose">
+  <section id="destinations" class="section card tone-rose">
     <h2 class="section-title">City references</h2>
-    <p class="muted section-sub">Each city now has a structured 3-point focus so participants can evaluate fit quickly.</p>
     <div class="grid cols-2">
       {cityVisuals.map((city) => (
         <article class="card" style="padding:12px; background:#fff; display:grid; grid-template-columns:180px 1fr; gap:12px; align-items:start;">
           <img class="photo media-card" src={city.image} alt={city.alt} />
           <div>
             <h3 style="margin:6px 0 8px;">{city.city}</h3>
-            {city.city === 'Shanghai' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>Arrival onboarding + payment/SIM setup</li><li>Bund skyline and old-town contrast</li><li>High-energy urban rhythm for first impression</li></ul>}
-            {city.city === 'Suzhou' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>Classical garden aesthetics and design logic</li><li>Canal district walk and night ambience</li><li>Museum context for Jiangnan history</li></ul>}
-            {city.city === 'Hangzhou' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>West Lake natural landscape route</li><li>Lingyin Temple heritage stop</li><li>Tea-culture touchpoint in Longjing area</li></ul>}
-            {city.city === 'Beijing' && <ul class="muted" style="margin:0; padding-left:18px; border-left:3px solid #f0d6ab;"><li>Great Wall + Forbidden City anchor landmarks</li><li>Summer Palace and imperial-city context</li><li>Student exchange day and social finale</li></ul>}
+            <p class="muted">Key highlights and pacing notes for participant planning.</p>
           </div>
         </article>
       ))}
     </div>
   </section>
 
-  <section class="section grid cols-2">
-    <article class="card"><h3>Accommodation</h3><p class="muted" style="margin:0;">{handbookSections.accommodation}</p></article>
-    <article class="card"><h3>Dietary & food policy</h3><p class="muted" style="margin:0;">{handbookSections.dietary}</p></article>
-    <article class="card"><h3>Language support</h3><p class="muted" style="margin:0;">{handbookSections.language}</p></article>
-    <article class="card"><h3>Safety and coordination</h3><p class="muted" style="margin:0;">{handbookSections.safety}</p></article>
-  </section>
-
-  <section class="section card tone-dark" style="margin-bottom:36px;">
+  <section id="itinerary" class="section card tone-dark" style="margin-bottom:36px;">
     <h2>10-day schedule snapshot</h2>
     <div class="grid cols-2">
       {itinerary.map((d) => (
-        <article class="card" style="padding:12px; background:#fff; color:#151515; border-color:#ece7dd;">
-          <p class="pill" style="margin-bottom:8px;">{d.day}</p>
-          <h3 style="margin-bottom:6px;">{d.city}</h3>
-          <p class="muted" style="margin:0; color:#545a60;">{d.plan}</p>
-        </article>
+        <article class="card" style="padding:12px; background:#fff; color:#151515; border-color:#ece7dd;"><p class="pill" style="margin-bottom:8px;">{d.day}</p><h3 style="margin-bottom:6px;">{d.city}</h3><p class="muted" style="margin:0; color:#545a60;">{d.plan}</p></article>
       ))}
     </div>
   </section>

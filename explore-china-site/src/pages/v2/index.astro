@@ -1,127 +1,74 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { cityVisuals } from '../../data/site';
-import Carousel from '../../components/v3/Carousel.astro';
-import FaqList from '../../components/v3/FaqList.astro';
-import AnchorNav from '../../components/v3/AnchorNav.astro';
 import HeroTour from '../../components/v3/HeroTour.astro';
-import ItineraryAccordion from '../../components/v3/ItineraryAccordion.astro';
-import DecisionStack from '../../components/v3/DecisionStack.astro';
+import AnchorNav from '../../components/v3/AnchorNav.astro';
+import Carousel from '../../components/v3/Carousel.astro';
+import DayTabs from '../../components/v3/DayTabs.astro';
+import FaqList from '../../components/v3/FaqList.astro';
 import ApplyScaffold from '../../components/v3/ApplyScaffold.astro';
 import StickyApplyBar from '../../components/v3/StickyApplyBar.astro';
+import { cityVisuals } from '../../data/site';
 
-const itinerary = [
-  { day: 'Day 1-2', title: 'Shanghai arrival and Suzhou transition', body: 'Airport meet & greet, practical setup, then canal district and museum rhythm.', hotel:'4★ city-center', meals:'Breakfast starts Day 2', transport:'Airport transfer + intercity rail' },
-  { day: 'Day 3-5', title: 'Shanghai and Hangzhou city culture', body: 'Bund/Old Town contrast, tea-culture sequence and social evening windows.', hotel:'4★ student-friendly', meals:'Daily breakfast + selected lunches', transport:'City transit + guided walks' },
-  { day: 'Day 6-8', title: 'Beijing core landmarks', body: 'Great Wall, Forbidden City and Summer Palace with calibrated pacing.', hotel:'4★ metro-connected', meals:'Breakfast + one feature dinner', transport:'High-speed transfer + day routing' },
-  { day: 'Day 9-10', title: 'Exchange day and departure support', body: 'Local student exchange and closing night before outbound transfer.', hotel:'4★ transport-friendly', meals:'Breakfast + closing dinner', transport:'Private transfer for departure' },
-];
-
-const discovery = [
-  { title: 'The Bund at Night, Shanghai', image: 'https://images.unsplash.com/photo-1528164344705-47542687000d?w=1200&q=80&auto=format&fit=crop' },
-  { title: 'The Forbidden City, Beijing', image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1200&q=80&auto=format&fit=crop' },
-  { title: "Humble Administrator's Garden, Suzhou", image: 'https://images.unsplash.com/photo-1584646098378-0874589d76b1?w=1200&q=80&auto=format&fit=crop' },
-  { title: 'West Lake, Hangzhou', image: 'https://images.unsplash.com/photo-1517309230475-6736d926b979?w=1200&q=80&auto=format&fit=crop' },
-  { title: 'Mount Emei, Sichuan', image: 'https://images.unsplash.com/photo-1577702311493-dc816f71715d?w=1200&q=80&auto=format&fit=crop' },
-  { title: 'Giant Panda Base, Chengdu', image: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=1200&q=80&auto=format&fit=crop' },
+const days = [
+  {
+    key: 'd1d2', label: 'D1-D2', title: 'Shanghai + Suzhou',
+    body: 'Day 1 · Arrival onboarding and city setup\nDay 2 · Suzhou canal district and museum rhythm',
+    hotel: '4★ city-center', meals: 'Breakfast starts Day 2', transport: 'Airport transfer + intercity rail'
+  },
+  {
+    key: 'd3d5', label: 'D3-D5', title: 'Shanghai + Hangzhou',
+    body: 'Day 3 · Shanghai: Yu Garden, Old Town, Bund skyline walk\nDay 4 · Shanghai: Flexible city day — food district, culture spots\nDay 5 · Hangzhou: West Lake, Lingyin Temple, tea-culture route',
+    hotel: '4★ city-center / transport-connected', meals: 'Daily breakfast + selected group meal', transport: 'City transit + curated walking routes'
+  },
+  {
+    key: 'd6d10', label: 'D6-D10', title: 'Beijing',
+    body: 'Day 6: Beijing transfer, city orientation\nDay 7: Great Wall full-day\nDay 8: Forbidden City + Summer Palace\nDay 9: Local student exchange + closing night\nDay 10: Departure support',
+    hotel: '4★ transport-connected area', meals: 'Breakfast + closing celebration dinner', transport: 'Beijing transfer + local day routing'
+  },
 ];
 
 const faq = [
-  { q:'Who can join?', a:'Student-focused intake with profile review.' },
-  { q:'How much is deposit?', a:'CAD $300 after seat confirmation.' },
-  { q:'How fast is reply?', a:'Within 24 hours for valid leads.' },
+  { q: 'Who can join?', a: 'Student-focused intake with profile review.' },
+  { q: 'How much is the deposit?', a: 'CAD $300 after seat confirmation.' },
+  { q: 'How quickly do you reply?', a: 'Most qualified leads receive an update within 24 hours.' },
+  { q: 'Is this only sightseeing?', a: 'No. It includes local student exchange and cultural social blocks.' },
 ];
 ---
-<Layout title="Explore China | Student Journey">
+<Layout title="Explore China | v2" lang="en" alternateHref="/zh/v2/" alternateLabel="中文">
   <HeroTour
-    badge="China student experience"
+    badge="Summer 2026 · Student Program"
     title="Explore China 2026"
     subtitle="Your student gateway to authentic China — culture, cities, and connections."
-    image="https://images.unsplash.com/photo-1547981609-4b6bf67db7bf?w=1800&q=80&auto=format&fit=crop"
-    imageAlt="China city skyline and river at dusk"
+    image="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1800&q=80"
+    imageAlt="Great Wall landscape"
     route="Shanghai → Suzhou → Hangzhou → Beijing"
     price="CAD 3,000 / traveler"
     departs="Summer windows · small-group seats"
     stats={[{label:'Duration', value:'10 days'},{label:'Cities', value:'4'},{label:'Response', value:'<24h'}]}
-    ctas={[{href:'#discovery',label:'Discover destinations'},{href:'#itinerary',label:'View itinerary',kind:'secondary'}]}
-    asideLabel="Trip brief"
-    asideTitle="Route & departure"
-    asideRouteLabel="Route"
-    asidePriceLabel="From"
-    asideDepartsLabel="Departures"
-    asideCtaLabel="Check seats"
+    ctas={[{href:'#apply',label:'Apply now'},{href:'#itinerary',label:'See itinerary',kind:'secondary'}]}
   />
 
-  <AnchorNav links={[{href:'#overview',label:'Overview'},{href:'#discovery',label:'Destinations'},{href:'#itinerary',label:'Itinerary'},{href:'#inclusion',label:'Inclusions'},{href:'#guide',label:'Travel guide'},{href:'#faq',label:'FAQ'}]} ctaHref="#apply" ctaLabel="Apply" />
+  <AnchorNav links={[{href:'#overview',label:'Overview'},{href:'#media',label:'Media'},{href:'#itinerary',label:'Itinerary'},{href:'#inclusion',label:'Inclusions'},{href:'#faq',label:'FAQ'},{href:'#apply',label:'Apply'}]} ctaHref="#apply" ctaLabel="Apply" />
 
   <section id="overview" class="section grid cols-3">
-    <article class="card tone-sand"><p class="label">Tour highlights</p><h3>Landmarks + local culture</h3><p class="muted">Structured pacing inspired by classic operator pages, with clear delivery scope.</p></article>
-    <article class="card tone-sand"><p class="label">Booking rhythm</p><h3>Deposit → confirmation</h3><p class="muted">Simple 2-step intake, then manual advisor follow-up within one day.</p></article>
-    <article class="card tone-sand"><p class="label">Support model</p><h3>Bilingual operations</h3><p class="muted">EN/中文 support for logistics and city transitions during the trip.</p></article>
-  </section>
-
-  <section id="discovery" class="section">
-    <header class="section-head">
-      <p class="label">Inspirational Discovery</p>
-      <h2>Where iconic scenes meet local stories</h2>
-      <p class="muted">China's charm lies in tiny villages, grand vistas, exquisite crafts and romances.</p>
-    </header>
-    <div class="discovery-grid">
-      {discovery.map((item) => (
-        <article class="discover-card">
-          <img src={item.image} alt={item.title} loading="lazy" />
-          <div class="discover-copy"><h3>{item.title}</h3></div>
-        </article>
-      ))}
-    </div>
+    <article class="card tone-sand"><p class="label">Tour highlights</p><h3>Landmarks + local culture</h3><p class="muted">Structured pacing with practical support and social exchange.</p></article>
+    <article class="card tone-sand"><p class="label">Booking rhythm</p><h3>Apply → confirmation</h3><p class="muted">Simple 2-step intake then advisor follow-up.</p></article>
+    <article class="card tone-sand"><p class="label">Support model</p><h3>Bilingual operations</h3><p class="muted">EN/中文 support across key logistics.</p></article>
   </section>
 
   <Carousel id="media" title="City visual carousel" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label:c.city}))} />
 
   <section id="style" class="section grid cols-3">
-    <article class="card"><p class="label">Tour style selector</p><h3>Balanced</h3><p class="muted">Core landmarks, comfortable pacing, and social windows.</p></article>
-    <article class="card"><p class="label">Tour style selector</p><h3>Culture-heavy</h3><p class="muted">Museums, heritage routes, and craft-rich experiences.</p></article>
-    <article class="card"><p class="label">Tour style selector</p><h3>Social-first</h3><p class="muted">Group activities, nightlife energy, and photogenic hotspots.</p></article>
+    <article class="card"><p class="label">Tour style selector</p><h3>Balanced</h3><p class="muted">Core landmarks + moderate pacing + social time.</p></article>
+    <article class="card"><p class="label">Tour style selector</p><h3>Culture-heavy</h3><p class="muted">Museums, heritage routes, and local history.</p></article>
+    <article class="card"><p class="label">Tour style selector</p><h3>Social-first</h3><p class="muted">Student exchange, food discovery, city energy.</p></article>
   </section>
 
-  <ItineraryAccordion id="itinerary" title="Tour itinerary" items={itinerary} labels={{ hotel: 'Hotel', meals:'Meals', transport:'Transport' }} />
+  <DayTabs id="itinerary" title="Itinerary tabs" days={days} />
 
-  <DecisionStack
-    id="decision"
-    title="Decision support before you commit"
-    subtitle="Comparative proof points and planning signals to make seat decisions easier on mobile and desktop."
-    pillars={[
-      { label:'Trust proof', title:'Transparent scope', detail:'Included / not included and seat workflow are listed in plain language before deposit.' },
-      { label:'Pacing proof', title:'Structured + flexible', detail:'Each day block has non-negotiable anchors and optional free-time windows.' },
-      { label:'Operations proof', title:'Bilingual support loop', detail:'Guides, transfer support, and group updates are designed for mixed EN/ZH participants.' },
-    ]}
-    checklistTitle="Before applying"
-    checklist={[
-      'Check your passport validity and estimated visa timeline.',
-      'Decide if you prefer shared room standard or private upgrade request.',
-      'Prepare a learning/social goal so advisor can suggest fit and pacing.',
-    ]}
-    snapshots={[
-      { label:'Seat workflow', value:'2 steps', note:'Apply form → advisor confirmation within 24h.' },
-      { label:'City coverage', value:'4 cities', note:'Balanced across mega-city, cultural, and capital experiences.' },
-      { label:'Support mode', value:'EN + 中文', note:'Operational communication in both languages.' },
-      { label:'Decision timing', value:'Fast reply', note:'Most valid leads receive same-day availability update.' },
-    ]}
-  />
-
-  <section class="section grid cols-2" id="inclusion">
-    <article class="card tone-rose"><h3>Included</h3><ul class="muted"><li>4★ accommodation package</li><li>Intercity transfers and planned routing</li><li>Core attractions and exchange activity</li></ul></article>
+  <section id="inclusion" class="section grid cols-2">
+    <article class="card tone-rose"><h3>Included</h3><ul class="muted"><li>4★ accommodation package</li><li>Intercity and local transport</li><li>Core attractions and team activities</li><li>Bilingual coordination support</li></ul></article>
     <article class="card"><h3>Not included</h3><ul class="muted"><li>International flights</li><li>Personal shopping</li><li>Private upgrades</li></ul></article>
-  </section>
-
-  <section id="guide" class="section">
-    <header class="section-head"><p class="label">Planning a Trip to China?</p><h2>Your all-in-one guide — from preparation to departure.</h2></header>
-    <div class="guide-grid">
-      <article class="guide-card"><h3>How to Apply for a Chinese Visa</h3><a href="#faq">Learn More</a></article>
-      <article class="guide-card"><h3>Setting Up Mobile Payments in China</h3><a href="#faq">Learn More</a></article>
-      <article class="guide-card"><h3>Getting a SIM Card & Staying Connected</h3><a href="#faq">Learn More</a></article>
-      <article class="guide-card"><h3>How to Buy High-Speed Rail Tickets</h3><a href="#faq">Learn More</a></article>
-    </div>
   </section>
 
   <FaqList id="faq" title="FAQ" items={faq} />
@@ -129,74 +76,13 @@ const faq = [
   <ApplyScaffold
     id="apply"
     title="Apply with confidence"
-    subtitle="Share your profile once. We return seat status, next-step timing, and cost boundary in one response."
-    bullets={[
-      'Seat status and response ETA included in follow-up.',
-      'No forced payment in this step — just eligibility check.',
-      'You receive an advisor contact for direct question handling.',
-    ]}
-    labels={{ name:'Name', email:'Email', phone:'Phone / WhatsApp', city:'Current city', goal:'Goal' }}
+    subtitle="Share your profile once. We return seat status and next-step timing in one response."
+    bullets={['Response ETA included in follow-up.','No forced payment at this step.','Direct advisor contact in response.']}
+    labels={{ name:'Name', email:'Email', phone:'Phone / WhatsApp', city:'Current city', goal:'Why do you want this trip?' }}
     submitLabel="Submit"
-    subject="Explore China lead"
+    subject="Explore China v2 lead"
     nextUrl="https://explore-china-site.vercel.app/success"
   />
 
   <StickyApplyBar href="#apply" label="Quick Apply" />
 </Layout>
-
-<style>
-  .section-head { margin-bottom: 12px; }
-  .section-head h2 { margin: 6px 0; }
-  .discovery-grid {
-    display: grid;
-    gap: 14px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .discover-card {
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-    min-height: 220px;
-    border: 1px solid #dbe1ea;
-  }
-  .discover-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .35s ease;
-  }
-  .discover-card:hover img { transform: scale(1.05); }
-  .discover-copy {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    padding: 12px;
-    color: #fff;
-    background: linear-gradient(to top, rgba(0,0,0,.64), rgba(0,0,0,0));
-  }
-
-  .guide-grid {
-    display:grid;
-    gap: 12px;
-    grid-template-columns: repeat(4, minmax(0,1fr));
-  }
-  .guide-card {
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid #dbe1ea;
-    padding: 16px;
-    border-top: 3px solid transparent;
-    border-image: linear-gradient(90deg, #c62828, #ffca28) 1;
-    transition: transform .2s ease;
-  }
-  .guide-card:hover { transform: translateY(-4px); }
-  .guide-card h3 { margin-top: 0; min-height: 58px; }
-
-  @media (max-width: 980px) {
-    .discovery-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .guide-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  }
-  @media (max-width: 640px) {
-    .discovery-grid,
-    .guide-grid { grid-template-columns: 1fr; }
-  }
-</style>
