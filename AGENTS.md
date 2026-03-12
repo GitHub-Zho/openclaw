@@ -207,42 +207,131 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
-## Multi-Agent Role Split (Main Brain Mode)
+## Multi-Agent Role Split（v2 — 迁移后）
 
-When web-design work is active, use role separation by default (lean-first, escalate when needed):
+### §0 Knowledge Layer 强制读取（每轮第一步，不可跳过）
 
-- **main (this workspace)** = orchestrator only
-  - Own goals, priorities, approvals, and release decisions
-  - Delegate implementation and detailed visual design work
-  - Start in lean mode; escalate to full multi-agent loop only on risk/complexity triggers
-  - Never claim "redesign complete" without QA verdict
-- **brain** = planning/spec (IA, style direction, acceptance criteria)
-- **prompt-optimizer** = prompt refinement + constraint/acceptance-criteria injection
-- **research** = information collection/synthesis + confidence-rated briefs
-- **web-builder** = implementation + deployment
-- **web-qa** = independent PASS/FAIL review
-- **learning** = dialogue/capability QA + learning-file patch proposals
+main 在任何派发前必须读取：
+1. `knowledge/lessons.md` — 历史教训 + 规则
+2. `knowledge/patterns.md` — 成功模式
+3. 本任务对应的 `knowledge/skill-packs/[domain].md`
+4. 本轮对应的 `knowledge/agent-prompts/` 中的 brain/executor/qa 指令版本
 
-### Main-agent context hygiene
+若以上文件不存在，停止并告知用户先执行架构迁移步骤。
 
-To avoid decision pollution in main:
-- Keep long design references and style exploration in `docs/web-design-knowledge-base.md` (or sub-agent workspaces), not in main conversational reasoning.
-- Main only carries:
-  1) objective
-  2) constraints
-  3) acceptance criteria
-  4) risk pre-mortem
-  5) active TODO checklist + verification state
-  6) ship/no-ship status
-- If task is implementation-heavy, route to builder immediately.
-- Use `docs/task-todolist-protocol.md` to create/update a task TODO before execution.
-- Before claiming completion, run `tools/verify_task_delivery.sh <todo-file>`; do not claim done if it fails.
-- MAIN hard rule: every implementation/fix by main must include a test/verification step; if any test fails, status stays `in_progress` and main must continue until verification passes.
-- MAIN cannot claim completion on code changes alone; passing verification evidence is mandatory each round.
-- MAIN response-test rule: before sending any claim about process state, implementation status, or verification, run a concrete check and include (1) test method, (2) raw output summary, and (3) conclusion in the reply.
-- If no test was run yet, say "untested" and do not present the claim as confirmed.
-- Use `docs/execution-mode-selector.md` to choose Lean vs Full loop before delegation.
-- Important-agent learning changes (`main`, `learning`) require user approval; sub-agent learning changes may be applied by `main + learning` decision.
+### Agent 职责（v2）
+
+1. **main** — 唯一 orchestrator
+ - §0 读取 knowledge layer
+ - 输出 Reflection Block（需求反射）
+ - 输出 TYPE 分类 + 判断理由
+ - 派发给 brain/executor/qa/learning/research
+ - 最终 ship/no-ship 决定
+ - 学习文件改动最终审批
+
+2. **brain** — 规划 + 指令生成（含原 prompt-optimizer 职能）
+ - 两阶段输出：需求解读 + 执行规格 + executor 指令
+ - 指令必须直接可执行，无需二次转换
+ - 使用 knowledge/agent-prompts/brain-vN.md 中的指令版本
+
+3. **research** — 信息情报（按需）
+ - 按需调用，不是每轮必跑
+ - 返回摘要给 main/brain，不经过 optimizer 中转
+
+4. **executor**（原 web-builder + prompt-optimizer 合并）
+ - 接受 brain 两阶段输出中的 executor 指令
+ - §0 读取 skill-pack
+ - 实现 + build + deploy
+ - 输出 implementation note
+
+5. **qa** — 两层验证（含原 cross-checker 职能）
+ - Layer 0: brain↔executor 对齐检查（先）
+ - Layer 1: 实质性 QA（后）
+ - FAIL 时 gap list 返回 brain，不直接给 executor
+
+6. **learning** — 治理审计 + 知识更新
+ - 每轮必跑
+ - 产出：可直接写入的文件内容（完整 diff 或完整替换文本）
+ - 更新：knowledge/lessons.md + knowledge/patterns.md + skill-pack
+ - main 只做 yes/no 批准，不需要二次转换
+
+### 废弃 agent
+
+- **prompt-optimizer**：职能已移入 brain。不再作为独立 agent 调用。
+
+### 运行模式
+
+**Lean 模式**（TYPE-S/简单 TYPE-M）：
+main → executor → qa → main decision
+
+**Standard 模式**（TYPE-M）：
+main → brain → executor → qa → main → learning
+
+**Full 模式**（TYPE-C 或高风险 TYPE-M）：
+main → brain → research → executor → qa → main → learning
+
+### 现有门控（必须完整保留）
+
+- `tools/verify_task_delivery.sh` — 完成声明前必须跑
+- 反幻觉可见性证明（见 docs/web-qa-visible-proof-checklist.md）
+- brain-spec 先于 executor 的顺序锁
+- learning 每轮必跑 + learning-experience-library.md 更新
+- handoff-log.jsonl 轮次完成性核查
+- 分层审批：main/learning 改动需用户批准；sub-agent 改动由 main+learning 批准
+
+### TYPE 分类规则（v2）
+
+main 在每次收到任务后，必须先输出 TYPE 分类。
+
+**TYPE-S（单点修改，快速路径）：**
+仅当以下**所有条件**同时满足时才能判为 TYPE-S：
+- 只涉及 1 个文件
+- 只修改单一字段/内容（颜色、文字、URL等）
+- 用户已提供全部修改内容（无需 brain 推断）
+- 用户明确说明"只改这一处"
+- 不涉及路由逻辑 / EN/ZH 双语 / 视觉或交互变化
+
+只要违反以上任何一条：TYPE → M
+
+**TYPE-M（中等复杂度，Standard 模式）：**
+默认类型。触发条件（满足任一即为 TYPE-M）：
+- 涉及超过 1 个文件
+- 有路由逻辑
+- 有 EN/ZH 双语要求
+- 有视觉或交互变化
+- 用户描述模糊（"改一下"/"优化"/"好看一点"）
+- 描述少于 15 字且未附完整规格
+- 缺少完成标准
+
+**TYPE-C（复杂/高风险，Full 模式）：**
+触发条件（满足任一即为 TYPE-C）：
+- 多页面全站改动
+- 新功能或新 agent 设计
+- 架构层面变更
+- 外部集成或 API 变更
+- main 判断风险高或范围不确定
+
+**分类纪律：**
+- 默认不确定时：TYPE-M（绝不默认 TYPE-S）
+- 降级为 TYPE-S 需用户明确声明（main 不得自行降级）
+- main 必须输出：`[TYPE-X] 判断理由：...`
+
+### 需求反射机制（v2）
+
+main 在每次派发前必须输出 Reflection Block：
+
+```
+## Main Reflection
+我的理解：[用户想要X]
+我的计划：[我打算做Y]
+我的假设：[我假设了Z]
+我需要确认的：[W（若有歧义）]
+相关历史教训：[引用 L-XXXX（若有）]
+TYPE 分类：[TYPE-S/M/C] | 理由：[...]
+```
+
+**TYPE-S 任务**：main 输出 Reflection Block，用户一句话确认后执行。
+**TYPE-M/C 任务**：main 输出 Reflection Block，brain 输出需求解读，两者都经用户确认后执行。
 
 ## Make It Yours
 
