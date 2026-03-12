@@ -1,0 +1,24 @@
+---
+const { isZh = false } = Astro.props;
+---
+<section class="hero" aria-label="Hero" id="overview">
+  <div class="hero__bg">
+    <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1920&q=85" alt="" aria-hidden="true" fetchpriority="high" />
+  </div>
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <div class="container hero__content">
+    <p class="hero__eyebrow">{isZh ? '2026 夏季 · 学生项目' : 'Summer 2026 · Student Program'}</p>
+    <h1 class="hero__title">{isZh ? <>探索<br/>中国</> : <>Explore<br/>China</>}</h1>
+    <p class="hero__sub">{isZh ? '10天深度路线：上海、苏州、杭州、北京。' : 'A 10-day deep-dive through Shanghai, Suzhou, Hangzhou, and Beijing.'}</p>
+    <div class="hero__cta-group">
+      <a href="#apply" class="btn--hero-primary">{isZh ? '立即申请' : 'Apply Now'}</a>
+      <a href="#itinerary" class="btn--hero-ghost">{isZh ? '查看行程' : 'See Itinerary'}</a>
+    </div>
+  </div>
+
+  <div class="hero__scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>

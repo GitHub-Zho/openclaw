@@ -1,94 +1,59 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { cityVisuals } from '../data/site';
+import HeroSection from '../components/v1/HeroSection.astro';
+import DestinationCarousel from '../components/v1/DestinationCarousel.astro';
+import DestinationGrid from '../components/v1/DestinationGrid.astro';
+import Faq from '../components/v1/Faq.astro';
 ---
-<Layout title="Exploration & Travel Club">
-  <section class="section grid cols-2" style="align-items:stretch;">
-    <article class="card" style="padding:36px; background:linear-gradient(180deg,#fff,#faf9f5);">
-      <p class="pill">Summer 2026 · Student-Led Program</p>
-      <h1 style="margin-top:14px; max-width:700px;">
-        Explore China with
-        <br />
-        confidence, culture, and real student energy.
-      </h1>
-      <p class="muted" style="max-width:620px; margin-top:12px;">
-        A 10-day Canada-friendly program combining iconic landmarks, practical logistics support,
-        and meaningful local-student exchange.
-      </p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;">
-        <a class="btn btn-primary" href="/trips/explore-china-2026-summer">Apply for 2026 Cohort</a>
-        <a class="btn btn-secondary" href="/handbook">Read Handbook</a>
-      </div>
-      <p class="label" style="margin-top:10px;">Transparent package · Structured support · No hidden assumptions</p>
-    </article>
+<Layout title="Explore China | Student Program">
+  <HeroSection />
+  <DestinationCarousel />
+  <DestinationGrid />
 
-    <article class="card" style="padding:0; overflow:hidden;">
-      <img src={cityVisuals[0].image} alt={cityVisuals[0].alt} style="height:100%; min-height:440px; width:100%; object-fit:cover; filter:saturate(0.92) contrast(0.98);" />
-    </article>
-  </section>
-
-  <section class="section card" style="padding:22px;">
-    <div class="grid cols-4">
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">Duration</p><p style="margin:6px 0 0; font-weight:680;">10 Days</p></article>
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">Route</p><p style="margin:6px 0 0; font-weight:680;">Shanghai → Suzhou → Hangzhou → Beijing</p></article>
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">Package</p><p style="margin:6px 0 0; font-weight:680;">CAD $3,000 (flight excluded)</p></article>
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">Stay</p><p style="margin:6px 0 0; font-weight:680;">~CAD $70/person/night (≈¥350)</p></article>
-    </div>
-  </section>
-
-  <section class="section grid cols-2">
-    <article class="card">
-      <h2 style="font-size:32px;">Why students trust this program</h2>
-      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
-        <li>Structured pacing with built-in free exploration windows</li>
-        <li>Clear inclusion/exclusion boundaries before payment</li>
-        <li>Local-student exchange day + social finale in Beijing</li>
-      </ul>
-    </article>
-    <article class="card">
-      <h2 style="font-size:32px;">Proof points</h2>
-      <div class="grid cols-2">
-        <div class="card" style="padding:12px; background:#fff;"><p class="label" style="margin:0">Audience</p><p style="margin:6px 0 0; font-weight:680;">Canada-based students</p></div>
-        <div class="card" style="padding:12px; background:#fff;"><p class="label" style="margin:0">Language</p><p style="margin:6px 0 0; font-weight:680;">EN / 中文 support</p></div>
-        <div class="card" style="padding:12px; background:#fff;"><p class="label" style="margin:0">Support</p><p style="margin:6px 0 0; font-weight:680;">On-trip coordination</p></div>
-        <div class="card" style="padding:12px; background:#fff;"><p class="label" style="margin:0">Flow</p><p style="margin:6px 0 0; font-weight:680;">Decision-ready handbook</p></div>
-      </div>
-    </article>
-  </section>
-
-  <section class="section card">
-    <h2>Application timeline</h2>
-    <div class="grid cols-3">
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">Step 1</p><p style="margin:6px 0 4px; font-weight:680;">Interest form</p><p class="muted" style="font-size:14px; margin:0;">Submit interest and profile to enter shortlist review.</p></article>
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">Step 2</p><p style="margin:6px 0 4px; font-weight:680;">Seat confirmation</p><p class="muted" style="font-size:14px; margin:0;">Receive package details, confirm rooming, and complete deposit.</p></article>
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">Step 3</p><p style="margin:6px 0 4px; font-weight:680;">Pre-departure briefing</p><p class="muted" style="font-size:14px; margin:0;">Get logistics, safety contacts, and final city playbook.</p></article>
-    </div>
-  </section>
-
-  <section class="section card tone-rose">
-    <h2>City structure</h2>
-    <div class="grid cols-4">
-      {cityVisuals.map((city) => (
-        <article class="card" style="padding:12px; background:#fff;">
-          <img class="photo media-card" src={city.image} alt={city.alt} />
-          <h3 style="margin:10px 0 4px;">{city.city}</h3>
-          <p class="muted" style="font-size:14px; margin:0;">
-            {city.city === 'Shanghai' && 'Arrival onboarding, Bund skyline, and city orientation.'}
-            {city.city === 'Suzhou' && 'Museum and canal culture with Jiangnan atmosphere.'}
-            {city.city === 'Hangzhou' && 'West Lake, Lingyin Temple, and tea-culture route.'}
-            {city.city === 'Beijing' && 'Great Wall, Forbidden City, and social closing day.'}
-          </p>
+  <section id="itinerary" class="py-20">
+    <div class="container">
+      <p class="section-eyebrow">Itinerary</p>
+      <h2 class="section-title">10-Day Route Overview</h2>
+      <div class="grid md:grid-cols-2 gap-8 mt-8">
+        <article class="bg-white p-6 border border-stone-200">
+          <h3 class="text-2xl font-semibold mb-2">Days 1-5 · Shanghai / Suzhou / Hangzhou</h3>
+          <p class="text-stone-600 leading-7">Arrival onboarding, Bund and old-town contrast, Suzhou canal heritage, and Hangzhou West Lake + tea culture rhythm.</p>
         </article>
-      ))}
+        <article class="bg-white p-6 border border-stone-200">
+          <h3 class="text-2xl font-semibold mb-2">Days 6-10 · Beijing</h3>
+          <p class="text-stone-600 leading-7">Great Wall and Forbidden City anchors, student exchange activities, closing social night, and departure support.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="section card tone-dark">
-    <h2>What students say this format solves</h2>
-    <div class="grid cols-3">
-      <article class="card" style="background:#fff; color:#151515;"><p style="margin:0; font-weight:680;">“I need structure, but not a rigid tour bus vibe.”</p><p class="muted" style="margin-top:8px; color:#5b6168;">Core activities are fixed; exploration windows are preserved.</p></article>
-      <article class="card" style="background:#fff; color:#151515;"><p style="margin:0; font-weight:680;">“I don’t want hidden surprises in budget.”</p><p class="muted" style="margin-top:8px; color:#5b6168;">Inclusion / exclusion boundaries are shown before commitment.</p></article>
-      <article class="card" style="background:#fff; color:#151515;"><p style="margin:0; font-weight:680;">“I want social connection, not solo drift.”</p><p class="muted" style="margin-top:8px; color:#5b6168;">Student exchange day + final social night create closure.</p></article>
+  <section id="guide" class="py-20 bg-white">
+    <div class="container">
+      <p class="section-eyebrow">Guide</p>
+      <h2 class="section-title">Planning a Trip to China?</h2>
+      <div class="grid md:grid-cols-4 gap-4 mt-8">
+        <article class="p-5 border border-stone-200 hover:-translate-y-1 transition-transform"><h3 class="font-semibold mb-2">How to Apply for a Chinese Visa</h3><p class="text-stone-600 text-sm">Document checklist and appointment timing.</p></article>
+        <article class="p-5 border border-stone-200 hover:-translate-y-1 transition-transform"><h3 class="font-semibold mb-2">Setting Up Mobile Payments</h3><p class="text-stone-600 text-sm">WeChat Pay and Alipay setup basics.</p></article>
+        <article class="p-5 border border-stone-200 hover:-translate-y-1 transition-transform"><h3 class="font-semibold mb-2">SIM Card & Connectivity</h3><p class="text-stone-600 text-sm">Airport and city options for data plans.</p></article>
+        <article class="p-5 border border-stone-200 hover:-translate-y-1 transition-transform"><h3 class="font-semibold mb-2">High-Speed Rail Tickets</h3><p class="text-stone-600 text-sm">Booking channels and boarding tips.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <Faq />
+
+  <section id="apply" class="py-20">
+    <div class="container">
+      <p class="section-eyebrow">Apply</p>
+      <h2 class="section-title">Start Your Application</h2>
+      <form class="grid md:grid-cols-2 gap-4 mt-8">
+        <input class="border border-stone-300 p-3 bg-white" aria-label="Name" />
+        <input class="border border-stone-300 p-3 bg-white" aria-label="Email" />
+        <input class="border border-stone-300 p-3 bg-white" aria-label="Phone" />
+        <input class="border border-stone-300 p-3 bg-white" aria-label="Current city" />
+        <textarea class="md:col-span-2 border border-stone-300 p-3 bg-white min-h-[120px]" aria-label="Your travel goals"></textarea>
+        <button type="button" class="md:col-span-2 justify-self-start bg-red-700 text-white px-7 py-3 hover:bg-red-800 transition-colors">Submit Application</button>
+      </form>
     </div>
   </section>
 </Layout>

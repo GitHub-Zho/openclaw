@@ -1,0 +1,45 @@
+---
+const { isZh = false } = Astro.props;
+const faqs = isZh
+  ? [
+      { question: '谁适合申请？', answer: '以学生群体为主，提交资料后进行席位匹配。' },
+      { question: '费用包含什么？', answer: '包含核心住宿、城市间交通与重点活动；不含国际机票。' },
+      { question: '多久回复？', answer: '多数有效申请在24小时内给出席位反馈。' },
+    ]
+  : [
+      { question: 'Who can apply?', answer: 'Student-focused intake with profile review and fit matching.' },
+      { question: 'What is included?', answer: 'Core accommodation, intercity transfers, and key activities; international flights excluded.' },
+      { question: 'How fast is the reply?', answer: 'Most qualified leads receive a seat update within 24 hours.' },
+    ];
+---
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">{isZh ? '常见问题' : 'Questions'}</p>
+      <h2 class="section-title">{isZh ? '报名前须知' : 'Before You Apply'}</h2>
+    </div>
+    <div class="faq__list">
+      {faqs.map((item, i) => (
+        <div class="faq__item" id={`faq-${i}`}>
+          <button class="faq__q" aria-expanded="false" aria-controls={`faq-answer-${i}`}>
+            <span>{item.question}</span>
+            <svg class="faq__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__a" id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-${i}`}>
+            <div class="faq__a-inner">{item.answer}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll('.faq__q').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq__q').forEach((b) => b.setAttribute('aria-expanded', 'false'));
+      if (!expanded) btn.setAttribute('aria-expanded', 'true');
+    });
+  });
+</script>

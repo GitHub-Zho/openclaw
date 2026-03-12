@@ -1,75 +1,59 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { cityVisuals } from '../../data/site';
+import HeroSection from '../../components/v1/HeroSection.astro';
+import DestinationCarousel from '../../components/v1/DestinationCarousel.astro';
+import DestinationGrid from '../../components/v1/DestinationGrid.astro';
+import Faq from '../../components/v1/Faq.astro';
 ---
-<Layout title="探索中国｜Exploration & Travel Club">
-  <section class="section grid cols-2" style="align-items:stretch;">
-    <article class="card" style="padding:36px; background:linear-gradient(180deg,#fff,#faf9f5);">
-      <p class="pill">2026 夏季 · 学生项目</p>
-      <h1 style="margin-top:14px; max-width:700px;">
-        以更清晰、更可靠的方式
-        <br />
-        探索中国
-      </h1>
-      <p class="muted" style="max-width:620px; margin-top:12px;">
-        面向加拿大学生用户的 10 天线路：融合地标体验、本地文化、同龄交流与全程组织支持。
-      </p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;">
-        <a class="btn btn-primary" href="/zh/trips/explore-china-2026-summer">申请 2026 项目</a>
-        <a class="btn btn-secondary" href="/zh/handbook">查看手册</a>
+<Layout title="探索中国｜学生项目" isZh={true}>
+  <HeroSection isZh={true} />
+  <DestinationCarousel isZh={true} />
+  <DestinationGrid isZh={true} />
+
+  <section id="itinerary" class="py-20">
+    <div class="container">
+      <p class="section-eyebrow">行程</p>
+      <h2 class="section-title">10天路线概览</h2>
+      <div class="grid md:grid-cols-2 gap-8 mt-8">
+        <article class="bg-white p-6 border border-stone-200">
+          <h3 class="text-2xl font-semibold mb-2">第1-5天 · 上海/苏州/杭州</h3>
+          <p class="text-stone-600 leading-7">完成抵达安顿，体验外滩与老城对比，进入苏州水乡与杭州西湖茶文化节奏。</p>
+        </article>
+        <article class="bg-white p-6 border border-stone-200">
+          <h3 class="text-2xl font-semibold mb-2">第6-10天 · 北京</h3>
+          <p class="text-stone-600 leading-7">以长城、故宫为核心锚点，安排学生交流活动与结营社交夜，最后统一离境支持。</p>
+        </article>
       </div>
-      <p class="label" style="margin-top:10px;">价格透明 · 组织清晰 · 决策友好</p>
-    </article>
-
-    <article class="card" style="padding:0; overflow:hidden;">
-      <img src={cityVisuals[0].image} alt={cityVisuals[0].alt} style="height:100%; min-height:440px; width:100%; object-fit:cover; filter:saturate(0.92) contrast(0.98);" />
-    </article>
-  </section>
-
-  <section class="section card" style="padding:22px;">
-    <div class="grid cols-4">
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">时长</p><p style="margin:6px 0 0; font-weight:680;">10 天</p></article>
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">路线</p><p style="margin:6px 0 0; font-weight:680;">上海 → 苏州 → 杭州 → 北京</p></article>
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">价格</p><p style="margin:6px 0 0; font-weight:680;">CAD $3,000（不含国际机票）</p></article>
-      <article class="card" style="padding:14px; background:#fcfbf8;"><p class="label" style="margin:0">住宿</p><p style="margin:6px 0 0; font-weight:680;">约 CAD $70/人/晚（约¥350）</p></article>
     </div>
   </section>
 
-  <section class="section grid cols-2">
-    <article class="card">
-      <h2 style="font-size:32px;">为什么值得参加</h2>
-      <ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">
-        <li>节奏平衡：核心行程固定 + 弹性探索时段</li>
-        <li>社交导向：本地学生交流日 + 结营社交夜</li>
-        <li>边界清晰：报名前可完整了解包含与不包含内容</li>
-      </ul>
-    </article>
-    <article class="card">
-      <h2 style="font-size:32px;">信任要点</h2>
-      <div class="grid cols-2">
-        <div class="card" style="padding:12px; background:#fff;"><p class="label" style="margin:0">对象</p><p style="margin:6px 0 0; font-weight:680;">加拿大学生群体</p></div>
-        <div class="card" style="padding:12px; background:#fff;"><p class="label" style="margin:0">语言</p><p style="margin:6px 0 0; font-weight:680;">中英双语支持</p></div>
-        <div class="card" style="padding:12px; background:#fff;"><p class="label" style="margin:0">组织</p><p style="margin:6px 0 0; font-weight:680;">全程协调执行</p></div>
-        <div class="card" style="padding:12px; background:#fff;"><p class="label" style="margin:0">资料</p><p style="margin:6px 0 0; font-weight:680;">手册可直接决策</p></div>
+  <section id="guide" class="py-20 bg-white">
+    <div class="container">
+      <p class="section-eyebrow">攻略</p>
+      <h2 class="section-title">出发中国前的准备</h2>
+      <div class="grid md:grid-cols-4 gap-4 mt-8">
+        <article class="p-5 border border-stone-200 hover:-translate-y-1 transition-transform"><h3 class="font-semibold mb-2">签证申请流程</h3><p class="text-stone-600 text-sm">准备材料与预约时间建议。</p></article>
+        <article class="p-5 border border-stone-200 hover:-translate-y-1 transition-transform"><h3 class="font-semibold mb-2">移动支付设置</h3><p class="text-stone-600 text-sm">微信支付与支付宝开通要点。</p></article>
+        <article class="p-5 border border-stone-200 hover:-translate-y-1 transition-transform"><h3 class="font-semibold mb-2">手机卡与网络</h3><p class="text-stone-600 text-sm">机场和市区可选的数据方案。</p></article>
+        <article class="p-5 border border-stone-200 hover:-translate-y-1 transition-transform"><h3 class="font-semibold mb-2">高铁购票指南</h3><p class="text-stone-600 text-sm">购票渠道与乘车流程。</p></article>
       </div>
-    </article>
-  </section>
-
-  <section class="section card tone-blue">
-    <h2>报名流程</h2>
-    <div class="grid cols-3">
-      <article class="card" style="padding:14px; background:#fff;"><p class="label" style="margin:0">步骤 1</p><p style="margin:6px 0 4px; font-weight:680;">提交意向</p><p class="muted" style="font-size:14px; margin:0;">填写意向表并提交基础信息，进入候选名单。</p></article>
-      <article class="card" style="padding:14px; background:#fff;"><p class="label" style="margin:0">步骤 2</p><p style="margin:6px 0 4px; font-weight:680;">确认席位</p><p class="muted" style="font-size:14px; margin:0;">确认房型偏好，查看细则并完成订金。</p></article>
-      <article class="card" style="padding:14px; background:#fff;"><p class="label" style="margin:0">步骤 3</p><p style="margin:6px 0 4px; font-weight:680;">出发前说明会</p><p class="muted" style="font-size:14px; margin:0;">统一领取行前信息、紧急联系人与城市攻略。</p></article>
     </div>
   </section>
 
-  <section class="section card tone-dark">
-    <h2>这类行程解决了什么问题</h2>
-    <div class="grid cols-3">
-      <article class="card" style="background:#fff; color:#151515;"><p style="margin:0; font-weight:680;">“我需要组织感，但不想太死板。”</p><p class="muted" style="margin-top:8px; color:#5b6168;">核心节点固定，保留可控自由探索时段。</p></article>
-      <article class="card" style="background:#fff; color:#151515;"><p style="margin:0; font-weight:680;">“预算透明比花哨更重要。”</p><p class="muted" style="margin-top:8px; color:#5b6168;">包含与不包含边界提前写清，决策更安心。</p></article>
-      <article class="card" style="background:#fff; color:#151515;"><p style="margin:0; font-weight:680;">“我不想一路都是陌生人。”</p><p class="muted" style="margin-top:8px; color:#5b6168;">本地学生交流日 + 结营社交夜形成闭环体验。</p></article>
+  <Faq isZh={true} />
+
+  <section id="apply" class="py-20">
+    <div class="container">
+      <p class="section-eyebrow">申请</p>
+      <h2 class="section-title">提交你的申请</h2>
+      <form class="grid md:grid-cols-2 gap-4 mt-8">
+        <input class="border border-stone-300 p-3 bg-white" aria-label="姓名" />
+        <input class="border border-stone-300 p-3 bg-white" aria-label="邮箱" />
+        <input class="border border-stone-300 p-3 bg-white" aria-label="电话" />
+        <input class="border border-stone-300 p-3 bg-white" aria-label="所在城市" />
+        <textarea class="md:col-span-2 border border-stone-300 p-3 bg-white min-h-[120px]" aria-label="你的行程目标"></textarea>
+        <button type="button" class="md:col-span-2 justify-self-start bg-red-700 text-white px-7 py-3 hover:bg-red-800 transition-colors">提交申请</button>
+      </form>
     </div>
   </section>
 </Layout>

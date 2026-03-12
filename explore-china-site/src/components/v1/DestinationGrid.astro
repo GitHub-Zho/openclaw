@@ -1,0 +1,29 @@
+---
+const { isZh = false } = Astro.props;
+const destinations = [
+  { nameEn: 'The Bund at Night', nameZh: '上海外滩夜景', image: 'https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?auto=format&fit=crop&w=900&q=80', alt: 'The Bund Shanghai' },
+  { nameEn: 'Forbidden City', nameZh: '北京故宫', image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=900&q=80', alt: 'Forbidden City Beijing' },
+  { nameEn: 'Humble Administrator\'s Garden', nameZh: '苏州拙政园', image: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=900&q=80', alt: 'Suzhou garden' },
+  { nameEn: 'West Lake', nameZh: '杭州西湖', image: 'https://images.unsplash.com/photo-1536337005238-94b997371b40?auto=format&fit=crop&w=900&q=80', alt: 'West Lake Hangzhou' },
+];
+---
+<section class="destinations" id="discovery">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">{isZh ? '目的地' : 'Destinations'}</p>
+      <h2 class="section-title">{isZh ? '灵感发现' : 'Inspirational Discovery'}</h2>
+      <p class="section-sub">{isZh ? '从古都到水乡，每一座城市都讲述不同的中国故事。' : 'From ancient capitals to water towns — each city tells a different story.'}</p>
+    </div>
+  </div>
+  <div class="dest-scroll">
+    {destinations.map((dest) => (
+      <article class="dest-card">
+        <img src={dest.image} alt={dest.alt} loading="lazy" width="600" height="800" />
+        <div class="dest-card__overlay">
+          <h3 class="dest-card__name">{dest.nameEn}</h3>
+          <p class="dest-card__name-zh">{dest.nameZh}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

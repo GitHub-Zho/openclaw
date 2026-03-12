@@ -83,7 +83,7 @@ const faq = [
     </div>
   </section>
 
-  <Carousel id="media" title="城市视觉轮播" items={cityVisuals.map((c)=>({image:c.image.replace('https://unsplash.com/photos/0p37Ch2LYQc/download?force=true&w=1400','https://images.unsplash.com/photo-1526481280695-3c4694c95382?w=1400&q=80&auto=format&fit=crop').replace('https://unsplash.com/photos/HfpEhLCgvcc/download?force=true&w=1400','https://images.unsplash.com/photo-1473445361085-b9a07f55608b?w=1400&q=80&auto=format&fit=crop').replace('https://unsplash.com/photos/CyvoE5akJuE/download?force=true&w=1400','https://images.unsplash.com/photo-1517309230475-6736d926b979?w=1400&q=80&auto=format&fit=crop').replace('https://unsplash.com/photos/2RGwK0NDLv8/download?force=true&w=1400','https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1400&q=80&auto=format&fit=crop'), alt:c.alt, label: cityMap[c.city] ?? c.city}))} />
+  <Carousel id="media" title="城市视觉轮播" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label: cityMap[c.city] ?? c.city}))} />
 
   <section id="style" class="section grid cols-3">
     <article class="card"><p class="label">行程风格选择</p><h3>均衡模式</h3><p class="muted">核心景点 + 适度节奏 + 社交时光。</p></article>

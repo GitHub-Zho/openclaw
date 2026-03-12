@@ -1,0 +1,97 @@
+---
+const { isZh = false } = Astro.props;
+const cities = [
+  {
+    nameEn: 'Shanghai',
+    nameZh: '上海',
+    image: 'https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?auto=format&fit=crop&w=1400&q=80',
+    altText: 'Shanghai skyline'
+  },
+  {
+    nameEn: 'Suzhou',
+    nameZh: '苏州',
+    image: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1400&q=80',
+    altText: 'Suzhou classical garden'
+  },
+  {
+    nameEn: 'Hangzhou',
+    nameZh: '杭州',
+    image: 'https://images.unsplash.com/photo-1536337005238-94b997371b40?auto=format&fit=crop&w=1400&q=80',
+    altText: 'Hangzhou scenery'
+  },
+  {
+    nameEn: 'Beijing',
+    nameZh: '北京',
+    image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1400&q=80',
+    altText: 'Beijing Forbidden City'
+  },
+];
+---
+<section class="carousel-section" id="destinations">
+  <div class="container">
+    <div class="carousel" role="region" aria-label="City destinations" aria-live="polite">
+      <div class="carousel__track" id="carouselTrack">
+        {cities.map((city, i) => (
+          <div class="carousel__slide" aria-hidden={i !== 0 ? 'true' : 'false'}>
+            <img src={city.image} alt={city.altText} loading={i === 0 ? 'eager' : 'lazy'} width="1400" height="800" />
+            <div class="carousel__caption">
+              <span class="carousel__city-en">{city.nameEn}</span>
+              <span class="carousel__city-zh">{city.nameZh}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button class="carousel__btn carousel__btn--prev" aria-label="Previous city">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel__btn carousel__btn--next" aria-label="Next city">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+
+      <div class="carousel__dots" role="tablist" aria-label="Select city">
+        {cities.map((city, i) => (
+          <button role="tab" aria-selected={i === 0 ? 'true' : 'false'} aria-label={`Go to ${city.nameEn}`} data-index={i} class={`carousel__dot ${i === 0 ? 'active' : ''}`}></button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  let current = 0;
+  const track = document.getElementById('carouselTrack');
+  const slides = track?.querySelectorAll('.carousel__slide') || [];
+  const dots = document.querySelectorAll('.carousel__dot');
+  let timer;
+
+  function goTo(n) {
+    if (!track || !slides.length) return;
+    slides[current].setAttribute('aria-hidden', 'true');
+    dots[current].classList.remove('active');
+    dots[current].setAttribute('aria-selected', 'false');
+    current = (n + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    slides[current].setAttribute('aria-hidden', 'false');
+    dots[current].classList.add('active');
+    dots[current].setAttribute('aria-selected', 'true');
+  }
+
+  function startAuto() { timer = setInterval(() => goTo(current + 1), 5000); }
+  function stopAuto() { clearInterval(timer); }
+
+  document.querySelector('.carousel__btn--next')?.addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
+  document.querySelector('.carousel__btn--prev')?.addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
+  track?.parentElement?.addEventListener('mouseenter', stopAuto);
+  track?.parentElement?.addEventListener('mouseleave', startAuto);
+
+  let touchX = 0;
+  track?.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+  track?.addEventListener('touchend', e => {
+    const delta = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) { stopAuto(); goTo(current + (delta > 0 ? 1 : -1)); startAuto(); }
+  });
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) startAuto();
+</script>

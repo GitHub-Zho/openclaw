@@ -1,0 +1,9 @@
+---
+const { isZh = false } = Astro.props;
+---
+<footer class="footer">
+  <div class="container flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-sm">
+    <p>© {new Date().getFullYear()} Explore China</p>
+    <p>{isZh ? '学生文化探索项目' : 'Student cultural exploration program'}</p>
+  </div>
+</footer>
