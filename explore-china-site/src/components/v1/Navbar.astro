@@ -4,20 +4,30 @@ interface Props {
   alternateHref: string;
   alternateLabel: string;
   minimal?: boolean;
+  minimalShowApply?: boolean;
 }
 
-const { lang, alternateHref, alternateLabel, minimal = false } = Astro.props as Props;
+const {
+  lang,
+  alternateHref,
+  alternateLabel,
+  minimal = false,
+  minimalShowApply = true,
+} = Astro.props as Props;
 const isZh = lang === 'zh';
 ---
 <header class="navbar fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
   <div class="container navbar__inner flex items-center justify-between h-16 md:h-20">
-    <a href={isZh ? '/zh/' : '/'} class="navbar__logo text-white font-semibold tracking-wide">Explore China</a>
+    <a href={isZh ? '/zh/' : '/'} class="navbar__logo text-white font-semibold tracking-wide">{isZh ? '探索中国' : 'Explore China'}</a>
 
     {minimal ? (
       <div class="flex items-center gap-3">
         <a href={isZh ? '/zh/trips/explore-china-2026-summer' : '/trips/explore-china-2026-summer'} class="text-white text-sm">{isZh ? '行程' : 'Trip'}</a>
+        <a href={isZh ? '/zh/handbook' : '/handbook'} class="text-white text-sm">{isZh ? '手册' : 'Handbook'}</a>
         <a href={alternateHref} class="navbar__lang text-white text-sm">{alternateLabel}</a>
-        <a href={isZh ? '/zh/trips/explore-china-2026-summer#register' : '/trips/explore-china-2026-summer#register'} class="btn btn--primary bg-red-700 text-white px-5 py-2 text-sm font-semibold hover:bg-red-800 transition-colors">{isZh ? '立即报名' : 'Apply'}</a>
+        {minimalShowApply && (
+          <a href={isZh ? '/zh/trips/explore-china-2026-summer#register' : '/trips/explore-china-2026-summer#register'} class="btn btn--primary bg-red-700 text-white px-5 py-2 text-sm font-semibold hover:bg-red-800 transition-colors">{isZh ? '立即报名' : 'Apply'}</a>
+        )}
       </div>
     ) : (
       <>

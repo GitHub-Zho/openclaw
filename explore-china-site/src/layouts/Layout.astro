@@ -9,12 +9,14 @@ const {
   alternateHref,
   alternateLabel,
   minimalNav = false,
+  minimalShowApply = true,
 } = Astro.props as {
   title?: string;
   lang?: 'en' | 'zh';
   alternateHref: string;
   alternateLabel: string;
   minimalNav?: boolean;
+  minimalShowApply?: boolean;
 };
 ---
 <!doctype html>
@@ -26,7 +28,13 @@ const {
     <title>{title}</title>
   </head>
   <body>
-    <Navbar lang={lang} alternateHref={alternateHref} alternateLabel={alternateLabel} minimal={minimalNav} />
+    <Navbar
+      lang={lang}
+      alternateHref={alternateHref}
+      alternateLabel={alternateLabel}
+      minimal={minimalNav}
+      minimalShowApply={minimalShowApply}
+    />
     <main class="pt-16 md:pt-20">
       <slot />
     </main>
