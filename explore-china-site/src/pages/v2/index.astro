@@ -9,7 +9,7 @@ import ApplyScaffold from '../../components/v3/ApplyScaffold.astro';
 import StickyApplyBar from '../../components/v3/StickyApplyBar.astro';
 import { cityVisuals } from '../../data/site';
 import { cities } from '../../data/cities';
-import CitySection from '../../components/sections/CitySection.astro';
+import CitySectionTest from '../../components/sections/CitySectionTest.astro';
 
 const days = [
   {
@@ -29,6 +29,13 @@ const days = [
   },
 ];
 
+const timelineMap: Record<string, string[]> = {
+  shanghai: ['Arrival', 'Bund Night', 'Yu Garden', 'City Walk'],
+  suzhou: ['Day Trip', 'Garden', 'Museum', 'Canal Night'],
+  hangzhou: ['West Lake', 'Temple', 'Tea Village'],
+  beijing: ['Wall', 'Forbidden City', 'Summer Palace', 'Exchange', 'Closing Night'],
+};
+
 const faq = [
   { q: 'Who can join?', a: 'Student-focused intake with profile review.' },
   { q: 'How much is the deposit?', a: 'CAD $300 after seat confirmation.' },
@@ -36,47 +43,73 @@ const faq = [
   { q: 'Is this only sightseeing?', a: 'No. It includes local student exchange and cultural social blocks.' },
 ];
 ---
-<Layout title="Explore China | v2" lang="en" alternateHref="/zh/v2/" alternateLabel="中文">
+<Layout title="Explore China | v2 test" lang="en" alternateHref="/zh/v2/" alternateLabel="中文">
   <HeroTour
     badge="Summer 2026 · Student Program"
     title="Explore China 2026"
-    subtitle="Your student gateway to authentic China — culture, cities, and connections."
+    subtitle="A 10-day student journey through Shanghai, Suzhou, Hangzhou, and Beijing — built for culture, people, and real local context."
     image="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1800&q=80"
     imageAlt="Great Wall landscape"
     route="Shanghai → Suzhou → Hangzhou → Beijing"
     price="CAD 3,000 / traveler"
     departs="Summer windows · small-group seats"
     stats={[{label:'Duration', value:'10 days'},{label:'Cities', value:'4'},{label:'Response', value:'<24h'}]}
-    ctas={[{href:'#apply',label:'Apply now'},{href:'#itinerary',label:'See itinerary',kind:'secondary'}]}
+    ctas={[{href:'#itinerary',label:'See itinerary'},{href:'#apply',label:'Apply now',kind:'secondary'}]}
   />
 
   <AnchorNav links={[{href:'#overview',label:'Overview'},{href:'#media',label:'Media'},{href:'#itinerary',label:'Itinerary'},{href:'#inclusion',label:'Inclusions'},{href:'#faq',label:'FAQ'},{href:'#apply',label:'Apply'}]} ctaHref="#apply" ctaLabel="Apply" />
 
-  <section id="overview" class="section grid cols-3">
-    <article class="card tone-sand"><p class="label">Tour highlights</p><h3>Landmarks + local culture</h3><p class="muted">Structured pacing with practical support and social exchange.</p></article>
-    <article class="card tone-sand"><p class="label">Booking rhythm</p><h3>Apply → confirmation</h3><p class="muted">Simple 2-step intake then advisor follow-up.</p></article>
-    <article class="card tone-sand"><p class="label">Support model</p><h3>Bilingual operations</h3><p class="muted">EN/中文 support across key logistics.</p></article>
+  <section id="overview" class="section grid cols-2">
+    <article class="card tone-sand">
+      <p class="label">Program positioning</p>
+      <h3>Travel-first, not club-first</h3>
+      <p class="muted">This page is designed as a travel product: route clarity, destination quality, social exchange, and booking certainty in one flow.</p>
+      <div class="grid cols-2" style="margin-top:10px;">
+        <div class="card" style="background:#fff;"><p class="label">Departure</p><p style="font-weight:700;margin:6px 0 0;">July 2026</p></div>
+        <div class="card" style="background:#fff;"><p class="label">Group size</p><p style="font-weight:700;margin:6px 0 0;">Max 20</p></div>
+      </div>
+    </article>
+    <article class="card tone-blue">
+      <p class="label">What makes this stronger</p>
+      <ul class="muted" style="line-height:1.85; margin:0; padding-left:18px;">
+        <li>Immersive city modules with visuals and context.</li>
+        <li>Faster-loading destination carousel.</li>
+        <li>Clear included / not included boundaries.</li>
+        <li>Bilingual parity maintained EN/ZH.</li>
+      </ul>
+    </article>
   </section>
 
-  <Carousel id="media" title="City visual carousel" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label:c.city}))} />
-
-  <section id="style" class="section grid cols-3">
-    <article class="card"><p class="label">Tour style selector</p><h3>Balanced</h3><p class="muted">Core landmarks + moderate pacing + social time.</p></article>
-    <article class="card"><p class="label">Tour style selector</p><h3>Culture-heavy</h3><p class="muted">Museums, heritage routes, and local history.</p></article>
-    <article class="card"><p class="label">Tour style selector</p><h3>Social-first</h3><p class="muted">Student exchange, food discovery, city energy.</p></article>
-  </section>
+  <Carousel id="media" title="City carousel (optimized)" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label:c.city}))} />
 
   <DayTabs id="itinerary" title="Itinerary tabs" days={days} />
 
   <section class="section">
     {cities.map((city, idx) => (
-      <CitySection city={city} lang="en" eagerHero={idx === 0} />
+      <CitySectionTest city={city} lang="en" eagerHero={idx === 0} timeline={timelineMap[city.id] ?? []} />
     ))}
   </section>
 
   <section id="inclusion" class="section grid cols-2">
-    <article class="card tone-rose"><h3>Included</h3><ul class="muted"><li>4★ accommodation package</li><li>Intercity and local transport</li><li>Core attractions and team activities</li><li>Bilingual coordination support</li></ul></article>
-    <article class="card"><h3>Not included</h3><ul class="muted"><li>International flights</li><li>Personal shopping</li><li>Private upgrades</li></ul></article>
+    <article class="card tone-rose">
+      <p class="label">Included</p>
+      <h3>What you get in this package</h3>
+      <ul class="muted" style="line-height:1.85; margin:0; padding-left:18px;">
+        <li>4★ accommodation package</li>
+        <li>Intercity and local transport</li>
+        <li>Core attractions and team activities</li>
+        <li>Bilingual coordination support</li>
+      </ul>
+    </article>
+    <article class="card tone-dark">
+      <p class="label">Not included</p>
+      <h3 style="color:#fff;">Prepare these separately</h3>
+      <ul class="muted" style="line-height:1.85; margin:0; padding-left:18px; color:#d8d8d8;">
+        <li>International flights</li>
+        <li>Personal shopping</li>
+        <li>Private upgrades</li>
+      </ul>
+    </article>
   </section>
 
   <FaqList id="faq" title="FAQ" items={faq} />

@@ -10,7 +10,21 @@ const { id, title, items } = Astro.props as { id: string; title: string; items: 
   <div class="carousel js-carousel" data-carousel={id}>
     <button class="carousel-btn prev" type="button" aria-label="Previous">‹</button>
     <div class="carousel-track">
-      {items.map((it) => <article class="carousel-slide"><img class="photo media-hero" src={it.image} alt={it.alt} /><p style="text-align:center; margin:8px 0 0; font-weight:700;">{it.label}</p></article>)}
+      {items.map((it, idx) => (
+        <article class="carousel-slide">
+          <img
+            class="photo media-hero"
+            src={it.image}
+            alt={it.alt}
+            width="1400"
+            height="800"
+            loading={idx === 0 ? 'eager' : 'lazy'}
+            fetchpriority={idx === 0 ? 'high' : 'auto'}
+            decoding="async"
+          />
+          <p style="text-align:center; margin:8px 0 0; font-weight:700;">{it.label}</p>
+        </article>
+      ))}
     </div>
     <button class="carousel-btn next" type="button" aria-label="Next">›</button>
   </div>
@@ -40,7 +54,7 @@ const { id, title, items } = Astro.props as { id: string; title: string; items: 
       };
       const start = () => {
         clearInterval(timer);
-        timer = setInterval(() => { i = (i + 1) % slides.length; render(); }, 3200);
+        timer = setInterval(() => { i = (i + 1) % slides.length; render(); }, 3800);
       };
       if (!dots.children.length) {
         slides.forEach((_, idx) => {
@@ -55,7 +69,7 @@ const { id, title, items } = Astro.props as { id: string; title: string; items: 
       c.addEventListener('mouseenter', () => clearInterval(timer));
       c.addEventListener('mouseleave', start);
       render();
-      start();
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
     });
   })();
 </script>

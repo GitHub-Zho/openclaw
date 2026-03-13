@@ -9,7 +9,7 @@ import ApplyScaffold from '../../../components/v3/ApplyScaffold.astro';
 import StickyApplyBar from '../../../components/v3/StickyApplyBar.astro';
 import { cityVisuals } from '../../../data/site';
 import { cities } from '../../../data/cities';
-import CitySection from '../../../components/sections/CitySection.astro';
+import CitySectionTest from '../../../components/sections/CitySectionTest.astro';
 
 const cityMap: Record<string, string> = { Shanghai: '上海', Suzhou: '苏州', Hangzhou: '杭州', Beijing: '北京' };
 
@@ -31,6 +31,13 @@ const days = [
   },
 ];
 
+const timelineMapZh: Record<string, string[]> = {
+  shanghai: ['抵达', '外滩夜景', '豫园', '城市漫步'],
+  suzhou: ['当日往返', '园林', '博物馆', '运河夜景'],
+  hangzhou: ['西湖', '灵隐寺', '茶村'],
+  beijing: ['长城', '故宫', '颐和园', '交流', '结营'],
+};
+
 const faq = [
   { q: '谁适合报名？', a: '以学生群体为主，提交资料后做基础匹配。' },
   { q: '订金是多少？', a: '席位确认后支付 CAD $300。' },
@@ -38,18 +45,18 @@ const faq = [
   { q: '这次行程只是普通观光吗？', a: '不是。行程包含本地学生交流活动与文化社交环节，帮助参与者建立真实的人际连接与文化理解。' },
 ];
 ---
-<Layout title="探索中国 | v2" lang="zh" alternateHref="/v2/" alternateLabel="EN">
+<Layout title="探索中国 | v2 测试版" lang="zh" alternateHref="/v2/" alternateLabel="EN">
   <HeroTour
     badge="2026 夏季 · 学生项目"
     title="探索中国 2026"
-    subtitle="专为学生设计的中国深度文化探索之旅，从城市到人情。"
+    subtitle="10天路线覆盖上海、苏州、杭州、北京，重点呈现城市文化、人文交流与在地体验。"
     image="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1800&q=80"
     imageAlt="长城风景"
     route="上海 → 苏州 → 杭州 → 北京"
     price="CAD 3,000 / 人"
     departs="暑期批次 · 小团席位"
     stats={[{label:'时长', value:'10天'},{label:'城市', value:'4'},{label:'回复', value:'24小时内'}]}
-    ctas={[{href:'#apply',label:'立即申请'},{href:'#itinerary',label:'查看行程',kind:'secondary'}]}
+    ctas={[{href:'#itinerary',label:'查看行程'},{href:'#apply',label:'立即申请',kind:'secondary'}]}
     asideLabel="行程速览"
     asideTitle="路线与出发信息"
     asideRouteLabel="路线"
@@ -60,37 +67,57 @@ const faq = [
 
   <AnchorNav links={[{href:'#overview',label:'概览'},{href:'#media',label:'媒体'},{href:'#itinerary',label:'行程'},{href:'#inclusion',label:'包含项目'},{href:'#faq',label:'问答'},{href:'#apply',label:'报名'}]} ctaHref="#apply" ctaLabel="报名" />
 
-  <section id="overview" class="section grid cols-3">
-    <article class="card tone-sand"><p class="label">亮点</p><h3>地标 + 在地文化</h3><p class="muted">结构化节奏配合在地体验与社交连接。</p></article>
-    <article class="card tone-sand"><p class="label">报名节奏</p><h3>提交 → 确认</h3><p class="muted">两步完成意向提交与席位确认。</p></article>
-    <article class="card tone-sand"><p class="label">支持模型</p><h3>中英双语协同</h3><p class="muted">关键物流节点提供中英沟通支持。</p></article>
-  </section>
-
-  <section id="style" class="section card tone-blue">
-    <h2 class="section-title">风格选择器</h2>
-    <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:12px;">
-      <button class="btn btn-secondary js-style active" data-style="balanced" style="background:#111;color:#fff;border-color:#111;">均衡模式</button>
-      <button class="btn btn-secondary js-style" data-style="culture">文化深度</button>
-      <button class="btn btn-secondary js-style" data-style="social">社交优先</button>
-    </div>
-    <article class="card" id="style-panel">
-      <p class="muted" data-style-body>标志性景点 + 适中节奏 + 社交时光。适合第一次来中国、希望全面体验的参与者。</p>
+  <section id="overview" class="section grid cols-2">
+    <article class="card tone-sand">
+      <p class="label">项目定位</p>
+      <h3>旅行产品优先，不是社团介绍页</h3>
+      <p class="muted">这版测试页聚焦旅行决策：路线价值、城市体验、社交交流、报名边界，信息一屏可读。</p>
+      <div class="grid cols-2" style="margin-top:10px;">
+        <div class="card" style="background:#fff;"><p class="label">出发</p><p style="font-weight:700;margin:6px 0 0;">2026年7月</p></div>
+        <div class="card" style="background:#fff;"><p class="label">规模</p><p style="font-weight:700;margin:6px 0 0;">最多20人</p></div>
+      </div>
+    </article>
+    <article class="card tone-blue">
+      <p class="label">本轮优化点</p>
+      <ul class="muted" style="line-height:1.85; margin:0; padding-left:18px;">
+        <li>城市模块统一为沉浸式结构。</li>
+        <li>轮播图片加载策略优化。</li>
+        <li>包含/不含模块视觉增强。</li>
+        <li>中英页面保持结构一致。</li>
+      </ul>
     </article>
   </section>
 
-  <Carousel id="media" title="城市视觉轮播" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label: cityMap[c.city] ?? c.city}))} />
+  <Carousel id="media" title="城市轮播（加载优化）" items={cityVisuals.map((c)=>({image:c.image, alt:c.alt, label: cityMap[c.city] ?? c.city}))} />
 
   <DayTabs id="itinerary" title="行程标签" days={days} labels={{hotel:'住宿', meals:'餐食', transport:'交通'}} />
 
   <section class="section">
     {cities.map((city, idx) => (
-      <CitySection city={city} lang="zh" eagerHero={idx === 0} />
+      <CitySectionTest city={city} lang="zh" eagerHero={idx === 0} timeline={timelineMapZh[city.id] ?? []} />
     ))}
   </section>
 
   <section id="inclusion" class="section grid cols-2">
-    <article class="card tone-rose"><h3>包含</h3><ul class="muted"><li>住宿安排（学生友好房型，含拼房机制）</li><li>中国境内城市间及市内交通</li><li>核心景点门票与指定团队活动</li><li>组织方全程协调支持</li><li>关键节点中英双语支持</li></ul></article>
-    <article class="card"><h3>不含</h3><ul class="muted"><li>国际往返机票</li><li>个人购物与可选升级消费</li><li>超出项目范围的个人支出</li></ul></article>
+    <article class="card tone-rose">
+      <p class="label">包含</p>
+      <h3>套餐内已覆盖项目</h3>
+      <ul class="muted" style="line-height:1.85; margin:0; padding-left:18px;">
+        <li>住宿安排（学生友好房型）</li>
+        <li>城市间与市内交通</li>
+        <li>核心景点与团队活动</li>
+        <li>组织协调与关键节点支持</li>
+      </ul>
+    </article>
+    <article class="card tone-dark">
+      <p class="label">不含</p>
+      <h3 style="color:#fff;">需自行准备部分</h3>
+      <ul class="muted" style="line-height:1.85; margin:0; padding-left:18px; color:#d8d8d8;">
+        <li>国际往返机票</li>
+        <li>个人购物消费</li>
+        <li>私人升级与额外开支</li>
+      </ul>
+    </article>
   </section>
 
   <FaqList id="faq" title="常见问题" items={faq} />
@@ -107,21 +134,4 @@ const faq = [
   />
 
   <StickyApplyBar href="#apply" label="快速报名" />
-
-  <script is:inline>
-    const styleCopy = {
-      balanced: '标志性景点 + 适中节奏 + 社交时光。适合第一次来中国、希望全面体验的参与者。',
-      culture: '博物馆、历史遗址与本地社区深度探索。减少夜间活动，增加文化厚度。适合对历史与艺术感兴趣的学生。',
-      social: '学生交流、美食探索、夜生活与城市活力。适合以拓展人脉为主要目标的参与者。',
-    };
-    const panel = document.querySelector('[data-style-body]');
-    document.querySelectorAll('.js-style').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const key = btn.getAttribute('data-style');
-        if (panel && key && styleCopy[key]) panel.textContent = styleCopy[key];
-        document.querySelectorAll('.js-style').forEach((b) => { b.style.background=''; b.style.color=''; b.style.borderColor=''; });
-        btn.style.background='#111'; btn.style.color='#fff'; btn.style.borderColor='#111';
-      });
-    });
-  </script>
 </Layout>

@@ -1,0 +1,67 @@
+---
+import type { CityData } from '../../data/cities';
+
+interface Props {
+  city: CityData;
+  lang: 'en' | 'zh';
+  timeline: string[];
+  eagerHero?: boolean;
+}
+
+const { city, lang, timeline, eagerHero = false } = Astro.props as Props;
+---
+<section id={city.id} class="section city-section">
+  <div class="city-hero">
+    <img
+      src={city.heroBg}
+      alt={lang === 'en' ? `${city.nameEn} hero` : `${city.nameZh} 城市横幅`}
+      loading={eagerHero ? 'eager' : 'lazy'}
+      fetchpriority={eagerHero ? 'high' : 'auto'}
+      width="1920"
+      height="800"
+    />
+    <div class="city-hero__overlay" aria-hidden="true"></div>
+    <div class="city-hero__content">
+      <p class="city-hero__day-label">{lang === 'en' ? city.dayLabelEn : city.dayLabelZh}</p>
+      <h2 class="city-hero__name">{lang === 'en' ? city.nameEn : city.nameZh}</h2>
+      <p class="city-hero__tagline">{lang === 'en' ? city.taglineEn : city.taglineZh}</p>
+    </div>
+  </div>
+
+  <div class="city-timeline">
+    {timeline.map((t) => <span class="city-timeline__node">{t}</span>)}
+  </div>
+
+  <div class="attraction-grid">
+    {city.attractions.map((a) => (
+      <article class="attraction-card">
+        <img src={a.image} alt={lang === 'en' ? a.nameEn : a.nameZh} loading="lazy" width="800" height="600" />
+        <div class="attraction-card__info">
+          <h3 class="attraction-card__name">{lang === 'en' ? a.nameEn : a.nameZh}</h3>
+          <p class="attraction-card__name-sub">{lang === 'en' ? a.nameZh : a.nameEn}</p>
+          <p class="attraction-card__desc">{lang === 'en' ? a.descEn : a.descZh}</p>
+          <div class="attraction-card__tags">
+            {(lang === 'en' ? a.tagsEn : a.tagsZh).map((tag) => (
+              <span class="attraction-card__tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<script is:inline>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+  );
+  document.querySelectorAll('.attraction-card').forEach((el) => observer.observe(el));
+</script>

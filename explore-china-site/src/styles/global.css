@@ -460,3 +460,20 @@ a { color: inherit; text-decoration: none; }
     transition: none;
   }
 }
+
+.city-timeline {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border: 1px solid #e6dfd2;
+}
+.city-timeline__node {
+  font-size: 0.75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .3rem .6rem;
+  border: 1px solid #d8d0c0;
+  background: #f8f2e7;
+}
