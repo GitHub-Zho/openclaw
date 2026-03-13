@@ -14,16 +14,32 @@ const destinations = [
       <h2 class="section-title">{isZh ? '灵感发现' : 'Inspirational Discovery'}</h2>
       <p class="section-sub">{isZh ? '从古都到水乡，每一座城市都讲述不同的中国故事。' : 'From ancient capitals to water towns — each city tells a different story.'}</p>
     </div>
-  </div>
-  <div class="dest-scroll">
-    {destinations.map((dest) => (
-      <article class="dest-card">
-        <img src={dest.image} alt={dest.alt} loading="lazy" width="600" height="800" />
-        <div class="dest-card__overlay">
-          <h3 class="dest-card__name">{dest.nameEn}</h3>
-          <p class="dest-card__name-zh">{dest.nameZh}</p>
-        </div>
-      </article>
-    ))}
+
+    <div class="dest-scroll js-dest-scroll" tabindex="0" aria-label={isZh ? '目的地横向滚动列表' : 'Destination horizontal list'}>
+      {destinations.map((dest) => (
+        <article class="dest-card">
+          <img src={dest.image} alt={dest.alt} loading="lazy" width="600" height="800" />
+          <div class="dest-card__overlay">
+            <h3 class="dest-card__name">{dest.nameEn}</h3>
+            <p class="dest-card__name-zh">{dest.nameZh}</p>
+          </div>
+        </article>
+      ))}
+    </div>
   </div>
 </section>
+
+<script is:inline>
+  document.querySelectorAll('.js-dest-scroll').forEach((el) => {
+    el.addEventListener(
+      'wheel',
+      (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault();
+          el.scrollLeft += e.deltaY;
+        }
+      },
+      { passive: false }
+    );
+  });
+</script>

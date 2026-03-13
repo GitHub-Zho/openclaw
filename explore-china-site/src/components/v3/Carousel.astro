@@ -11,15 +11,15 @@ const { id, title, items } = Astro.props as { id: string; title: string; items: 
     <button class="carousel-btn prev" type="button" aria-label="Previous">‹</button>
     <div class="carousel-track">
       {items.map((it, idx) => (
-        <article class="carousel-slide">
+        <article class="carousel-slide" style="flex:0 0 100%;">
           <img
             class="photo media-hero"
             src={it.image}
             alt={it.alt}
             width="1400"
             height="800"
-            loading={idx === 0 ? 'eager' : 'lazy'}
-            fetchpriority={idx === 0 ? 'high' : 'auto'}
+            loading={idx <= 1 ? 'eager' : 'lazy'}
+            fetchpriority={idx <= 1 ? 'high' : 'auto'}
             decoding="async"
           />
           <p style="text-align:center; margin:8px 0 0; font-weight:700;">{it.label}</p>
@@ -54,7 +54,8 @@ const { id, title, items } = Astro.props as { id: string; title: string; items: 
       };
       const start = () => {
         clearInterval(timer);
-        timer = setInterval(() => { i = (i + 1) % slides.length; render(); }, 3800);
+        if (slides.length <= 1) return;
+        timer = setInterval(() => { i = (i + 1) % slides.length; render(); }, 5800);
       };
       if (!dots.children.length) {
         slides.forEach((_, idx) => {
@@ -63,6 +64,10 @@ const { id, title, items } = Astro.props as { id: string; title: string; items: 
           b.addEventListener('click', () => { i = idx; render(); start(); });
           dots.appendChild(b);
         });
+      }
+      if (slides.length <= 1) {
+        prev?.setAttribute('hidden', 'true');
+        next?.setAttribute('hidden', 'true');
       }
       prev?.addEventListener('click', () => { i = (i - 1 + slides.length) % slides.length; render(); start(); });
       next?.addEventListener('click', () => { i = (i + 1) % slides.length; render(); start(); });
