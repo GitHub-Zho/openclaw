@@ -1,6 +1,6 @@
 {
-  "lastLearningAuditTs": 1773351158,
-  "lastAuditNote": "heartbeat audit run: PASS (25/25), no process-quality issues found; weekly knowledge-layer spot-check completed (lessons/patterns/skill-pack) with no duplicate/contradictory/outdated items detected",
+  "lastLearningAuditTs": 1773369719,
+  "lastAuditNote": "heartbeat audit run: PASS (25/25), no process-quality issues found; evidence: HEARTBEAT policy read, rubric read, recent transcript reviewed; remediation: none",
   "lastAuditSeverity": "none",
   "lastAuditScore": 25,
   "lastAuditDimensions": {
@@ -13,10 +13,7 @@
   "lastAuditEvidence": [
     "/home/ubuntu/.openclaw/workspace/HEARTBEAT.md",
     "/home/ubuntu/.openclaw/workspace/docs/learning-eval-rubric.md",
-    "/home/ubuntu/.openclaw/agents/main/sessions/b54e03d2-b502-4753-a109-4aba40ef38c1.jsonl",
-    "/home/ubuntu/.openclaw/workspace/knowledge/lessons.md",
-    "/home/ubuntu/.openclaw/workspace/knowledge/patterns.md",
-    "/home/ubuntu/.openclaw/workspace/knowledge/skill-packs/web.md"
+    "/home/ubuntu/.openclaw/agents/main/sessions/b54e03d2-b502-4753-a109-4aba40ef38c1.jsonl"
   ],
   "lastAuditRemediationItems": [],
   "totalIncidentsLogged": 0
