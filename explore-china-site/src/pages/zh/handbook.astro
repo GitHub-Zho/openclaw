@@ -42,12 +42,45 @@ const zhItinerary = [
     </div>
   </section>
 
-  <section id="itinerary" class="section card tone-dark" style="margin-bottom:36px;">
+  <section id="itinerary" class="section card tone-dark">
     <h2>10天概览</h2>
     <div class="grid cols-2">
       {zhItinerary.map((d) => (
         <article class="card" style="padding:12px; background:#fff; color:#151515; border-color:#ece7dd;"><p class="pill" style="margin-bottom:8px;">{d.day}</p><h3 style="margin-bottom:6px;">{d.city}</h3><p class="muted" style="margin:0; color:#545a60;">{d.plan}</p></article>
       ))}
+    </div>
+  </section>
+
+  <section class="section card tone-sand" style="margin-bottom:36px;">
+    <h2 class="section-title">出发前准备清单</h2>
+    <div class="grid cols-2">
+      <article class="card" style="background:#fff;">
+        <h3>从加拿大出发前</h3>
+        <p class="muted">建议在出发前完成证件、支付和网络准备，减少落地后的操作压力。</p>
+      </article>
+      <article class="card" style="background:#fff;">
+        <h3>签证</h3>
+        <p class="muted">请在预订前和出发前，以中国使领馆官方渠道为准确认最新入境政策。</p>
+      </article>
+      <article class="card" style="background:#fff;">
+        <h3>支付</h3>
+        <p class="muted">建议提前配置微信支付或支付宝。我们会提供基础设置指引。</p>
+      </article>
+      <article class="card" style="background:#fff;">
+        <h3>SIM 与网络</h3>
+        <p class="muted">可提前准备机场 SIM 或 eSIM；如需 VPN，请在入境前完成配置。</p>
+      </article>
+      <article class="card" style="background:#fff; grid-column:1 / -1;">
+        <h3>建议携带</h3>
+        <ul class="muted" style="line-height:1.8; padding-left:18px; margin:8px 0 0;">
+          <li>舒适步行鞋（每天步数较高）</li>
+          <li>轻薄分层衣物（夏季湿度变化大）</li>
+          <li>充电宝与轻便随身包</li>
+          <li>处方药与相关说明文件</li>
+        </ul>
+        <p style="margin-top:10px;"><a class="text-link" href="https://www.travelchina.org.cn/en" target="_blank">Travel China 官方参考 ↗</a></p>
+        <p><a class="text-link" href="https://www.chinatravel.com/tour/classic-china-tour" target="_blank">旅行社行程参考 ↗</a></p>
+      </article>
     </div>
   </section>
 </Layout>

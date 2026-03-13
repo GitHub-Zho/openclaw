@@ -1,24 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { cityVisuals } from '../../../data/site';
-import { cities } from '../../../data/cities';
-import CitySection from '../../../components/sections/CitySection.astro';
+import { cityVisuals, included, notIncluded, itinerary } from '../../../data/site';
 
 const zhCityNames: Record<string, string> = { Shanghai: '上海', Suzhou: '苏州', Hangzhou: '杭州', Beijing: '北京' };
-const zhItinerary = [
-  { day: '第1天', city: '上海', plan: '接机、入住、行前适应与本地支付/通信基础设置。' },
-  { day: '第2天', city: '苏州', plan: '博物馆与江南文化体验，傍晚古运河与街区漫游后返程。' },
-  { day: '第3天', city: '上海', plan: '豫园老城厢、外滩城市天际线与核心城区步行体验。' },
-  { day: '第4天', city: '上海', plan: '弹性探索日：文化街区、特色餐饮与晚间社交活动。' },
-  { day: '第5天', city: '杭州', plan: '西湖、灵隐寺与茶文化路线。' },
-  { day: '第6天', city: '北京', plan: '北上转场，完成入住并进行首日城市导览。' },
-  { day: '第7天', city: '北京', plan: '长城全天行程（具体段落按运营计划确认）。' },
-  { day: '第8天', city: '北京', plan: '故宫与颐和园文化历史路线。' },
-  { day: '第9天', city: '北京', plan: '本地学生交流日与结营社交夜。' },
-  { day: '第10天', city: '北京', plan: '离境安排与返程支持。' },
-];
-const zhIncluded = ['住宿安排（学生友好房型，含拼房机制）', '中国境内城市间及市内交通', '核心景点门票与指定团队活动', '组织方全程协调支持', '关键节点中英双语支持'];
-const zhNotIncluded = ['国际往返机票', '个人购物与可选升级消费', '超出项目范围的个人支出'];
 const zhFaq = [
   { q: '谁可以参加？', a: '当前主要面向学生群体，最终名额与资格规则将在报名开放前公布。' },
   { q: 'CAD $3,000 包含什么？', a: '主要覆盖核心住宿、境内交通、指定活动门票及组织支持；国际机票不包含。' },
@@ -41,67 +25,75 @@ const zhFaq = [
     <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; justify-content:center;"><a class="btn btn-primary" href="#register">报名入口</a><a class="btn btn-secondary" href="/zh/handbook">查看手册</a></div>
   </section>
 
-  <section id="destinations" class="section card tone-dark">
-    <h2 class="section-title">城市轮播</h2>
-    <div class="carousel" id="city-carousel-zh">
-      <button class="carousel-btn prev" type="button" aria-label="上一张">‹</button>
-      <div class="carousel-track">
-        {cityVisuals.map((city) => (
-          <article class="carousel-slide" style="padding:10px;"><img class="photo media-wide" src={city.image} alt={city.alt} /><p class="label" style="margin:8px 0 0; text-align:center; color:#fff;">{zhCityNames[city.city] ?? city.city}</p></article>
-        ))}
-      </div>
-      <button class="carousel-btn next" type="button" aria-label="下一张">›</button>
+  <section class="section card tone-blue">
+    <h2 class="section-title">信任与执行保障</h2>
+    <div class="grid cols-4">
+      <article class="card" style="background:#fff;"><p class="label">回复时效</p><p style="font-weight:700; margin:6px 0 0;">24小时内</p></article>
+      <article class="card" style="background:#fff;"><p class="label">语言支持</p><p style="font-weight:700; margin:6px 0 0;">中英双语</p></article>
+      <article class="card" style="background:#fff;"><p class="label">执行方式</p><p style="font-weight:700; margin:6px 0 0;">结构化 + 可控自由</p></article>
+      <article class="card" style="background:#fff;"><p class="label">线索管理</p><p style="font-weight:700; margin:6px 0 0;">表单+邮件跟进</p></article>
     </div>
-    <div class="carousel-dots" id="city-carousel-zh-dots"></div>
   </section>
 
-  <section id="itinerary" class="section">
-    <h2 class="section-title">城市沉浸式行程</h2>
-    {cities.map((city, idx) => (
-      <CitySection city={city} lang="zh" eagerHero={idx === 0} />
+  <section id="destinations" class="section grid cols-4">
+    {cityVisuals.map((city) => (
+      <figure style="margin:0;" class="card tone-blue"><img class="photo media-card" src={city.image} alt={city.alt} /><figcaption class="label" style="margin-top:8px; text-align:center;">{zhCityNames[city.city] ?? city.city}</figcaption></figure>
     ))}
   </section>
 
-  <section class="section grid cols-2"><article class="card"><h2 style="font-size:30px;">包含内容</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{zhIncluded.map((item) => <li>{item}</li>)}</ul></article><article class="card"><h2 style="font-size:30px;">不包含内容</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{zhNotIncluded.map((item) => <li>{item}</li>)}</ul></article></section>
+  <section class="section card tone-rose">
+    <h2 class="section-title">城市亮点（结构占位）</h2>
+    <div class="grid cols-2">
+      {cityVisuals.map((city) => (
+        <article class="card" style="background:#fff;">
+          <h3>{zhCityNames[city.city] ?? city.city}</h3>
+          <ul class="muted" style="line-height:1.8; padding-left:18px; margin:8px 0 0;">
+            <li>亮点占位 01</li>
+            <li>亮点占位 02</li>
+            <li>亮点占位 03</li>
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
 
-  <section id="faq" class="section card tone-blue"><h2 class="section-title">常见问题</h2>{zhFaq.map((f) => (<details style="margin-bottom:10px; border:1px solid #dce6f2; border-radius:12px; padding:12px; background:#fff;"><summary style="cursor:pointer; font-weight:700;">{f.q}</summary><p class="muted" style="margin:8px 0 0;">{f.a}</p></details>))}</section>
+  <section id="itinerary" class="section card">
+    <h2 class="section-title">每日摘要</h2>
+    <ul class="muted" style="line-height:1.9; margin:0; padding-left:18px;">
+      <li>第1天 上海 — 抵达、入住、基础设置</li>
+      <li>第2天 苏州 — 园林、运河、博物馆</li>
+      <li>第3天 上海 — 豫园、外滩、老城</li>
+      <li>第4天 上海 — 弹性探索日</li>
+      <li>第5天 杭州 — 西湖、灵隐、龙井</li>
+      <li>第6天 北京 — 转场与初览</li>
+      <li>第7天 北京 — 长城</li>
+      <li>第8天 北京 — 故宫 + 颐和园</li>
+      <li>第9天 北京 — 学生交流 + 结营夜</li>
+      <li>第10天 北京 — 离境</li>
+    </ul>
+  </section>
+
+  <section class="section card tone-dark">
+    <h2 class="section-title">详细行程</h2>
+    <div class="grid cols-2">
+      {itinerary.map((d) => (
+        <article class="card" style="padding:12px; background:#fff; color:#151515;"><p class="pill" style="margin-bottom:8px;">{d.day}</p><h3 style="margin-bottom:6px;">{zhCityNames[d.city] ?? d.city}</h3><p class="muted" style="margin:0;">{d.plan}</p></article>
+      ))}
+    </div>
+  </section>
 
   <section class="section card tone-sand">
     <h2 class="section-title">价格与预订规则</h2>
     <div class="grid cols-3">
       <article class="card" style="background:#fff;"><h3>订金</h3><p class="muted" style="margin:0;">席位确认后支付 CAD $300 锁定名额。</p></article>
       <article class="card" style="background:#fff;"><h3>尾款</h3><p class="muted" style="margin:0;">出发前 30 天完成尾款支付。</p></article>
-      <article class="card" style="background:#fff;"><h3>退改规则</h3><p class="muted" style="margin:0;">· 出发前60天以上取消：退全款（扣除 CAD $50 手续费）<br/>· 出发前30–59天取消：退还50%<br/>· 出发前30天内取消：订金（CAD $300）不予退还</p></article>
+      <article class="card" style="background:#fff;"><h3>退改规则</h3><p class="muted" style="margin:0;">正式报名邮件中提供完整退改条款。</p></article>
     </div>
   </section>
 
-  <section id="register" class="section card tone-dark" style="margin-bottom:36px;"><h2 class="section-title">报名</h2><form class="form-grid" action="https://formsubmit.co/jo_oyoy@outlook.com" method="POST"><input type="hidden" name="_subject" value="新的探索中国报名线索" /><input type="hidden" name="_next" value="https://explore-china-site.vercel.app/zh/success" /><input type="hidden" name="_captcha" value="false" /><div class="field"><label for="name">姓名</label><input id="name" name="name" required /></div><div class="field"><label for="email">邮箱</label><input id="email" type="email" name="email" required /></div><div class="field"><label for="phone">微信 / 电话（可选）</label><input id="phone" name="phone" /></div><div class="field"><label for="city">所在城市</label><input id="city" name="city" /></div><div class="field" style="grid-column:1 / -1;"><label for="goal">你为什么想参加这次行程？</label><textarea id="goal" name="goal" required></textarea></div><div style="grid-column:1 / -1; display:flex; gap:10px; justify-content:center;"><button class="btn btn-primary" type="submit">提交报名</button></div></form><p class="muted" style="text-align:center; margin-top:10px;">有问题？发邮件至 hello@explorationclub.ca</p></section>
+  <section class="section grid cols-2"><article class="card"><h2 style="font-size:30px;">包含内容</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{included.map((item) => <li>{item}</li>)}</ul></article><article class="card"><h2 style="font-size:30px;">不包含内容</h2><ul class="muted" style="line-height:1.8; padding-left:18px; margin:0;">{notIncluded.map((item) => <li>{item}</li>)}</ul></article></section>
 
-  <script is:inline>
-    (() => {
-      const root = document.getElementById('city-carousel-zh');
-      if (!root) return;
-      const track = root.querySelector('.carousel-track');
-      const slides = Array.from(root.querySelectorAll('.carousel-slide'));
-      const prev = root.querySelector('.prev');
-      const next = root.querySelector('.next');
-      const dotsRoot = document.getElementById('city-carousel-zh-dots');
-      let idx = 0;
-      const render = () => {
-        track.style.transform = `translateX(-${idx * 100}%)`;
-        if (dotsRoot) Array.from(dotsRoot.children).forEach((d, i) => d.classList.toggle('active', i === idx));
-      };
-      if (dotsRoot) {
-        slides.forEach((_, i) => {
-          const b = document.createElement('button');
-          b.addEventListener('click', () => { idx = i; render(); });
-          dotsRoot.appendChild(b);
-        });
-      }
-      prev?.addEventListener('click', () => { idx = (idx - 1 + slides.length) % slides.length; render(); });
-      next?.addEventListener('click', () => { idx = (idx + 1) % slides.length; render(); });
-      setInterval(() => { idx = (idx + 1) % slides.length; render(); }, 2600);
-      render();
-    })();
-  </script>
+  <section id="faq" class="section card tone-blue"><h2 class="section-title">常见问题</h2>{zhFaq.map((f) => (<details style="margin-bottom:10px; border:1px solid #dce6f2; border-radius:12px; padding:12px; background:#fff;"><summary style="cursor:pointer; font-weight:700;">{f.q}</summary><p class="muted" style="margin:8px 0 0;">{f.a}</p></details>))}</section>
+
+  <section id="register" class="section card tone-dark" style="margin-bottom:36px;"><h2 class="section-title">报名</h2><form class="form-grid" action="https://formsubmit.co/jo_oyoy@outlook.com" method="POST"><input type="hidden" name="_subject" value="新的探索中国报名线索" /><input type="hidden" name="_next" value="https://explore-china-site.vercel.app/zh/success" /><input type="hidden" name="_captcha" value="false" /><div class="field"><label for="name">姓名</label><input id="name" name="name" required /></div><div class="field"><label for="email">邮箱</label><input id="email" type="email" name="email" required /></div><div class="field"><label for="phone">微信 / 电话（可选）</label><input id="phone" name="phone" /></div><div class="field"><label for="city">所在城市</label><input id="city" name="city" /></div><div class="field" style="grid-column:1 / -1;"><label for="goal">你为什么想参加这次行程？</label><textarea id="goal" name="goal" required></textarea></div><div style="grid-column:1 / -1; display:flex; gap:10px; justify-content:center;"><button class="btn btn-primary" type="submit">提交报名</button></div></form><p class="muted" style="text-align:center; margin-top:10px;">有问题？发邮件至 hello@explorationclub.ca</p></section>
 </Layout>

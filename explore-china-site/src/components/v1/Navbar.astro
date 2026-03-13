@@ -24,6 +24,7 @@ const isZh = lang === 'zh';
       <div class="flex items-center gap-3">
         <a href={isZh ? '/zh/trips/explore-china-2026-summer' : '/trips/explore-china-2026-summer'} class="text-white text-sm">{isZh ? '行程' : 'Trip'}</a>
         <a href={isZh ? '/zh/handbook' : '/handbook'} class="text-white text-sm">{isZh ? '手册' : 'Handbook'}</a>
+        <a href={isZh ? '/zh/about' : '/about'} class="text-white text-sm">{isZh ? '关于' : 'About'}</a>
         <a href={alternateHref} class="navbar__lang text-white text-sm">{alternateLabel}</a>
         {minimalShowApply && (
           <a href={isZh ? '/zh/trips/explore-china-2026-summer#register' : '/trips/explore-china-2026-summer#register'} class="btn btn--primary bg-red-700 text-white px-5 py-2 text-sm font-semibold hover:bg-red-800 transition-colors">{isZh ? '立即报名' : 'Apply'}</a>
@@ -34,6 +35,7 @@ const isZh = lang === 'zh';
         <nav class="navbar__links hidden md:flex gap-8 text-sm font-medium tracking-wide text-white" aria-label="Main navigation">
           <a href={isZh ? '/zh/trips/explore-china-2026-summer' : '/trips/explore-china-2026-summer'}>{isZh ? '行程' : 'Trip'}</a>
           <a href={isZh ? '/zh/handbook' : '/handbook'}>{isZh ? '手册' : 'Handbook'}</a>
+          <a href={isZh ? '/zh/about' : '/about'}>{isZh ? '关于' : 'About'}</a>
         </nav>
         <div class="navbar__actions flex items-center gap-3">
           <a href={alternateHref} class="navbar__lang text-white text-sm">{alternateLabel}</a>

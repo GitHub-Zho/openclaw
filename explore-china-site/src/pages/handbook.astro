@@ -38,12 +38,45 @@ import { handbookSections, cityVisuals, itinerary, currentTrip } from '../data/s
     </div>
   </section>
 
-  <section id="itinerary" class="section card tone-dark" style="margin-bottom:36px;">
+  <section id="itinerary" class="section card tone-dark">
     <h2>10-day schedule snapshot</h2>
     <div class="grid cols-2">
       {itinerary.map((d) => (
         <article class="card" style="padding:12px; background:#fff; color:#151515; border-color:#ece7dd;"><p class="pill" style="margin-bottom:8px;">{d.day}</p><h3 style="margin-bottom:6px;">{d.city}</h3><p class="muted" style="margin:0; color:#545a60;">{d.plan}</p></article>
       ))}
+    </div>
+  </section>
+
+  <section class="section card tone-sand" style="margin-bottom:36px;">
+    <h2 class="section-title">Pre-departure checklist</h2>
+    <div class="grid cols-2">
+      <article class="card" style="background:#fff;">
+        <h3>Before you leave Canada</h3>
+        <p class="muted">Prepare documents, payments, and connectivity before departure to reduce on-arrival friction.</p>
+      </article>
+      <article class="card" style="background:#fff;">
+        <h3>Visa</h3>
+        <p class="muted">Confirm the latest Chinese entry policy on official embassy channels before booking and departure.</p>
+      </article>
+      <article class="card" style="background:#fff;">
+        <h3>Payment</h3>
+        <p class="muted">Set up WeChat Pay or Alipay before departure. We can guide setup for practical in-city use.</p>
+      </article>
+      <article class="card" style="background:#fff;">
+        <h3>SIM & connectivity</h3>
+        <p class="muted">Prepare airport SIM or eSIM in advance. Complete VPN setup before entering China when needed.</p>
+      </article>
+      <article class="card" style="background:#fff; grid-column:1 / -1;">
+        <h3>What to pack (suggested)</h3>
+        <ul class="muted" style="line-height:1.8; padding-left:18px; margin:8px 0 0;">
+          <li>Comfortable walking shoes</li>
+          <li>Light layers for summer humidity</li>
+          <li>Power bank and small day bag</li>
+          <li>Prescription medication with documentation</li>
+        </ul>
+        <p style="margin-top:10px;"><a class="text-link" href="https://www.travelchina.org.cn/en" target="_blank">Travel China official resources ↗</a></p>
+        <p><a class="text-link" href="https://www.chinatravel.com/tour/classic-china-tour" target="_blank">Classic operator reference ↗</a></p>
+      </article>
     </div>
   </section>
 </Layout>

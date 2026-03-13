@@ -1,8 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { currentTrip, faq, included, notIncluded, cityVisuals } from '../../data/site';
-import { cities } from '../../data/cities';
-import CitySection from '../../components/sections/CitySection.astro';
+import { currentTrip, faq, included, notIncluded, cityVisuals, itinerary } from '../../data/site';
 ---
 <Layout title={currentTrip.title} lang="en" alternateHref="/zh/trips/explore-china-2026-summer" alternateLabel="中文">
   <section id="overview" class="section card tone-sand" style="padding:34px;">
@@ -23,28 +21,73 @@ import CitySection from '../../components/sections/CitySection.astro';
     </div>
   </section>
 
-  <section id="destinations" class="section card tone-dark">
-    <h2 class="section-title">City carousel</h2>
-    <div class="carousel" id="city-carousel-en">
-      <button class="carousel-btn prev" type="button" aria-label="Previous city">‹</button>
-      <div class="carousel-track">
-        {cityVisuals.map((city) => (
-          <article class="carousel-slide" style="padding:10px;">
-            <img class="photo media-wide" src={city.image} alt={city.alt} />
-            <p class="label" style="margin:8px 0 0; text-align:center; color:#fff;">{city.city}</p>
-          </article>
-        ))}
-      </div>
-      <button class="carousel-btn next" type="button" aria-label="Next city">›</button>
+  <section class="section card tone-blue">
+    <h2 class="section-title">Trust & service confidence</h2>
+    <div class="grid cols-4">
+      <article class="card" style="background:#fff;"><p class="label">Response SLA</p><p style="font-weight:700; margin:6px 0 0;">Within 24h</p></article>
+      <article class="card" style="background:#fff;"><p class="label">Language support</p><p style="font-weight:700; margin:6px 0 0;">EN / 中文</p></article>
+      <article class="card" style="background:#fff;"><p class="label">Execution style</p><p style="font-weight:700; margin:6px 0 0;">Structured + Flexible</p></article>
+      <article class="card" style="background:#fff;"><p class="label">Lead channel</p><p style="font-weight:700; margin:6px 0 0;">Form + Email follow-up</p></article>
     </div>
-    <div class="carousel-dots" id="city-carousel-en-dots"></div>
   </section>
 
-  <section id="itinerary" class="section">
-    <h2 class="section-title">City-by-city immersive itinerary</h2>
-    {cities.map((city, idx) => (
-      <CitySection city={city} lang="en" eagerHero={idx === 0} />
+  <section id="destinations" class="section grid cols-4">
+    {cityVisuals.map((city) => (
+      <figure style="margin:0;" class="card tone-blue">
+        <img class="photo media-card" src={city.image} alt={city.alt} />
+        <figcaption class="label" style="margin-top:8px; text-align:center;">{city.city}</figcaption>
+      </figure>
     ))}
+  </section>
+
+  <section class="section card tone-rose">
+    <h2 class="section-title">City highlights (structure draft)</h2>
+    <div class="grid cols-2">
+      {cityVisuals.map((city) => (
+        <article class="card" style="background:#fff;">
+          <h3>{city.city}</h3>
+          <ul class="muted" style="line-height:1.8; padding-left:18px; margin:8px 0 0;">
+            <li>Highlight point 01 (to be finalized)</li>
+            <li>Highlight point 02 (to be finalized)</li>
+            <li>Highlight point 03 (to be finalized)</li>
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="itinerary" class="section card">
+    <h2 class="section-title">Day-by-day summary</h2>
+    <ul class="muted" style="line-height:1.9; margin:0; padding-left:18px;">
+      <li>Day 1 Shanghai — Arrival, check-in, setup</li>
+      <li>Day 2 Suzhou — Gardens, canals, museum</li>
+      <li>Day 3 Shanghai — Yu Garden, Bund, Old Town</li>
+      <li>Day 4 Shanghai — Free exploration day</li>
+      <li>Day 5 Hangzhou — West Lake, Lingyin, Longjing tea</li>
+      <li>Day 6 Beijing — Transfer, arrival, orientation</li>
+      <li>Day 7 Beijing — Great Wall</li>
+      <li>Day 8 Beijing — Forbidden City + Summer Palace</li>
+      <li>Day 9 Beijing — Student exchange + closing night</li>
+      <li>Day 10 Beijing — Departure</li>
+    </ul>
+  </section>
+
+  <section class="section card tone-dark">
+    <h2 class="section-title">Full day-by-day details</h2>
+    <div class="grid cols-2">
+      {itinerary.map((d) => (
+        <article class="card" style="padding:12px; background:#fff; color:#151515;"><p class="pill" style="margin-bottom:8px;">{d.day}</p><h3 style="margin-bottom:6px;">{d.city}</h3><p class="muted" style="margin:0;">{d.plan}</p></article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section card tone-sand">
+    <h2 class="section-title">Pricing & booking rules</h2>
+    <div class="grid cols-3">
+      <article class="card" style="background:#fff;"><h3>Deposit</h3><p class="muted" style="margin:0;">Reserve seat with CAD $300 deposit after confirmation call.</p></article>
+      <article class="card" style="background:#fff;"><h3>Balance</h3><p class="muted" style="margin:0;">Remaining balance due 30 days before departure.</p></article>
+      <article class="card" style="background:#fff;"><h3>Cancellation</h3><p class="muted" style="margin:0;">Refund and change policy will be provided in the formal booking pack.</p></article>
+    </div>
   </section>
 
   <section class="section grid cols-2">
@@ -57,15 +100,6 @@ import CitySection from '../../components/sections/CitySection.astro';
     {faq.map((f) => (
       <details style="margin-bottom:10px; border:1px solid #dce6f2; border-radius:12px; padding:12px; background:#fff;"><summary style="cursor:pointer; font-weight:700;">{f.q}</summary><p class="muted" style="margin:8px 0 0;">{f.a}</p></details>
     ))}
-  </section>
-
-  <section class="section card tone-sand">
-    <h2 class="section-title">Pricing & booking rules</h2>
-    <div class="grid cols-3">
-      <article class="card" style="background:#fff;"><h3>Deposit</h3><p class="muted" style="margin:0;">Reserve seat with CAD $300 deposit after confirmation call.</p></article>
-      <article class="card" style="background:#fff;"><h3>Balance</h3><p class="muted" style="margin:0;">Remaining balance due 30 days before departure.</p></article>
-      <article class="card" style="background:#fff;"><h3>Cancellation</h3><p class="muted" style="margin:0;">· Cancel 60+ days before departure: full refund minus CAD $50 processing fee<br/>· Cancel 30–59 days before: 50% refund<br/>· Cancel less than 30 days before: deposit (CAD $300) non-refundable</p></article>
-    </div>
   </section>
 
   <section id="register" class="section card tone-dark" style="margin-bottom:36px;">
@@ -83,32 +117,4 @@ import CitySection from '../../components/sections/CitySection.astro';
     </form>
     <p class="muted" style="text-align:center; margin-top:10px;">Questions? Email hello@explorationclub.ca</p>
   </section>
-
-  <script is:inline>
-    (() => {
-      const root = document.getElementById('city-carousel-en');
-      if (!root) return;
-      const track = root.querySelector('.carousel-track');
-      const slides = Array.from(root.querySelectorAll('.carousel-slide'));
-      const prev = root.querySelector('.prev');
-      const next = root.querySelector('.next');
-      const dotsRoot = document.getElementById('city-carousel-en-dots');
-      let idx = 0;
-      const render = () => {
-        track.style.transform = `translateX(-${idx * 100}%)`;
-        if (dotsRoot) Array.from(dotsRoot.children).forEach((d, i) => d.classList.toggle('active', i === idx));
-      };
-      if (dotsRoot) {
-        slides.forEach((_, i) => {
-          const b = document.createElement('button');
-          b.addEventListener('click', () => { idx = i; render(); });
-          dotsRoot.appendChild(b);
-        });
-      }
-      prev?.addEventListener('click', () => { idx = (idx - 1 + slides.length) % slides.length; render(); });
-      next?.addEventListener('click', () => { idx = (idx + 1) % slides.length; render(); });
-      setInterval(() => { idx = (idx + 1) % slides.length; render(); }, 2600);
-      render();
-    })();
-  </script>
 </Layout>
