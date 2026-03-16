@@ -1,0 +1,22 @@
+# Personal data (created locally, not tracked)
+MEMORY.md
+USER.md
+*.env
+.env.*
+
+# OpenClaw runtime
+node_modules/
+*.db
+sessions/
+logs/
+
+# Project-specific (has own repos)
+explore-china-site/
+astro-rag/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets (never commit)
+auth-profiles.json

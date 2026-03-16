@@ -1,0 +1,340 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.11",
+    "lastTouchedAt": "2026-03-16T05:29:31.359Z"
+  },
+  "env": {
+    "shellEnv": {
+      "enabled": true
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-16T05:26:50.749Z",
+    "lastRunVersion": "2026.3.11",
+    "lastRunCommand": "configure",
+    "lastRunMode": "local"
+  },
+  "logging": {
+    "redactSensitive": "tools"
+  },
+  "browser": {
+    "enabled": true,
+    "executablePath": "/usr/bin/google-chrome-stable",
+    "headless": true,
+    "noSandbox": true,
+    "attachOnly": false,
+    "defaultProfile": "openclaw"
+  },
+  "auth": {
+    "profiles": {
+      "github-copilot:github": {
+        "provider": "github-copilot",
+        "mode": "token"
+      },
+      "openai:default": {
+        "provider": "openai",
+        "mode": "api_key"
+      },
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      },
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "token"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-opus-4-6",
+        "fallbacks": [
+          "anthropic/claude-sonnet-4-6"
+        ]
+      },
+      "models": {
+        "anthropic/claude-sonnet-4-6": {},
+        "anthropic/claude-opus-4-6": {}
+      },
+      "workspace": "${OPENCLAW_HOME}/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "model": {
+          "primary": "anthropic/claude-opus-4-6",
+          "fallbacks": [
+            "openai/gpt-5.4-codex",
+            "openai-codex/gpt-5.3-codex",
+            "opencode/claude-opus-4-6",
+            "openai-codex/gpt-5.3-codex-spark"
+          ]
+        },
+        "subagents": {
+          "allowAgents": [
+            "brain",
+            "web-builder",
+            "web-qa",
+            "learning",
+            "research",
+            "prompt-optimizer",
+            "public-ops"
+          ]
+        }
+      },
+      {
+        "id": "brain",
+        "name": "brain",
+        "workspace": "${OPENCLAW_HOME}/workspace-brain",
+        "agentDir": "${OPENCLAW_HOME}/agents/brain/agent",
+        "model": {
+          "primary": "openai-codex/gpt-5.4",
+          "fallbacks": [
+            "openai/gpt-5.4-codex",
+            "openai-codex/gpt-5.3-codex",
+            "opencode/claude-opus-4-6",
+            "openai-codex/gpt-5.3-codex-spark"
+          ]
+        }
+      },
+      {
+        "id": "web-builder",
+        "name": "web-builder",
+        "workspace": "${OPENCLAW_HOME}/workspace-web-builder",
+        "agentDir": "${OPENCLAW_HOME}/agents/web-builder/agent",
+        "model": {
+          "primary": "openai-codex/gpt-5.4",
+          "fallbacks": [
+            "openai/gpt-5.4-codex",
+            "openai-codex/gpt-5.3-codex",
+            "opencode/claude-opus-4-6",
+            "openai-codex/gpt-5.3-codex-spark"
+          ]
+        }
+      },
+      {
+        "id": "web-qa",
+        "name": "web-qa",
+        "workspace": "${OPENCLAW_HOME}/workspace-web-qa",
+        "agentDir": "${OPENCLAW_HOME}/agents/web-qa/agent",
+        "model": {
+          "primary": "openai-codex/gpt-5.4",
+          "fallbacks": [
+            "openai/gpt-5.4-codex",
+            "openai-codex/gpt-5.3-codex",
+            "opencode/claude-opus-4-6",
+            "openai-codex/gpt-5.3-codex-spark"
+          ]
+        }
+      },
+      {
+        "id": "learning",
+        "name": "learning",
+        "workspace": "${OPENCLAW_HOME}/workspace-learning",
+        "agentDir": "${OPENCLAW_HOME}/agents/learning/agent",
+        "model": {
+          "primary": "openai-codex/gpt-5.4",
+          "fallbacks": [
+            "openai/gpt-5.4-codex",
+            "openai-codex/gpt-5.3-codex",
+            "opencode/claude-opus-4-6",
+            "openai-codex/gpt-5.3-codex-spark"
+          ]
+        }
+      },
+      {
+        "id": "research",
+        "name": "research",
+        "workspace": "${OPENCLAW_HOME}/workspace-research",
+        "agentDir": "${OPENCLAW_HOME}/agents/research/agent",
+        "model": {
+          "primary": "openai-codex/gpt-5.4",
+          "fallbacks": [
+            "openai/gpt-5.4-codex",
+            "openai-codex/gpt-5.3-codex",
+            "opencode/claude-opus-4-6",
+            "openai-codex/gpt-5.3-codex-spark"
+          ]
+        }
+      },
+      {
+        "id": "prompt-optimizer",
+        "name": "prompt-optimizer",
+        "workspace": "${OPENCLAW_HOME}/workspace-prompt-optimizer",
+        "agentDir": "${OPENCLAW_HOME}/agents/prompt-optimizer/agent",
+        "model": {
+          "primary": "openai-codex/gpt-5.4",
+          "fallbacks": [
+            "openai/gpt-5.4-codex",
+            "openai-codex/gpt-5.3-codex",
+            "opencode/claude-opus-4-6",
+            "openai-codex/gpt-5.3-codex-spark"
+          ]
+        }
+      },
+      {
+        "id": "public-ops",
+        "name": "public-ops",
+        "workspace": "${OPENCLAW_HOME}/workspace-public-ops",
+        "agentDir": "${OPENCLAW_HOME}/agents/public-ops/agent",
+        "model": {
+          "primary": "openai-codex/gpt-5.4",
+          "fallbacks": [
+            "openai/gpt-5.4-codex",
+            "openai-codex/gpt-5.3-codex",
+            "opencode/claude-opus-4-6",
+            "openai-codex/gpt-5.3-codex-spark"
+          ]
+        }
+      }
+    ]
+  },
+  "tools": {
+    "profile": "full",
+    "web": {
+      "search": {
+        "enabled": true,
+        "apiKey": "__REPLACE_ME__"
+      },
+      "fetch": {
+        "enabled": true
+      }
+    },
+    "elevated": {
+      "enabled": true
+    },
+    "exec": {
+      "host": "gateway",
+      "security": "full",
+      "ask": "off"
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "public-ops",
+      "match": {
+        "channel": "feishu",
+        "accountId": "default"
+      }
+    },
+    {
+      "agentId": "public-ops",
+      "match": {
+        "channel": "discord",
+        "accountId": "1439846025635561562"
+      }
+    }
+  ],
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "boot-md": {
+          "enabled": true
+        },
+        "bootstrap-extra-files": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "web": {
+    "enabled": true
+  },
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "token": "__REPLACE_ME__",
+      "groupPolicy": "allowlist",
+      "streaming": "off",
+      "guilds": {
+        "1439846025635561562": {}
+      }
+    },
+    "feishu": {
+      "enabled": true,
+      "appId": "__REPLACE_ME__",
+      "appSecret": "__REPLACE_ME__",
+      "connectionMode": "websocket",
+      "domain": "feishu",
+      "groupPolicy": "open",
+      "requireMention": true,
+      "groups": {
+        "oc_ac3f7d0e5969b65a2b98fb22cbd96e0f": {
+          "requireMention": false
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "lan",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://127.0.0.1:18789",
+        "http://localhost:18789"
+      ]
+    },
+    "auth": {
+      "mode": "password",
+      "token": "__REPLACE_ME__",
+      "password": "__REPLACE_ME__"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    },
+    "entries": {
+      "notion": {
+        "apiKey": "__REPLACE_ME__"
+      }
+    }
+  },
+  "plugins": {
+    "allow": [
+      "discord",
+      "feishu"
+    ],
+    "entries": {
+      "discord": {
+        "enabled": true
+      },
+      "feishu": {
+        "enabled": true
+      }
+    },
+    "installs": {}
+  }
+}
