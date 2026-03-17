@@ -82,6 +82,15 @@ cp "$REPO_DIR/main/docs/"*.md "$WORKSPACE/docs/" 2>/dev/null || true
 cp "$REPO_DIR/main/docs/postmortems/"*.md "$WORKSPACE/docs/postmortems/" 2>/dev/null || true
 echo "   ✅ docs/ (workflow, protocols, postmortems, runbooks)"
 
+# ─── Step 3b: Task System ────────────────────────────────────────
+echo ""
+echo "📋 Step 3b: Setting up async task system..."
+
+mkdir -p "$WORKSPACE/tasks"
+cp "$REPO_DIR/main/tasks/PROTOCOL.md" "$WORKSPACE/tasks/"
+cp "$REPO_DIR/main/tasks/todolist.md" "$WORKSPACE/tasks/"
+echo "   ✅ tasks/ (todolist + protocol)"
+
 # ─── Step 4: Tools & Scripts ────────────────────────────────────
 echo ""
 echo "🔧 Step 4: Copying tools and scripts..."

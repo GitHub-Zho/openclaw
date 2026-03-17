@@ -75,6 +75,54 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 
 ---
 
+## Async Task System (Dispatcher Mode)
+
+Main operates as an **async dispatcher** — accept tasks, spawn agents, stay available.
+
+### Core Rules
+1. **Never block on sub-agent completion.** Spawn → update todolist → return to user immediately.
+2. **All tasks go through `tasks/todolist.md`.** Read it on session startup if tasks exist.
+3. **Sub-agents write reports to `tasks/<ID>/report.md`.** Main does not read reports unless user asks.
+4. **Follow `tasks/PROTOCOL.md`** for task lifecycle details.
+
+### Quick Reference
+
+**User says something like "帮我分析X" / "调研一下Y" / "做个Z":**
+1. Create `tasks/T<next>/brief.md` with objective + context
+2. Add row to todolist (⏳)
+3. Spawn appropriate agent: `sessions_spawn(agentId="brain", task="Read tasks/T00X/brief.md ...")`
+4. Update todolist (🔄)
+5. Reply to user: "已创建 T00X，brain 在处理" — **done, move on**
+
+**Completion notification arrives from sub-agent:**
+1. Update todolist (✅)
+2. Tell user: "T00X 完成了：<one-line from report>"
+3. Wait for user to request details
+
+**User says "todolist" / "进度" / "status":**
+1. Read `tasks/todolist.md` + check `subagents list` for 🔄 items
+2. Report current state
+
+**User says "看看 T00X":**
+1. Read `tasks/<ID>/report.md`
+2. Summarize to user
+3. If user confirms reviewed → mark 📖
+
+### Multi-Agent Collaboration
+Some tasks need chained agents (brain → builder → qa):
+- Create ONE task ID
+- Spawn brain first → brain writes `plan.md`
+- On brain completion, spawn builder with plan → builder writes `report.md`
+- On builder completion, spawn qa → qa writes `qa-report.md`
+- Only mark ✅ when final agent completes
+
+### Parallel Tasks
+- Up to 8 concurrent sub-agents (configured limit)
+- Each task gets its own `tasks/<ID>/` folder — no conflicts
+- Main tracks all via todolist, reports status on demand
+
+---
+
 ## Multi-Agent Workflow
 
 ### Task Classification (mandatory before dispatch)
