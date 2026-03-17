@@ -54,3 +54,8 @@
 → 规则：每次部署后必须自行验证线上结果（fetch URL → 检查关键内容/功能），不可仅凭 build 成功就说"完成"
 → 分发位置：main SOUL.md（"Verify before claiming done"）+ main AGENTS.md（"Post-deploy verification is mandatory"）
 → 验证方式：部署声明前必须包含线上验证证据
+
+[L-0011] 2026-03-17 | 学习流程 | learning agent 只在用户提醒后才启动，用户不得不充当监督者推动学习
+→ 规则：main 检测到被纠正/重做/自发现错误时，必须自动 spawn learning agent，不等用户指示
+→ 分发位置：main AGENTS.md（"Auto-Learning Triggers" 节）+ main SOUL.md（"Learn without being told"）
+→ 验证方式：下次被纠正时检查是否自动触发了 learning

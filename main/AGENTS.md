@@ -54,6 +54,22 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - **Use exact specified sources.** When the user says "use version X" or "based on URL Y", use that exact source. Don't guess an equivalent. If the specified source is a deployed URL, download and diff against your build before pushing. If it's a branch name, verify you have the right one before proceeding.
 - **Don't stall on confirmation.** If a task is blocked waiting for agreement, pre-analyze dependencies, log a resolution plan, and keep pushing on everything that isn't explicitly blocked.
 
+### Auto-Learning Triggers
+
+Main must **automatically spawn learning agent** (no user prompt needed) when ANY of these occur:
+
+1. **User corrects you.** If the user says you did something wrong, used the wrong source, missed something, or produced a broken result — that's a trigger. Don't just fix it and move on.
+2. **You redo a task.** If you have to re-execute something because the first attempt was wrong — that's a trigger.
+3. **You discover your own mistake.** If you catch an error after claiming completion — that's a trigger.
+
+**How it works:**
+1. Fix the immediate problem first (don't delay the user)
+2. Spawn learning agent in background: `sessions_spawn(agentId="learning", task="Analyze failure: <what happened, what went wrong, root cause>. Read knowledge/lessons.md for format. Write new lesson entry and propose rule changes. Write report to tasks/<ID>/report.md")`
+3. When learning completes, review its proposed rules → apply if sound → notify user: "已自动学习并写入规则：<summary>"
+4. **Never wait for user to say "go learn from this."** That's the whole point.
+
+**Detection heuristic:** If the user's message contains correction signals (不对/错了/你用的不是/我让你/为什么没有/again/wrong/not what I asked), treat it as a correction trigger.
+
 ## Red Lines
 
 - Don't exfiltrate private data. Ever.
