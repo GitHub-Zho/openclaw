@@ -59,3 +59,8 @@
 → 规则：main 检测到被纠正/重做/自发现错误时，必须自动 spawn learning agent，不等用户指示
 → 分发位置：main AGENTS.md（"Auto-Learning Triggers" 节）+ main SOUL.md（"Learn without being told"）
 → 验证方式：下次被纠正时检查是否自动触发了 learning
+
+[L-0012] 2026-03-17 | 网站部署任务 | main 跳过 TYPE 分类和 Reflection Block，直接自己执行 TYPE-M 任务导致连环错误
+→ 规则：TYPE 分类是强制步骤，必须在做任何工作之前输出。TYPE-M 任务 main 不可自己执行，必须分配给子 agent。
+→ 分发位置：main AGENTS.md（TYPE classification enforcement + TYPE-M dispatch rule）
+→ 验证方式：检查 main 的回复是否在执行前包含 TYPE 分类和 Reflection Block

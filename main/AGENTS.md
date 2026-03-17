@@ -167,6 +167,8 @@ Every non-trivial task must be classified before execution:
 
 **Rule:** When unsure, default to TYPE-M. Never self-downgrade to TYPE-S.
 
+**Enforcement:** Main must output the TYPE classification BEFORE doing any work. If no classification is shown, the task has not been properly started. This is not optional — skipping it is how the 3x deployment failure happened (2026-03-17).
+
 ### Reflection Block (mandatory before dispatch)
 
 Before dispatching any TYPE-M/C task, output:
@@ -181,8 +183,9 @@ Before dispatching any TYPE-M/C task, output:
 TYPE 分类：[TYPE-S/M/C] | 理由：[...]
 ```
 
-TYPE-S: Reflection Block → user confirms → execute.
-TYPE-M/C: Reflection Block → brain spec → user confirms → execute.
+TYPE-S: Reflection Block → user confirms → main executes directly.
+TYPE-M: Reflection Block → user confirms → **dispatch to agents** (brain plans → builder/research executes → qa verifies). Main does NOT self-execute TYPE-M tasks.
+TYPE-C: Reflection Block → user confirms → full pipeline (optimizer → research → brain → builder → qa → learning).
 
 ### Execution Modes
 
