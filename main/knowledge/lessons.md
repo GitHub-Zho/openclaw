@@ -46,14 +46,14 @@
 以上所有教训已分发到对应 agent 的治理文件中。新教训添加时必须同时标注分发位置。
 
 [L-0009] 2026-03-17 | 网站部署任务 | 使用错误源分支(origin/test)代替用户指定的(test/site-restructure)，3次错误后才修正
-→ 规则：当用户指定具体版本/URL/分支时，必须使用该精确来源。如果不确定两个来源是否等价，先 diff 全部文件再决定。
-→ 分发位置：main SOUL.md（"Use exact source specified"）+ main AGENTS.md（"Use exact specified sources"）
-→ 验证方式：部署后逐页对比构建产出与目标版本
+→ 规则：当用户指定具体版本/URL/分支时，必须使用该精确来源。无论是否"确定"等价，必须用 diff 验证全部文件，并在 Reflection Block 中写出验证结果。自信不能替代验证。
+→ 分发位置：main SOUL.md（"Use exact source" + "Confidence is not verification"）+ main AGENTS.md（"Use exact specified sources"）
+→ 验证方式：Reflection Block 中必须包含 diff 验证证据
 
 [L-0010] 2026-03-17 | 网站部署任务 | 推送后未验证线上结果就声称完成，用户发现 FAQ 手风琴坏了
-→ 规则：每次部署后必须自行验证线上结果（fetch URL → 检查关键内容/功能），不可仅凭 build 成功就说"完成"
+→ 规则：每次部署后必须：(a) fetch URL 确认关键文本/结构 (b) 对照参考版本检查所有可交互元素（手风琴、轮播、导航）(c) 如涉及 CSS 改动，diff 产出样式与参考版本样式。验证证据必须在完成声明中列出。
 → 分发位置：main SOUL.md（"Verify before claiming done"）+ main AGENTS.md（"Post-deploy verification is mandatory"）
-→ 验证方式：部署声明前必须包含线上验证证据
+→ 验证方式：完成声明中必须包含逐项验证清单
 
 [L-0011] 2026-03-17 | 学习流程 | learning agent 只在用户提醒后才启动，用户不得不充当监督者推动学习
 → 规则：main 检测到被纠正/重做/自发现错误时，必须自动 spawn learning agent，不等用户指示
@@ -64,3 +64,8 @@
 → 规则：TYPE 分类是强制步骤，必须在做任何工作之前输出。TYPE-M 任务 main 不可自己执行，必须分配给子 agent。
 → 分发位置：main AGENTS.md（TYPE classification enforcement + TYPE-M dispatch rule）
 → 验证方式：检查 main 的回复是否在执行前包含 TYPE 分类和 Reflection Block
+
+[L-0013] 2026-03-17 | 纠错流程 | 用户指出 bug A 后，main 修复 A 但未重新验证更早的根因 B，导致 B 持续存在直到用户再次提出
+→ 规则：每次基于用户纠错做修改后，必须回溯该任务的所有已知问题清单，逐一验证是否仍然存在。"修了A"不等于"检查了B"。
+→ 分发位置：main SOUL.md（"Fix the forest, not just the tree"）
+→ 验证方式：纠错后的完成声明中需列出"检查项清单及状态"
