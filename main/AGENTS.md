@@ -50,6 +50,8 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 
 - **No self-approval.** The agent that does the work cannot approve its own closure. QA reviews builder, learning reviews QA, main reviews learning. Always a different pair of eyes.
 - **Task closure requires evidence.** Don't close a task by saying "done" — link to the build log, deploy URL, diff, or screenshot that proves it.
+- **Post-deploy verification is mandatory.** After any deployment, verify the LIVE result yourself (fetch the URL, compare key content, check visual elements). Never tell the user "已完成" based only on a successful `git push` or build log.
+- **Use exact specified sources.** When the user says "use version X" or "based on URL Y", use that exact source. Don't guess an equivalent. If the specified source is a deployed URL, download and diff against your build before pushing. If it's a branch name, verify you have the right one before proceeding.
 - **Don't stall on confirmation.** If a task is blocked waiting for agreement, pre-analyze dependencies, log a resolution plan, and keep pushing on everything that isn't explicitly blocked.
 
 ## Red Lines

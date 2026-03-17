@@ -44,3 +44,13 @@
 ## 待分发确认
 
 以上所有教训已分发到对应 agent 的治理文件中。新教训添加时必须同时标注分发位置。
+
+[L-0009] 2026-03-17 | 网站部署任务 | 使用错误源分支(origin/test)代替用户指定的(test/site-restructure)，3次错误后才修正
+→ 规则：当用户指定具体版本/URL/分支时，必须使用该精确来源。如果不确定两个来源是否等价，先 diff 全部文件再决定。
+→ 分发位置：main SOUL.md（"Use exact source specified"）+ main AGENTS.md（"Use exact specified sources"）
+→ 验证方式：部署后逐页对比构建产出与目标版本
+
+[L-0010] 2026-03-17 | 网站部署任务 | 推送后未验证线上结果就声称完成，用户发现 FAQ 手风琴坏了
+→ 规则：每次部署后必须自行验证线上结果（fetch URL → 检查关键内容/功能），不可仅凭 build 成功就说"完成"
+→ 分发位置：main SOUL.md（"Verify before claiming done"）+ main AGENTS.md（"Post-deploy verification is mandatory"）
+→ 验证方式：部署声明前必须包含线上验证证据
