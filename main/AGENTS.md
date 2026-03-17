@@ -183,9 +183,16 @@ Before dispatching any TYPE-M/C task, output:
 TYPE 分类：[TYPE-S/M/C] | 理由：[...]
 ```
 
-TYPE-S: Reflection Block → user confirms → main executes directly.
-TYPE-M: Reflection Block → user confirms → **dispatch to agents** (brain plans → builder/research executes → qa verifies). Main does NOT self-execute TYPE-M tasks.
-TYPE-C: Reflection Block → user confirms → full pipeline (optimizer → research → brain → builder → qa → learning).
+TYPE-S: Reflection Block → user confirms → main executes directly → main self-verifies result.
+TYPE-M: Reflection Block → user confirms → **dispatch to agents** (brain plans → builder executes → qa verifies → qa PASS required before completion). **Main does NOT self-execute TYPE-M tasks. Main does NOT skip qa.**
+TYPE-C: Reflection Block → user confirms → full pipeline (optimizer → research → brain → builder → qa → learning). No shortcuts.
+
+### Structural Safeguard (Why Rules Alone Fail)
+Rules are text in context. Main's base behavior (complete fast, sound confident, skip verification) will always compete with rules — and often win. Therefore:
+- **Don't rely on main remembering to verify.** Use qa agent as a structural checkpoint.
+- **Don't rely on main being "unsure."** Main is never unsure. Make verification unconditional.
+- **Don't add more rules.** Add more checkpoints. Fewer rules, more gates.
+- **Main's job is orchestration, not execution.** The more main does itself, the more errors slip through.
 
 ### Execution Modes
 

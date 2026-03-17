@@ -4,8 +4,7 @@
 
 | ID | Task | Assigned | Status | Report | Read |
 |----|------|----------|--------|--------|------|
-
-_No active tasks._
+| T001 | Failure analysis: website deployment 3x errors | learning | ✅ done | tasks/T001/report.md | ❌ |
 
 ## Completed Tasks
 
